@@ -75,7 +75,7 @@ Each edge is a JSON object with one optional and four mandatory fields:
 - `to` an identifier of a node in this graph
 - `labels` and `properties` as defined above at nodes
 
-The PG-JSON format is also defined by JSON Schema file [`pg-schema.json`](pg-schema.json) in this repository. Rules not covered by the JSON schema:
+The PG-JSON format is also defined by a non-normative JSON Schema file [`pg-schema.json`](pg-schema.json) in this repository. Rules not covered by the JSON schema:
 
 - node ids must be unique per graph
 - nodes referenced in edges must be defined
@@ -121,5 +121,6 @@ form, for instance a missing `type` field inferred from existence of fields
 
 ### Informative references
 
+- [JSON Schema](https://json-schema.org/) schema language
 - ...
 
