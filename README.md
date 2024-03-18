@@ -14,6 +14,7 @@ This repository is going to host a formal specification of Property Graph Exchan
   - [PG-JSONL](#pg-jsonl)
 - [Examples](#examples)
 - [PG format grammar](#pg-format-grammar)
+- [JSON Schemas](#json-schemas)
 - [References](#references)
   - [Normative references](#normative-references)
   - [Informative references](#informative-references)
@@ -75,17 +76,6 @@ Each edge is a JSON object with one optional and four mandatory fields:
 - `to` an identifier of a node in this graph
 - `labels` and `properties` as defined above at nodes
 
-The PG-JSON format is also defined by a non-normative JSON Schema file [`pg-schema.json`](pg-schema.json) in this repository. Rules not covered by the JSON schema:
-
-- node ids must be unique per graph
-- nodes referenced in edges must be defined
-
-Applications MAY accept documents not fully conforming to this specification when they can automatically be transformed to valid form, for instance:
-
-- creation of missing nodes for node identifiers referenced in edges
-- add empty `labels` and/or `properties` if not specified
-
-
 ### PG-JSONL
 
 A **PG-JSONL** document serializes a property graph in JSON Lines format, also
@@ -108,6 +98,19 @@ form, for instance a missing `type` field inferred from existence of fields
 
 ...
 
+## JSON Schemas
+
+*This section is non-normative*
+
+The [PG-JSON format](#pg-json) is also defined by a JSON Schema file [`pg-json.json`](schema/pg-json.json) in this repository. Rules not covered by the JSON schema include:
+
+- nodes referenced in edges must be defined (no implicit nodes)
+- node ids must be unique per graph (no repeated nodes)
+
+Applications MAY accept documents not fully conforming to this specification when they can automatically be transformed to valid form, for instance:
+
+- creation of implicit nodes for node identifiers referenced in edges
+- add empty `labels` and/or `properties` if not specified
 
 ## References
 
