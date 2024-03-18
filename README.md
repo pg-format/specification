@@ -102,7 +102,7 @@ form, for instance a missing `type` field inferred from existence of fields
 
 *This section is non-normative*
 
-The [PG-JSON format](#pg-json) is also defined by a JSON Schema file [`pg-json.json`](schema/pg-json.json) in this repository. Rules not covered by the JSON schema include:
+The [PG-JSON format](#pg-json) can be validated with JSON Schema file [`pg-json.json`](schema/pg-json.json) in this repository. Rules not covered by the JSON schema include:
 
 - nodes referenced in edges must be defined (no implicit nodes)
 - node ids must be unique per graph (no repeated nodes)
@@ -111,6 +111,9 @@ Applications MAY accept documents not fully conforming to this specification whe
 
 - creation of implicit nodes for node identifiers referenced in edges
 - add empty `labels` and/or `properties` if not specified
+
+The [PG-JSONL format](#pg-jsonl) can be validated with JSON Schema file [`pg-jsonl.json`](schema/pg-jsonl.json) in this repository. Validation is limited in the same way as validation of PG-JSON with its JSON Schema.
+
 
 ## References
 
