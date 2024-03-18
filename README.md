@@ -4,27 +4,46 @@ This repository is going to host a formal specification of Property Graph Exchan
 
 *THIS IS WORK IN PROGRESS*
 
+## Table of Contents
 
-## Property graphs
+- [Introduction](#introduction)
+- [Property Graphs](#property-graphs)
+- [Serializations](#serializations)
+  - [PG format](#pg-format)
+  - [PG-JSON](#pg-json)
+  - [PG-JSONL](#pg-jsonl)
+- [Examples](#examples)
+- [PG format grammar](#pg-format-grammar)
+- [References](#references)
+  - [Normative references](#normative-references)
+  - [Informative references](#informative-references)
+
+## Introduction
 
 **Property Graphs** (also known as **Labeled Property Graphs**) are used as
 abstract data structure in graph databases and related applications. 
 
-A property graph consists of **nodes** and **edges** between these nodes. Each
-edge can be directed or undirected.  Each of the nodes and edges can have a set
-of zero or more **labels** and a set of zero or more properties.
-**properties** are key-value pairs where the same key can have multiple values.
-**values** are Unicode strings or scalar values of other data types.
-
 Implementations of property graphs slightly differ in support of data types,
-restrictions on labels etc. The property graph model PG is aimed to be
-a superset of property graph models of common graph databases and formats. The
-model and its serializations have first been proposed by Hirokazu Chiba, Ryota
-Yamanaka, and Shota Matsumoto ([2019](https://arxiv.org/abs/1907.03936),
+restrictions on labels etc. The [definition of property graph used in this
+specification](#property-graphs) is aimed to be a superset of property graph
+models of common graph databases and formats. The model and its serializations
+have first been proposed by Hirokazu Chiba, Ryota Yamanaka, and Shota Matsumoto
+([2019](https://arxiv.org/abs/1907.03936),
 [2022](https://arxiv.org/abs/2203.06393)).
 
 
-## PG format
+## Property graphs
+
+A property graph consists of **nodes** and **edges** between these nodes. Each
+edge can be directed or undirected.  Each of the nodes and edges can have
+**labels** and **properties**. Properties are key-value pairs where the same
+key can have multiple values. Labels and property keys are non-empty Unicode strings.
+Property values are Unicode strings, numbers or the null-value.
+
+
+## Serializations
+
+### PG format
 
 A **PG format** document allows writing down a property graph in a compact textual
 form. A PG format document is a Unicode string that conforms to grammar and
@@ -32,8 +51,10 @@ additional constraints going to be defined in this specification.
 
 ...
 
+*See <https://github.com/orgs/pg-format/discussions> and <https://github.com/pg-format/pg-formatter/wiki> for discussion and references*
 
-## PG-JSON
+
+### PG-JSON
 
 A **PG-JSON** document serializes a property graph in JSON. A PG-JSON document is a JSON 
 document (RFC 8259) with a JSON object with exactely two fields:
@@ -65,7 +86,7 @@ Applications MAY accept documents not fully conforming to this specification whe
 - add empty `labels` and/or `properties` if not specified
 
 
-## PG-JSONL
+### PG-JSONL
 
 A **PG-JSONL** document serializes a property graph in JSON Lines format, also
 known as newline-delimited JSON. A PG-JSONL document is a sequence of JSON
@@ -79,6 +100,14 @@ Applications MAY accept objects that can automatically be transformed to valid
 form, for instance a missing `type` field inferred from existence of fields
 `from` and `to`.
 
+## Examples
+
+...
+
+## PG format grammar
+
+...
+
 
 ## References
 
@@ -89,4 +118,8 @@ form, for instance a missing `type` field inferred from existence of fields
 
 - The Unicode Consortium: The Unicode Standard.
   <http://www.unicode.org/versions/latest/>
+
+### Informative references
+
+- ...
 
