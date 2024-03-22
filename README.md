@@ -81,7 +81,8 @@ Each edge is a JSON object with one optional and four mandatory fields:
 A **PG-JSONL** document serializes a property graph in JSON Lines format, also
 known as newline-delimited JSON. A PG-JSONL document is a sequence of JSON
 objects, separated by line separator (`U+000A`) and optional whitespace
-(`U+0020`, `U+0009`, and `U+000D`) around JSON objects. Each object is
+(`U+0020`, `U+0009`, and `U+000D`) around JSON objects, and an optional line
+separator at the end. Each object is
 
 - either a node with field `type` having string value `"node"` and the same mandatory node fields from PG-JSON format,
 - or an edge with field `type` having string value `"edge"` and the same mandatory edge fields from PG-JSON format.
