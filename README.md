@@ -36,10 +36,23 @@ have first been proposed by Hirokazu Chiba, Ryota Yamanaka, and Shota Matsumoto
 ## Property graphs
 
 A property graph consists of **nodes** and **edges** between these nodes. Each
-edge can be directed or undirected.  Each of the nodes and edges can have
-**labels** and **properties**. Properties are key-value pairs where the same
-key can have multiple values. Labels and property keys are non-empty Unicode strings.
-Property values are Unicode strings, numbers or the null-value.
+node has a unique **node identifier**. Each edge can be directed or undirected.
+Each of the nodes and edges can have **properties** and **labels**. Properties
+are mappings from **keys** to non-empty lists of **values**. Node identifiers,
+labels, and keys are non-empty Unicode strings. A value is a Unicode string,
+a boolean value, a number as defined by RFC 8259, or the special value null.
+
+The following features are implied by this definition, among others:
+
+- edges don't have identifiers
+- multi-edges are allowed
+- values don't have data types other than string, boolean, number, and null
+- as specified in RFC 8259, implementations may set limits on the range and
+  precision of numbers and double precision (IEEE754) is the most likely common limit
+- values of the same property key are allowed to have different types
+- a property must have at least one value
+- the meaning of labels and property keys is out of the scope of this specification
+- there are no graph attributes, hierarchies, hyper-edges or other extened features
 
 
 ## Serializations
@@ -49,6 +62,8 @@ Property values are Unicode strings, numbers or the null-value.
 A **PG format** document allows writing down a property graph in a compact textual
 form. A PG format document is a Unicode string that conforms to grammar and
 additional constraints going to be defined in this specification.
+
+A PG format document MUST be encoded in UTF-8 (RFC 3629).
 
 ...
 
@@ -121,13 +136,17 @@ The [PG-JSONL format](#pg-jsonl) can be validated with JSON Schema file [`pg-jso
 ### Normative References
 
 - Bray, T.: The JavaScript Object Notation (JSON) Data Interchange Format.
-  RFC 7159, March 2014. <https://tools.ietf.org/html/rfc7159>
+  RFC 8259, December 2017. <https://tools.ietf.org/html/rfc8259>
 
 - The Unicode Consortium: The Unicode Standard.
   <http://www.unicode.org/versions/latest/>
 
+- Yergeau, F.: UTF-8, a transformation format of ISO 10646.
+  RFC 3629, November 2003. <https://tools.ietf.org/html/rfc3629>
+
 ### Informative references
 
 - [JSON Schema](https://json-schema.org/) schema language
-- ...
+
+- IEEE, "IEEE Standard for Floating-Point Arithmetic", IEEE 754.
 
