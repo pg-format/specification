@@ -15,6 +15,7 @@ This repository is going to host a formal specification of Property Graph Exchan
 - [Examples](#examples)
 - [PG format grammar](#pg-format-grammar)
 - [JSON Schemas](#json-schemas)
+- [Robustness principle](#robustness-principle)
 - [References](#references)
   - [Normative references](#normative-references)
   - [Informative references](#informative-references)
@@ -128,7 +129,9 @@ The [PG-JSONL format](#pg-jsonl) can be validated with a non-normative JSON Sche
 
 ## Robustness principle
 
-Applications MAY automatically convert documents not fully conforming to the specification of PG-JSON and/or PG-JSONL to valid form, for instance by:
+*This section is non-normative!*
+
+Applications may automatically convert documents not fully conforming to the specification of PG-JSON and/or PG-JSONL to valid form, for instance by:
 
 - creation of implicit nodes for node identifiers referenced in edges
 - addition of missing empty fields `labels` and/or `properties`
