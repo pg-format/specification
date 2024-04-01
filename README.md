@@ -121,7 +121,7 @@ form, for instance a missing `type` field inferred from existence of fields
 The [PG-JSON format](#pg-json) can be validated with JSON Schema file [`pg-json.json`](schema/pg-json.json) in this repository. Rules not covered by the JSON schema include:
 
 - nodes referenced in edges must be defined (no implicit nodes)
-- node ids must be unique per graph (no repeated nodes)
+- node identifiers must be unique per graph (no repeated nodes)
 
 Applications MAY accept documents not fully conforming to this specification when they can automatically be transformed to valid form, for instance:
 
