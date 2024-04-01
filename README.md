@@ -94,18 +94,20 @@ Each edge is a JSON object with one optional and four mandatory fields:
 
 ### PG-JSONL
 
-A **PG-JSONL** document serializes a property graph in JSON Lines format, also
-known as newline-delimited JSON. A PG-JSONL document is a sequence of JSON
-objects, separated by line separator (`U+000A`) and optional whitespace
+A **PG-JSONL** document or stream serializes a property graph in JSON Lines
+format, also known as newline-delimited JSON. A PG-JSONL document is a sequence
+of JSON objects, separated by line separator (`U+000A`) and optional whitespace
 (`U+0020`, `U+0009`, and `U+000D`) around JSON objects, and an optional line
 separator at the end. Each object is
 
 - either a node with field `type` having string value `"node"` and the same mandatory node fields from PG-JSON format,
 - or an edge with field `type` having string value `"edge"` and the same mandatory edge fields from PG-JSON format.
 
-Applications MAY accept objects that can automatically be transformed to valid
-form, for instance a missing `type` field inferred from existence of fields
-`from` and `to`.
+Node objects SHOULD be given before their node identifiers are referenced in an
+edge object but applications MAY also create implicit node objects for this
+cases. Applications MAY allow multiple node objects with same node identifier
+in PG-JSONL but they MUST make clear whether nodes with repeated identifier are
+ignored, merged into existing nodes, or replace existing nodes.
 
 ## Examples
 
@@ -117,20 +119,22 @@ form, for instance a missing `type` field inferred from existence of fields
 
 ## JSON Schemas
 
-*This section is non-normative*
-
-The [PG-JSON format](#pg-json) can be validated with JSON Schema file [`pg-json.json`](schema/pg-json.json) in this repository. Rules not covered by the JSON schema include:
+The [PG-JSON format](#pg-json) can be validated with a non-normative JSON Schema file [`pg-json.json`](schema/pg-json.json) in this repository. Rules not covered by the JSON schema include:
 
 - nodes referenced in edges must be defined (no implicit nodes)
 - node identifiers must be unique per graph (no repeated nodes)
 
-Applications MAY accept documents not fully conforming to this specification when they can automatically be transformed to valid form, for instance:
+The [PG-JSONL format](#pg-jsonl) can be validated with a non-normative JSON Schema file [`pg-jsonl.json`](schema/pg-jsonl.json) in this repository. Validation is limited in the same way as validation of PG-JSON with its JSON Schema.
+
+## Robustness principle
+
+Applications MAY automatically convert documents not fully conforming to the specification of PG-JSON and/or PG-JSONL to valid form, for instance by:
 
 - creation of implicit nodes for node identifiers referenced in edges
-- add empty `labels` and/or `properties` if not specified
-
-The [PG-JSONL format](#pg-jsonl) can be validated with JSON Schema file [`pg-jsonl.json`](schema/pg-jsonl.json) in this repository. Validation is limited in the same way as validation of PG-JSON with its JSON Schema.
-
+- addition of missing empty fields `labels` and/or `properties`
+- removal or mapping of invalid property values such as `null` and JSON objects
+- mapping of numeric node identifiers to strings
+- removal of additional fields not defined in this specification
 
 ## References
 
