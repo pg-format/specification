@@ -40,13 +40,14 @@ node has a unique **node identifier**. Each edge can be directed or undirected.
 Each of the nodes and edges can have **properties** and **labels**. Properties
 are mappings from **keys** to non-empty lists of **values**. Node identifiers,
 labels, and keys are non-empty Unicode strings. A value is a Unicode string,
-a boolean value, a number as defined by RFC 8259, or the special value null.
+a boolean value, or a number as defined by RFC 8259.
 
 The following features are implied by this definition, among others:
 
 - edges don't have identifiers
-- multi-edges are allowed
-- values don't have data types other than string, boolean, number, and null
+- edges connecting a node to itself (self-loops) and multiple edges with same
+  direction, labels, and properties (multi-edges) are allowed
+- values don't have data types other than string, boolean, and number
 - as specified in RFC 8259, implementations may set limits on the range and
   precision of numbers and double precision (IEEE754) is the most likely common limit
 - values of the same property key are allowed to have different types
@@ -82,7 +83,7 @@ Each node is a JSON object with exactely three fields:
 
 - `id` the internal node identifier, being a non-empty string. Node identifiers MUST be unique per PG-JSON document.
 - `labels` an array of labels, each being a non-empty string. Labels MUST be unique per node.
-- `properties` a JSON object mapping non-empty strings as property keys to non-empty arrays of scalar JSON values (string, number, boolean, or null) as property values.
+- `properties` a JSON object mapping non-empty strings as property keys to non-empty arrays of scalar JSON values (string, number, boolean) as property values.
 
 Each edge is a JSON object with one optional and four mandatory fields:
 
