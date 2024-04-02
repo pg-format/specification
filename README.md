@@ -7,13 +7,13 @@ This repository is going to host a formal specification of Property Graph Exchan
 ## Table of Contents
 
 - [Introduction](#introduction)
-- [Property Graphs](#property-graphs)
-- [Serializations](#serializations)
+- [Property Graph Data Model](#property-graph-data-model)
+- [Property Graph Serializations](#property-graph-serializations)
   - [PG format](#pg-format)
   - [PG-JSON](#pg-json)
   - [PG-JSONL](#pg-jsonl)
-- [Examples](#examples)
 - [PG format grammar](#pg-format-grammar)
+- [Examples](#examples)- 
 - [JSON Schemas](#json-schemas)
 - [Robustness principle](#robustness-principle)
 - [References](#references)
@@ -31,10 +31,16 @@ specification](#property-graphs) is aimed to be a superset of property graph
 models of common graph databases and formats. The model and its serializations
 have first been proposed by Hirokazu Chiba, Ryota Yamanaka, and Shota Matsumoto
 ([2019](https://arxiv.org/abs/1907.03936),
-[2022](https://arxiv.org/abs/2203.06393)).
+[2022](https://arxiv.org/abs/2203.06393)) and revised into this specification
+together with Jakob Voß.
 
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
+"MAY", and "OPTIONAL" in this document are to be interpreted as
+described in BCP 14 (RFC 2119 and RFC 8174) when, and only when,
+they appear in all capitals, as shown here.
 
-## Property graphs
+## Property Graph Data Model
 
 A property graph consists of **nodes** and **edges** between these nodes. Each
 node has a unique **node identifier**. Each edge can be directed or undirected.
@@ -57,7 +63,7 @@ The following features are implied by this definition, among others:
 - there are no graph attributes, hierarchies, hyper-edges or other extened features
 
 
-## Serializations
+## Property Graph Serializations
 
 ### PG format
 
@@ -110,11 +116,13 @@ cases. Applications MAY allow multiple node objects with same node identifier
 in PG-JSONL but they MUST make clear whether nodes with repeated identifier are
 ignored, merged into existing nodes, or replace existing nodes.
 
-## Examples
+## PG format grammar
 
 ...
 
-## PG format grammar
+## Examples
+
+*This section is non-normative!*
 
 ...
 
@@ -143,9 +151,17 @@ Applications may automatically convert documents not fully conforming to the spe
 
 ### Normative References
 
+- Bradner, S.: Key words for use in RFCs to Indicate Requirement Levels.
+  BCP 14, RFC 2119, March 1997,
+  <http://www.rfc-editor.org/info/rfc2119>.
+              
 - Bray, T.: The JavaScript Object Notation (JSON) Data Interchange Format.
   RFC 8259, December 2017. <https://tools.ietf.org/html/rfc8259>
 
+- Leiba, B.:  Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words.
+  BCP 14, RFC 8174, May 2017,
+  <http://www.rfc-editor.org/info/rfc8174>.
+  
 - The Unicode Consortium: The Unicode Standard.
   <http://www.unicode.org/versions/latest/>
 
