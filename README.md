@@ -75,7 +75,7 @@ additional constraints going to be defined in this specification.
 
 Some preliminary rules before full definition of the format:
 
-### Character Encoding
+#### Character Encoding
 
 A PG format document MUST be encoded in UTF-8 (RFC 3629). Unicode codepoints can also be given by escape sequences in quoted strings.
 
