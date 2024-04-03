@@ -71,12 +71,51 @@ A **PG format** document allows writing down a property graph in a compact textu
 form. A PG format document is a Unicode string that conforms to grammar and
 additional constraints going to be defined in this specification.
 
-A PG format document MUST be encoded in UTF-8 (RFC 3629).
-
-...
-
 *See <https://github.com/orgs/pg-format/discussions> and <https://github.com/pg-format/pg-formatter/wiki> for discussion and references*
 
+Some preliminary rules before full definition of the format:
+
+### Character Encoding
+
+A PG format document MUST be encoded in UTF-8 (RFC 3629). Unicode codepoints can also be given by escape sequences in quoted strings.
+
+#### Implicit nodes
+
+Node identifiers referenced in edges imply the existence of nodes with these identifiers. For instance the following documents encode the same graph:
+
+~~~pg
+a -> b
+~~~
+
+~~~pg
+a
+b
+a -> b
+~~~
+
+#### Node merging
+
+Parts of the same node can be defined at multiple places in a PG format document. Nodes definitions with same identifier are merged by appending labels and property values. For instance the document
+
+~~~pg
+a :x k:1 m:true
+a :y k:2
+~~~
+
+encodes the graph
+
+~~~pg
+a :x :y k:1,2 m:true
+~~~
+
+#### Multi-edges
+
+The Property Graph Data Model allows for multiple edges between same nodes. For instance the following graph contains two indistinguishable edges:
+
+~~~pg
+a -> b :follows since:2024
+a -> b :follows since:2024
+~~~
 
 ### PG-JSON
 
