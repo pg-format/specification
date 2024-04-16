@@ -43,7 +43,8 @@ they appear in all capitals, as shown here.
 ## Property Graph Data Model
 
 A property graph consists of **nodes** and **edges** between these nodes. Each
-node has a unique **node identifier**. Each edge can be directed or undirected.
+node has a unique **node identifier**. Each edge is either directed or undirected
+and may have an optional **edge identifier**.
 Each of the nodes and edges can have **properties** and **labels**. Properties
 are mappings from **keys** to non-empty lists of **values**. Node identifiers,
 labels, and keys are non-empty Unicode strings. A value is a Unicode string,
@@ -51,7 +52,6 @@ a boolean value, or a number as defined by RFC 8259.
 
 The following features are implied by this definition, among others:
 
-- edges don't have identifiers
 - edges connecting a node to itself (self-loops) and multiple edges with same
   direction, labels, and properties (multi-edges) are allowed
 - values don't have data types other than string, boolean, and number
@@ -79,7 +79,9 @@ Some preliminary rules before full definition of the format:
 
 A PG format document MUST be encoded in UTF-8 (RFC 3629). Unicode codepoints can also be given by escape sequences in quoted strings.
 
-#### Implicit nodes
+#### Nodes
+
+##### Implicit nodes
 
 Node identifiers referenced in edges imply the existence of nodes with these identifiers. For instance the following documents encode the same graph:
 
@@ -108,13 +110,31 @@ encodes the graph
 a :x :y k:1,2 m:true
 ~~~
 
-#### Multi-edges
+#### Edges
+
+##### Multi-edges
 
 The Property Graph Data Model allows for multiple edges between same nodes. For instance the following graph contains two indistinguishable edges:
 
 ~~~pg
 a -> b :follows since:2024
 a -> b :follows since:2024
+~~~
+
+##### Edge identifiers
+
+Optional edge identifiers can be preceded an edge, directly followed by a colon and whitespace. The following examples extends the previous example with individual identifiers for each edge: 
+
+~~~pg
+1: a -> b :follows since:2024
+2: a -> b :follows since:2024
+~~~
+
+Edge identifiers MUST NOT be repeated. For instance the following is invalid:
+
+~~~pg
+1: a -> b :follows
+1: a -> b since:2024
 ~~~
 
 ### PG-JSON
@@ -127,12 +147,13 @@ document (RFC 8259) with a JSON object with exactely two fields:
 
 Each node is a JSON object with exactely three fields:
 
-- `id` the internal node identifier, being a non-empty string. Node identifiers MUST be unique per PG-JSON document.
+- `id` the node identifier, being a non-empty string. Node identifiers MUST be unique per PG-JSON document.
 - `labels` an array of labels, each being a non-empty string. Labels MUST be unique per node.
 - `properties` a JSON object mapping non-empty strings as property keys to non-empty arrays of scalar JSON values (string, number, boolean) as property values.
 
 Each edge is a JSON object with one optional and four mandatory fields:
 
+- `id` (optional) the edge identifier, being a non-empty string. Edge identifiers MUST be unique per PG-JSON document.
 - `undirected` (optional) a boolean value whether the edge is undirected
 - `from` an identifier of a node in this graph
 - `to` an identifier of a node in this graph
@@ -170,7 +191,8 @@ ignored, merged into existing nodes, or replace existing nodes.
 The [PG-JSON format](#pg-json) can be validated with a non-normative JSON Schema file [`pg-json.json`](schema/pg-json.json) in this repository. Rules not covered by the JSON schema include:
 
 - nodes referenced in edges must be defined (no implicit nodes)
-- node identifiers must be unique per graph (no repeated nodes)
+- node identifiers must be unique per graph
+- edge identifiers must be unique per graph
 
 The [PG-JSONL format](#pg-jsonl) can be validated with a non-normative JSON Schema file [`pg-jsonl.json`](schema/pg-jsonl.json) in this repository. Validation is limited in the same way as validation of PG-JSON with its JSON Schema.
 
@@ -183,7 +205,7 @@ Applications may automatically convert documents not fully conforming to the spe
 - creation of implicit nodes for node identifiers referenced in edges
 - addition of missing empty fields `labels` and/or `properties`
 - removal or mapping of invalid property values such as `null` and JSON objects
-- mapping of numeric node identifiers to strings
+- mapping of numeric node identifiers and edge identifiers to strings
 - removal of additional fields not defined in this specification
 
 ## References
