@@ -75,15 +75,22 @@ additional constraints going to be defined in this specification.
 
 Some preliminary rules before full definition of the format:
 
-#### Character Encoding
+#### Basic structure
 
-A PG format document MUST be encoded in UTF-8 (RFC 3629). Unicode codepoints can also be given by escape sequences in quoted strings.
+A PG format document encodes a property graph as Unicode string. The document
+MUST be encoded in UTF-8 (RFC 3629). Unicode codepoints can also be given by
+escape sequences in quoted strings.
+
+The document consists of statements, each defining a [node](#nodes) or an
+[edge](#edges). Empty statements consisting of nothing but whitespace and/or
+a [comment](#comments) ar ignored.
 
 #### Nodes
 
 ##### Implicit nodes
 
-Node identifiers referenced in edges imply the existence of nodes with these identifiers. For instance the following documents encode the same graph:
+Node identifiers referenced in edges imply the existence of nodes with these
+identifiers. For instance the following documents encode the same graph:
 
 ~~~pg
 a -> b
@@ -97,7 +104,9 @@ a -> b
 
 #### Node merging
 
-Parts of the same node can be defined at multiple places in a PG format document. Nodes definitions with same identifier are merged by appending labels and property values. For instance the document
+Parts of the same node can be defined at multiple places in a PG format
+document. Nodes definitions with same identifier are merged by appending labels
+and property values. For instance the document
 
 ~~~pg
 a :x k:1 m:true
@@ -114,7 +123,8 @@ a :x :y k:1,2 m:true
 
 ##### Multi-edges
 
-The Property Graph Data Model allows for multiple edges between same nodes. For instance the following graph contains two indistinguishable edges:
+The Property Graph Data Model allows for multiple edges between same nodes. For
+instance the following graph contains two indistinguishable edges:
 
 ~~~pg
 a -> b :follows since:2024
@@ -123,7 +133,9 @@ a -> b :follows since:2024
 
 ##### Edge identifiers
 
-Optional edge identifiers can be preceded an edge, directly followed by a colon and whitespace. The following examples extends the previous example with individual identifiers for each edge: 
+Optional edge identifiers can be preceded an edge, directly followed by a colon
+and whitespace. The following examples extends the previous example with
+individual identifiers for each edge: 
 
 ~~~pg
 1: a -> b :follows since:2024
@@ -137,23 +149,32 @@ Edge identifiers MUST NOT be repeated. For instance the following is invalid:
 1: a -> b since:2024
 ~~~
 
+#### Comments
+
+A comment begin with a hash (`#` = `U+0023`) and ends at the next line break
+or at the end of the document.
+
 ### PG-JSON
 
-A **PG-JSON** document serializes a property graph in JSON. A PG-JSON document is a JSON 
-document (RFC 8259) with a JSON object with exactely two fields:
+A **PG-JSON** document serializes a property graph in JSON. A PG-JSON document
+is a JSON document (RFC 8259) with a JSON object with exactely two fields:
 
 - `nodes` an array of nodes
 - `edges` an array of edges
 
 Each node is a JSON object with exactely three fields:
 
-- `id` the node identifier, being a non-empty string. Node identifiers MUST be unique per PG-JSON document.
-- `labels` an array of labels, each being a non-empty string. Labels MUST be unique per node.
-- `properties` a JSON object mapping non-empty strings as property keys to non-empty arrays of scalar JSON values (string, number, boolean) as property values.
+- `id` the node identifier, being a non-empty string.
+  Node identifiers MUST be unique per PG-JSON document.
+- `labels` an array of labels, each being a non-empty string.
+  Labels MUST be unique per node.
+- `properties` a JSON object mapping non-empty strings as property keys to
+  non-empty arrays of scalar JSON values (string, number, boolean) as property values.
 
 Each edge is a JSON object with one optional and four mandatory fields:
 
-- `id` (optional) the edge identifier, being a non-empty string. Edge identifiers MUST be unique per PG-JSON document.
+- `id` (optional) the edge identifier, being a non-empty string.
+  Edge identifiers MUST be unique per PG-JSON document.
 - `undirected` (optional) a boolean value whether the edge is undirected
 - `from` an identifier of a node in this graph
 - `to` an identifier of a node in this graph
@@ -167,8 +188,10 @@ of JSON objects, separated by line separator (`U+000A`) and optional whitespace
 (`U+0020`, `U+0009`, and `U+000D`) around JSON objects, and an optional line
 separator at the end. Each object is
 
-- either a node with field `type` having string value `"node"` and the same mandatory node fields from PG-JSON format,
-- or an edge with field `type` having string value `"edge"` and the same mandatory edge fields from PG-JSON format.
+- either a node with field `type` having string value `"node"` and the same
+  mandatory node fields from PG-JSON format,
+- or an edge with field `type` having string value `"edge"` and the same
+  mandatory edge fields from PG-JSON format.
 
 Node objects SHOULD be given before their node identifiers are referenced in an
 edge object but applications MAY also create implicit node objects for this
@@ -178,7 +201,7 @@ ignored, merged into existing nodes, or replace existing nodes.
 
 ## PG format grammar
 
-...
+*Will be provided*
 
 ## Examples
 
@@ -233,5 +256,5 @@ Applications may automatically convert documents not fully conforming to the spe
 
 - [JSON Schema](https://json-schema.org/) schema language
 
-- IEEE, "IEEE Standard for Floating-Point Arithmetic", IEEE 754.
+- [IEEE Standard for Floating-Point Arithmetic](https://doi.org/10.1109/IEEESTD.2019.8766229)
 
