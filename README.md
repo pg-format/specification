@@ -10,6 +10,10 @@ This repository is going to host a formal specification of Property Graph Exchan
 - [Property Graph Data Model](#property-graph-data-model)
 - [Property Graph Serializations](#property-graph-serializations)
   - [PG format](#pg-format)
+    - [Basic structure](#basic-structure)
+    - [Nodes](#nodes)
+    - [Edges](#edges)
+    - [Whitespace](#whitespace)
   - [PG-JSON](#pg-json)
   - [PG-JSONL](#pg-jsonl)
 - [PG format grammar](#pg-format-grammar)
@@ -81,9 +85,9 @@ A PG format document encodes a property graph as Unicode string. The document
 MUST be encoded in UTF-8 (RFC 3629). Unicode codepoints can also be given by
 escape sequences in quoted strings.
 
-The document consists of statements, each defining a [node](#nodes) or an
-[edge](#edges). Empty statements consisting of nothing but whitespace and/or
-a [comment](#comments) ar ignored.
+The document consists of a sequence of statements, each defining
+a [node](#nodes) or an [edge](#edges).
+
 
 #### Nodes
 
@@ -134,7 +138,7 @@ a -> b :follows since:2024
 ##### Edge identifiers
 
 Optional edge identifiers can be preceded an edge, directly followed by a colon
-and whitespace. The following examples extends the previous example with
+and [whitespace]. The following examples extends the previous example with
 individual identifiers for each edge: 
 
 ~~~pg
@@ -149,10 +153,28 @@ Edge identifiers MUST NOT be repeated. For instance the following is invalid:
 1: a -> b since:2024
 ~~~
 
-#### Comments
+#### Whitespace
 
-A comment begin with a hash (`#` = `U+0023`) and ends at the next line break
-or at the end of the document.
+Whitespace separates elements of a statement ([node](#nodes) or [edge](#edge)).
+The following types of whitespace exist:
+
+- Space: a non-empty sequence of space (`U+0020`) and/or tabular (`U+0009`)
+
+- Comment: a comment begins with a hash (`#` = `U+0023`) and ends at the next
+  line break or at the end of the document
+
+Empty lines, consisting of nothing but whitespace, are ignored.
+
+If a non-empty line begins with Space it is considered a continuation of the
+previous statement:
+
+~~~pg
+a :x  # node id and label
+  # this and the following line are empty 
+
+  :y  # another label of the same node at continuation line
+~~~
+
 
 ### PG-JSON
 
