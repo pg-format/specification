@@ -1,0 +1,26 @@
+pre.numberSource code > span > a:first-child::before {
+  border-right: 1px dotted #666;
+  color: #666;
+}
+pre.sourceCode>.try-out-button>i::before {
+    display: inline-block;
+    height: 1rem;
+    width: 1rem;
+    content: "";
+    vertical-align: -0.125em;
+    background-image: url(
+    'data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%23666%22%20class%3D%22bi%20bi-pencil-square%22%20viewBox%3D%220%200%2016%2016%22%3E%0D%0A%20%20%3Cpath%20d%3D%22M15.502%201.94a.5.5%200%200%201%200%20.706L14.459%203.69l-2-2L13.502.646a.5.5%200%200%201%20.707%200l1.293%201.293zm-1.75%202.456-2-2L4.939%209.21a.5.5%200%200%200-.121.196l-.805%202.414a.25.25%200%200%200%20.316.316l2.414-.805a.5.5%200%200%200%20.196-.12l6.813-6.814z%22%2F%3E%0D%0A%20%20%3Cpath%20fill-rule%3D%22evenodd%22%20d%3D%22M1%2013.5A1.5%201.5%200%200%200%202.5%2015h11a1.5%201.5%200%200%200%201.5-1.5v-6a.5.5%200%200%200-1%200v6a.5.5%200%200%201-.5.5h-11a.5.5%200%200%201-.5-.5v-11a.5.5%200%200%201%20.5-.5H9a.5.5%200%200%200%200-1H2.5A1.5%201.5%200%200%200%201%202.5z%22%2F%3E%0D%0A%3C%2Fsvg%3E');
+
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+}
+.try-out-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 0;
+    margin-top: 5px;
+    margin-right: 5px;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 3;
+}

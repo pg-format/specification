@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.553">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Property Graph Exchange Format (PG)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script type="text/javascript" src="script.js"></script>
+
+
+<link rel="stylesheet" href="style.css">
+<meta name="citation_title" content="Property Graph Exchange Format (PG)">
+<meta name="citation_language" content="en">
+</head>
+
+<body>
+
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Property Graph Exchange Format (PG)</h1>
+          </div>
+
+    
+    <div class="quarto-title-meta-container">
+      <div class="quarto-title-meta-column-start">
+        
+        <div class="quarto-title-meta">
+
+                
+          
+                
+              </div>
+      </div>
+      <div class="quarto-title-meta-column-end quarto-other-formats-target">
+      </div>
+    </div>
+
+
+
+    <div class="quarto-other-links-text-target">
+    </div>  </div>
+</header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a>
+  <ul class="collapse">
+  <li><a href="#why-property-graphs" id="toc-why-property-graphs" class="nav-link" data-scroll-target="#why-property-graphs"><span class="header-section-number">1.1</span> Why property graphs?</a></li>
+  <li><a href="#about-this-document" id="toc-about-this-document" class="nav-link" data-scroll-target="#about-this-document"><span class="header-section-number">1.2</span> About this document</a></li>
+  </ul></li>
+  <li><a href="#data-model" id="toc-data-model" class="nav-link" data-scroll-target="#data-model"><span class="header-section-number">2</span> Data Model</a></li>
+  <li><a href="#pg-format" id="toc-pg-format" class="nav-link" data-scroll-target="#pg-format"><span class="header-section-number">3</span> PG format</a>
+  <ul class="collapse">
+  <li><a href="#basic-structure" id="toc-basic-structure" class="nav-link" data-scroll-target="#basic-structure"><span class="header-section-number">3.1</span> Basic structure</a></li>
+  <li><a href="#nodes" id="toc-nodes" class="nav-link" data-scroll-target="#nodes"><span class="header-section-number">3.2</span> Nodes</a></li>
+  <li><a href="#edges" id="toc-edges" class="nav-link" data-scroll-target="#edges"><span class="header-section-number">3.3</span> Edges</a></li>
+  <li><a href="#identifiers" id="toc-identifiers" class="nav-link" data-scroll-target="#identifiers"><span class="header-section-number">3.4</span> Identifiers</a></li>
+  <li><a href="#labels" id="toc-labels" class="nav-link" data-scroll-target="#labels"><span class="header-section-number">3.5</span> Labels</a></li>
+  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties"><span class="header-section-number">3.6</span> Properties</a></li>
+  <li><a href="#whitespace" id="toc-whitespace" class="nav-link" data-scroll-target="#whitespace"><span class="header-section-number">3.7</span> Whitespace</a></li>
+  <li><a href="#grammar" id="toc-grammar" class="nav-link" data-scroll-target="#grammar"><span class="header-section-number">3.8</span> Grammar</a></li>
+  </ul></li>
+  <li><a href="#pg-json" id="toc-pg-json" class="nav-link" data-scroll-target="#pg-json"><span class="header-section-number">4</span> PG-JSON</a></li>
+  <li><a href="#pg-jsonl" id="toc-pg-jsonl" class="nav-link" data-scroll-target="#pg-jsonl"><span class="header-section-number">5</span> PG-JSONL</a></li>
+  <li><a href="#json-schemas" id="toc-json-schemas" class="nav-link" data-scroll-target="#json-schemas"><span class="header-section-number">6</span> JSON Schemas</a></li>
+  <li><a href="#robustness-principle" id="toc-robustness-principle" class="nav-link" data-scroll-target="#robustness-principle"><span class="header-section-number">7</span> Robustness principle</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">8</span> References</a>
+  <ul class="collapse">
+  <li><a href="#normative-references" id="toc-normative-references" class="nav-link" data-scroll-target="#normative-references"><span class="header-section-number">8.1</span> Normative References</a></li>
+  <li><a href="#informative-references" id="toc-informative-references" class="nav-link" data-scroll-target="#informative-references"><span class="header-section-number">8.2</span> Informative references</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+  
+
+
+<p><em>THIS IS WORK IN PROGRESS</em></p>
+<section id="introduction" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
+<section id="why-property-graphs" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="why-property-graphs"><span class="header-section-number">1.1</span> Why property graphs?</h3>
+<p><strong>Property Graphs</strong> (also known as <strong>Labeled Property Graphs</strong>) are used as abstract data structure in graph databases and related applications.</p>
+<p>Implementations of property graphs slightly differ in support of data types, restrictions on labels etc. The <a href="#data-model">definition of property graph used in this specification</a> is aimed to be a superset of property graph models of common graph databases and formats. The model and its serializations have first been proposed by Hirokazu Chiba, Ryota Yamanaka, and Shota Matsumoto (<a href="https://arxiv.org/abs/1907.03936">2019</a>, <a href="https://arxiv.org/abs/2203.06393">2022</a>) and revised into this specification together with Jakob Voß.</p>
+</section>
+<section id="about-this-document" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="about-this-document"><span class="header-section-number">1.2</span> About this document</h3>
+<p>The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in BCP 14 (RFC 2119 and RFC 8174) when, and only when, they appear in all capitals, as shown here.</p>
+<p>Only sections <a href="#data-model">2</a> to <a href="#pg-jsonl">5</a> and <a href="#normative-references">their references</a> are normative parts of this specification. All code sections are illustrating examples and non-normative.</p>
+</section>
+</section>
+<section id="data-model" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="data-model"><span class="header-section-number">2</span> Data Model</h2>
+<p>A <strong>property graph</strong> consists of <strong>nodes</strong> and <strong>edges</strong> between these nodes. Each node has a unique <strong>node identifier</strong>. Each edge is either directed or undirected and may have an optional <strong>edge identifier</strong>. Each of the nodes and edges can have <strong>properties</strong> and <strong>labels</strong>. Properties are mappings from <strong>keys</strong> to non-empty lists of <strong>values</strong>. Node identifiers, labels, and keys are non-empty Unicode strings. A value is a Unicode string, a boolean value, or a number as defined by RFC 8259.</p>
+<p>The following features are implied by this definition, among others:</p>
+<ul>
+<li>edges connecting a node to itself (self-loops) and multiple edges with same direction, labels, and properties (multi-edges) are allowed</li>
+<li>values don’t have data types other than string, boolean, and number</li>
+<li>as specified in RFC 8259, implementations may set limits on the range and precision of numbers and double precision (IEEE754) is the most likely common limit</li>
+<li>values of the same property key are allowed to have different types</li>
+<li>a property must have at least one value</li>
+<li>the meaning of labels and property keys is out of the scope of this specification</li>
+<li>there are no graph attributes, hierarchies, hyper-edges or other extened features</li>
+</ul>
+</section>
+<section id="pg-format" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="pg-format"><span class="header-section-number">3</span> PG format</h2>
+<p>A <strong>PG format</strong> document allows writing down a property graph in a compact textual form. A PG format document is a Unicode string that conforms to <a href="#grammar">grammar</a> and additional constraints going to be defined in this specification.</p>
+<p><em>See <a href="https://github.com/orgs/pg-format/discussions" class="uri">https://github.com/orgs/pg-format/discussions</a> and <a href="https://github.com/pg-format/pg-formatter/wiki" class="uri">https://github.com/pg-format/pg-formatter/wiki</a> for discussion and references</em></p>
+<section id="basic-structure" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="basic-structure"><span class="header-section-number">3.1</span> Basic structure</h3>
+<p>A PG format document encodes a property graph as Unicode string. The document MUST be encoded in UTF-8 (RFC 3629). Unicode codepoints can also be given by escape sequences in quoted strings.</p>
+<p>The document consists of a sequence of statements, each defining a <a href="#nodes">node</a> or an <a href="#edges">edge</a>.</p>
+</section>
+<section id="nodes" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="nodes"><span class="header-section-number">3.2</span> Nodes</h3>
+<p>A <strong>node</strong> consists of a node <a href="#identifiers">identifier</a> optionally followed by <a href="#labels">labels</a> and <a href="#properties">properties</a>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource pg number-lines"><code class="sourceCode pg"><span id="cb1-1"><a href="#cb1-1"></a>id :label key:value</span></code></pre></div>
+<p>Nodes can also be <a href="#implicit-nodes">defined implicitly</a> as part of an <a href="#edges">edge</a>.</p>
+<section id="node-merging" class="level4" data-number="3.2.1">
+<h4 data-number="3.2.1" class="anchored" data-anchor-id="node-merging"><span class="header-section-number">3.2.1</span> Node merging</h4>
+<p>Parts of the same node can be defined at multiple places in a PG format document. Nodes definitions with same identifier are merged by appending labels and property values. For instance the document</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource pg number-lines"><code class="sourceCode pg"><span id="cb2-1"><a href="#cb2-1"></a>a :x k:1 m:true</span>
+<span id="cb2-2"><a href="#cb2-2"></a>a :y k:2</span></code></pre></div>
+<p>encodes the graph</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource pg number-lines"><code class="sourceCode pg"><span id="cb3-1"><a href="#cb3-1"></a>a :x :y k:1,2 m:true</span></code></pre></div>
+</section>
+</section>
+<section id="edges" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="edges"><span class="header-section-number">3.3</span> Edges</h3>
+<section id="multi-edges" class="level4" data-number="3.3.1">
+<h4 data-number="3.3.1" class="anchored" data-anchor-id="multi-edges"><span class="header-section-number">3.3.1</span> Multi-edges</h4>
+<p>The Property Graph Data Model allows for multiple edges between same nodes. For instance the following graph contains two indistinguishable edges:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource pg number-lines"><code class="sourceCode pg"><span id="cb4-1"><a href="#cb4-1"></a>a <span class="fu">-&gt;</span> b :follows since:2024</span>
+<span id="cb4-2"><a href="#cb4-2"></a>a <span class="fu">-&gt;</span> b :follows since:2024</span></code></pre></div>
+</section>
+<section id="edge-identifiers" class="level4" data-number="3.3.2">
+<h4 data-number="3.3.2" class="anchored" data-anchor-id="edge-identifiers"><span class="header-section-number">3.3.2</span> Edge identifiers</h4>
+<p>Optional edge identifiers can be preceded an edge, directly followed by a colon and <a href="#whitespace">whitespace</a>. The following examples extends the previous example with individual identifiers for each edge:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource pg number-lines"><code class="sourceCode pg"><span id="cb5-1"><a href="#cb5-1"></a>1: a <span class="fu">-&gt;</span> b :follows since:2024</span>
+<span id="cb5-2"><a href="#cb5-2"></a>2: a <span class="fu">-&gt;</span> b :follows since:2024</span></code></pre></div>
+<p>Edge identifiers MUST NOT be repeated. For instance the following is invalid:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource pg number-lines"><code class="sourceCode pg"><span id="cb6-1"><a href="#cb6-1"></a>1: a <span class="fu">-&gt;</span> b :follows</span>
+<span id="cb6-2"><a href="#cb6-2"></a>1: a <span class="fu">-&gt;</span> b since:2024</span></code></pre></div>
+</section>
+<section id="implicit-nodes" class="level4" data-number="3.3.3">
+<h4 data-number="3.3.3" class="anchored" data-anchor-id="implicit-nodes"><span class="header-section-number">3.3.3</span> Implicit nodes</h4>
+<p>Node identifiers referenced in edges imply the existence of nodes with these identifiers. For instance the following documents encode the same graph:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource pg number-lines"><code class="sourceCode pg"><span id="cb7-1"><a href="#cb7-1"></a>a <span class="fu">-&gt;</span> b</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource pg number-lines"><code class="sourceCode pg"><span id="cb8-1"><a href="#cb8-1"></a>a</span>
+<span id="cb8-2"><a href="#cb8-2"></a>b</span>
+<span id="cb8-3"><a href="#cb8-3"></a>a <span class="fu">-&gt;</span> b</span></code></pre></div>
+</section>
+</section>
+<section id="identifiers" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="identifiers"><span class="header-section-number">3.4</span> Identifiers</h3>
+<p>…</p>
+</section>
+<section id="labels" class="level3" data-number="3.5">
+<h3 data-number="3.5" class="anchored" data-anchor-id="labels"><span class="header-section-number">3.5</span> Labels</h3>
+<p>…</p>
+</section>
+<section id="properties" class="level3" data-number="3.6">
+<h3 data-number="3.6" class="anchored" data-anchor-id="properties"><span class="header-section-number">3.6</span> Properties</h3>
+<p>…</p>
+</section>
+<section id="whitespace" class="level3" data-number="3.7">
+<h3 data-number="3.7" class="anchored" data-anchor-id="whitespace"><span class="header-section-number">3.7</span> Whitespace</h3>
+<p>A <strong>line break</strong> is either a line feed (<code>U+000A</code>) or a carriage return (<code>U+000D</code>) optionally followed by a line feed.</p>
+<p>Whitespace separates elements of a statement (<a href="#nodes">node</a> or <a href="#edge">edge</a>). The following types of whitespace exist:</p>
+<ul>
+<li><p><strong>Space</strong>: a non-empty sequence of space (<code>U+0020</code>) and/or tabular (<code>U+0009</code>)</p></li>
+<li><p><strong>Comment</strong>: a comment begins with a hash (<code>#</code> = <code>U+0023</code>) and ends at the next line break or at the end of the document</p></li>
+</ul>
+<p>Empty lines, consisting of nothing but whitespace, are ignored.</p>
+<p>If a non-empty line begins with Space it is considered a continuation of the previous statement. Thus the following two examples encode the same graph:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource pg number-lines"><code class="sourceCode pg"><span id="cb9-1"><a href="#cb9-1"></a>a :x  # node id and label</span>
+<span id="cb9-2"><a href="#cb9-2"></a>  # this and the following line are empty </span>
+<span id="cb9-3"><a href="#cb9-3"></a></span>
+<span id="cb9-4"><a href="#cb9-4"></a>  :y  # another label of the same node at continuation line</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource pg number-lines"><code class="sourceCode pg"><span id="cb10-1"><a href="#cb10-1"></a>a :x :y</span></code></pre></div>
+</section>
+<section id="grammar" class="level3" data-number="3.8">
+<h3 data-number="3.8" class="anchored" data-anchor-id="grammar"><span class="header-section-number">3.8</span> Grammar</h3>
+<p><em>A formal grammar of PG format will be provided</em></p>
+</section>
+</section>
+<section id="pg-json" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="pg-json"><span class="header-section-number">4</span> PG-JSON</h2>
+<p>A <strong>PG-JSON</strong> document serializes a property graph in JSON. A PG-JSON document is a JSON document (RFC 8259) with a JSON object with exactely two fields:</p>
+<ul>
+<li><code>nodes</code> an array of nodes</li>
+<li><code>edges</code> an array of edges</li>
+</ul>
+<p>Each node is a JSON object with exactely three fields:</p>
+<ul>
+<li><code>id</code> the node identifier, being a non-empty string. Node identifiers MUST be unique per PG-JSON document.</li>
+<li><code>labels</code> an array of labels, each being a non-empty string. Labels MUST be unique per node.</li>
+<li><code>properties</code> a JSON object mapping non-empty strings as property keys to non-empty arrays of scalar JSON values (string, number, boolean) as property values.</li>
+</ul>
+<p>Each edge is a JSON object with one optional and four mandatory fields:</p>
+<ul>
+<li><code>id</code> (optional) the edge identifier, being a non-empty string. Edge identifiers MUST be unique per PG-JSON document.</li>
+<li><code>undirected</code> (optional) a boolean value whether the edge is undirected</li>
+<li><code>from</code> an identifier of a node in this graph</li>
+<li><code>to</code> an identifier of a node in this graph</li>
+<li><code>labels</code> and <code>properties</code> as defined above at nodes</li>
+</ul>
+</section>
+<section id="pg-jsonl" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="pg-jsonl"><span class="header-section-number">5</span> PG-JSONL</h2>
+<p>A <strong>PG-JSONL</strong> document or stream serializes a property graph in JSON Lines format, also known as newline-delimited JSON. A PG-JSONL document is a sequence of JSON objects, separated by line separator (<code>U+000A</code>) and optional whitespace (<code>U+0020</code>, <code>U+0009</code>, and <code>U+000D</code>) around JSON objects, and an optional line separator at the end. Each object is</p>
+<ul>
+<li>either a node with field <code>type</code> having string value <code>"node"</code> and the same mandatory node fields from PG-JSON format,</li>
+<li>or an edge with field <code>type</code> having string value <code>"edge"</code> and the same mandatory edge fields from PG-JSON format.</li>
+</ul>
+<p>Node objects SHOULD be given before their node identifiers are referenced in an edge object but applications MAY also create implicit node objects for this cases. Applications MAY allow multiple node objects with same node identifier in PG-JSONL but they MUST make clear whether nodes with repeated identifier are ignored, merged into existing nodes, or replace existing nodes.</p>
+</section>
+<section id="json-schemas" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="json-schemas"><span class="header-section-number">6</span> JSON Schemas</h2>
+<p>The <a href="#pg-json">PG-JSON format</a> can be validated with a non-normative JSON Schema file <a href="schema/pg-json.json"><code>pg-json.json</code></a> in this repository. Rules not covered by the JSON schema include:</p>
+<ul>
+<li>nodes referenced in edges must be defined (no implicit nodes)</li>
+<li>node identifiers must be unique per graph</li>
+<li>edge identifiers must be unique per graph</li>
+</ul>
+<p>The <a href="#pg-jsonl">PG-JSONL format</a> can be validated with a non-normative JSON Schema file <a href="schema/pg-jsonl.json"><code>pg-jsonl.json</code></a> in this repository. Validation is limited in the same way as validation of PG-JSON with its JSON Schema.</p>
+</section>
+<section id="robustness-principle" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="robustness-principle"><span class="header-section-number">7</span> Robustness principle</h2>
+<p><em>This section is non-normative!</em></p>
+<p>Applications may automatically convert documents not fully conforming to the specification of PG-JSON and/or PG-JSONL to valid form, for instance by:</p>
+<ul>
+<li>creation of implicit nodes for node identifiers referenced in edges</li>
+<li>addition of missing empty fields <code>labels</code> and/or <code>properties</code></li>
+<li>removal or mapping of invalid property values such as <code>null</code> and JSON objects</li>
+<li>mapping of numeric node identifiers and edge identifiers to strings</li>
+<li>removal of additional fields not defined in this specification</li>
+</ul>
+</section>
+<section id="references" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="references"><span class="header-section-number">8</span> References</h2>
+<section id="normative-references" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="normative-references"><span class="header-section-number">8.1</span> Normative References</h3>
+<ul>
+<li><p>Bradner, S.: Key words for use in RFCs to Indicate Requirement Levels. BCP 14, RFC 2119, March 1997, <a href="http://www.rfc-editor.org/info/rfc2119" class="uri">http://www.rfc-editor.org/info/rfc2119</a>.</p></li>
+<li><p>Bray, T.: The JavaScript Object Notation (JSON) Data Interchange Format. RFC 8259, December 2017. <a href="https://tools.ietf.org/html/rfc8259" class="uri">https://tools.ietf.org/html/rfc8259</a></p></li>
+<li><p>Leiba, B.: Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words. BCP 14, RFC 8174, May 2017, <a href="http://www.rfc-editor.org/info/rfc8174" class="uri">http://www.rfc-editor.org/info/rfc8174</a>.</p></li>
+<li><p>The Unicode Consortium: The Unicode Standard. <a href="http://www.unicode.org/versions/latest/" class="uri">http://www.unicode.org/versions/latest/</a></p></li>
+<li><p>Yergeau, F.: UTF-8, a transformation format of ISO 10646. RFC 3629, November 2003. <a href="https://tools.ietf.org/html/rfc3629" class="uri">https://tools.ietf.org/html/rfc3629</a></p></li>
+</ul>
+</section>
+<section id="informative-references" class="level3" data-number="8.2">
+<h3 data-number="8.2" class="anchored" data-anchor-id="informative-references"><span class="header-section-number">8.2</span> Informative references</h3>
+<ul>
+<li><p><a href="https://json-schema.org/">JSON Schema</a> schema language</p></li>
+<li><p><a href="https://doi.org/10.1109/IEEESTD.2019.8766229">IEEE Standard for Floating-Point Arithmetic</a></p></li>
+</ul>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

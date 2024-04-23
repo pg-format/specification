@@ -1,0 +1,19 @@
+project:
+  type: manuscript
+  output-dir: docs
+  render:
+    - "!*.md"
+  post-render:
+    - "cp -rnv schema/. docs/schema/"
+manuscript:
+  article: index.qmd
+format:
+  html:
+    code-line-numbers: true
+    number-sections: true
+    css: style.css
+    code-copy: false  # there is try-out button instead
+    syntax-definitions:
+     - pg.xml
+    include-in-header:
+      text: '<script type="text/javascript" src="script.js"></script>'
