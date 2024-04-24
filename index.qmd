@@ -69,20 +69,31 @@ A PG format document encodes a property graph as Unicode string. The document
 MUST be encoded in UTF-8 (RFC 3629). Unicode codepoints can also be given by
 escape sequences in quoted strings.
 
-The document consists of a sequence of statements, each defining
-a [node](#nodes) or an [edge](#edges).
+The document consists of a sequence of **statements**, each defining
+a [node](#nodes) or an [edge](#edges). Statements are separated from each other
+with a [line break](#whitespace).^[As [discussed
+here](https://github.com/orgs/pg-format/discussions/22) an additional explicit
+statement separator may also be used.] [Empty lines](#whitespace) between
+statements are ignored.
 
 ### Nodes
 
-A **node** consists of a node [identifier](#identifiers) optionally followed by
-[labels] and [properties].
+A **node** consists of the following elements, given in this order and
+separated by [whitespace]:
+
+- A REQUIRED [identifier](#identifiers)
+- an OPTIONAL list of [labels]
+- an OPTIONAL list of [properties]
 
 ~~~pg
 id :label key:value
+1
+"node id"
 ~~~
 
 Nodes can also be [defined implicitly](#implicit-nodes) as part of an
 [edge](#edges).
+
 
 #### Node merging
 
@@ -101,7 +112,34 @@ encodes the graph
 a :x :y k:1,2 m:true
 ~~~
 
+
 ### Edges
+
+A **edge** consists of the following elements, given in this order and separated by [whitespace]:
+
+- an OPTIONAL **edge identifier** given as [identifier] immediately followed by a colon
+- a REQUIRED node [identifier]
+- a REQUIRED **direction**
+- a REQUIRED node [identifier]
+- an OPTIONAL list of [labels]
+- an OPTIONAL list of [properties]
+
+~~~pg
+1: a -> b :label key:value
+a -- b
+~~~
+
+The following statement does not define an edge but a [node] with identifier "a--b":
+
+~~~pg
+a--b
+~~~
+
+The following is not valid:
+
+~~~pg
+a->b
+~~~
 
 #### Multi-edges
 
@@ -148,11 +186,21 @@ a -> b
 
 ### Identifiers
 
+[identifier]: #identifiers
+
 ...
 
 ### Labels
 
 ...
+
+Labels of a node or edge are a sorted set, so the following two statements are
+equivalent:
+
+~~~
+a :label1 :label2 :label1
+a :label1 :label2
+~~~
 
 ### Properties
 
@@ -163,15 +211,17 @@ a -> b
 A **line break** is either a line feed (`U+000A`) or a carriage return
 (`U+000D`) optionally followed by a line feed.
 
-Whitespace separates elements of a statement ([node](#nodes) or [edge](#edge)).
-The following types of whitespace exist:
+**Space** is a non-empty sequence of space (`U+0020`) and/or tabular (`U+0009`).
 
-- **Space**: a non-empty sequence of space (`U+0020`) and/or tabular (`U+0009`)
+A **comment** begins with a hash (`#` = `U+0023`) and ends after the next line
+break or at the end of the document.
 
-- **Comment**: a comment begins with a hash (`#` = `U+0023`) and ends at the next
-  line break or at the end of the document
+An **empty line** begins after a line break or at the start of the document. It
+ends with a comment, after the next line break, or at the end of the document
+and it contains nothing but optional space in between.
 
-Empty lines, consisting of nothing but whitespace, are ignored.
+Mandatory **whitespace** separates elements of a statement. Whitespace consists of
+a non-empty sequence of any of space and/or comments.
 
 If a non-empty line begins with Space it is considered a continuation of the
 previous statement. Thus the following two examples encode the same graph:
