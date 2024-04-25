@@ -14,6 +14,9 @@ pre.sourceCode>.try-out-button>i::before {
     background-repeat: no-repeat;
     background-size: 1rem 1rem;
 }
+pre.invalid {
+    border-left: 0.3em solid red;
+}
 .try-out-button {
     position: absolute;
     top: 0;

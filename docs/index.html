@@ -121,8 +121,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#identifiers" id="toc-identifiers" class="nav-link" data-scroll-target="#identifiers"><span class="header-section-number">3.4</span> Identifiers</a></li>
   <li><a href="#labels" id="toc-labels" class="nav-link" data-scroll-target="#labels"><span class="header-section-number">3.5</span> Labels</a></li>
   <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties"><span class="header-section-number">3.6</span> Properties</a></li>
-  <li><a href="#whitespace" id="toc-whitespace" class="nav-link" data-scroll-target="#whitespace"><span class="header-section-number">3.7</span> Whitespace</a></li>
-  <li><a href="#grammar" id="toc-grammar" class="nav-link" data-scroll-target="#grammar"><span class="header-section-number">3.8</span> Grammar</a></li>
+  <li><a href="#quoted-strings" id="toc-quoted-strings" class="nav-link" data-scroll-target="#quoted-strings"><span class="header-section-number">3.7</span> Quoted Strings</a></li>
+  <li><a href="#whitespace" id="toc-whitespace" class="nav-link" data-scroll-target="#whitespace"><span class="header-section-number">3.8</span> Whitespace</a></li>
+  <li><a href="#grammar" id="toc-grammar" class="nav-link" data-scroll-target="#grammar"><span class="header-section-number">3.9</span> Grammar</a></li>
   </ul></li>
   <li><a href="#pg-json" id="toc-pg-json" class="nav-link" data-scroll-target="#pg-json"><span class="header-section-number">4</span> PG-JSON</a></li>
   <li><a href="#pg-jsonl" id="toc-pg-jsonl" class="nav-link" data-scroll-target="#pg-jsonl"><span class="header-section-number">5</span> PG-JSONL</a></li>
@@ -151,27 +152,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="why-property-graphs" class="level3" data-number="1.1">
 <h3 data-number="1.1" class="anchored" data-anchor-id="why-property-graphs"><span class="header-section-number">1.1</span> Why property graphs?</h3>
 <p><strong>Property Graphs</strong> (also known as <strong>Labeled Property Graphs</strong>) are used as abstract data structure in graph databases and related applications.</p>
-<p>Implementations of property graphs slightly differ in support of data types, restrictions on labels etc. The <a href="#data-model">definition of property graph used in this specification</a> is aimed to be a superset of property graph models of common graph databases and formats. The model and its serializations have first been proposed by Hirokazu Chiba, Ryota Yamanaka, and Shota Matsumoto (<a href="https://arxiv.org/abs/1907.03936">2019</a>, <a href="https://arxiv.org/abs/2203.06393">2022</a>) and revised into this specification together with Jakob Voß.</p>
+<p>Implementations of property graphs slightly differ in support of data types, restrictions on labels etc. The [definition of property graphs] specification](#data-model) used in this specification is aimed to be a superset of property graph models of common graph databases and formats. The model and its serializations have first been proposed by Hirokazu Chiba, Ryota Yamanaka, and Shota Matsumoto (<a href="https://arxiv.org/abs/1907.03936">2019</a>, <a href="https://arxiv.org/abs/2203.06393">2022</a>) and revised into this specification together with Jakob Voß.</p>
 </section>
 <section id="about-this-document" class="level3" data-number="1.2">
 <h3 data-number="1.2" class="anchored" data-anchor-id="about-this-document"><span class="header-section-number">1.2</span> About this document</h3>
-<p>The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in BCP 14 (RFC 2119 and RFC 8174) when, and only when, they appear in all capitals, as shown here.</p>
-<p>Only sections <a href="#data-model">2</a> to <a href="#pg-jsonl">5</a> and <a href="#normative-references">their references</a> are normative parts of this specification. All code sections are illustrating examples and non-normative.</p>
+<p>The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in BCP 14 (RFC 2119 and RFC 8174) when, and only when, they appear in all capitals, as shown here.</p>
+<p>Only sections <a href="#data-model">2</a> to <a href="#pg-jsonl">5</a> and <a href="#normative-references">their references</a> are normative parts of this specification.</p>
 </section>
 </section>
 <section id="data-model" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="data-model"><span class="header-section-number">2</span> Data Model</h2>
 <p>A <strong>property graph</strong> consists of <strong>nodes</strong> and <strong>edges</strong> between these nodes. Each node has a unique <strong>node identifier</strong>. Each edge is either directed or undirected and may have an optional <strong>edge identifier</strong>. Each of the nodes and edges can have <strong>properties</strong> and <strong>labels</strong>. Properties are mappings from <strong>keys</strong> to non-empty lists of <strong>values</strong>. Node identifiers, labels, and keys are non-empty Unicode strings. A value is a Unicode string, a boolean value, or a number as defined by RFC 8259.</p>
-<p>The following features are implied by this definition, among others:</p>
-<ul>
-<li>edges connecting a node to itself (self-loops) and multiple edges with same direction, labels, and properties (multi-edges) are allowed</li>
-<li>values don’t have data types other than string, boolean, and number</li>
-<li>as specified in RFC 8259, implementations may set limits on the range and precision of numbers and double precision (IEEE754) is the most likely common limit</li>
-<li>values of the same property key are allowed to have different types</li>
-<li>a property must have at least one value</li>
-<li>the meaning of labels and property keys is out of the scope of this specification</li>
-<li>there are no graph attributes, hierarchies, hyper-edges or other extened features</li>
-</ul>
+<p>Extended features of graphs not being part of this data model include <em>graph attributes</em>, <em>hierarchies</em>, <em>hyper-edges</em> and <em>semantics</em> of individual labels and property keys.</p>
 </section>
 <section id="pg-format" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="pg-format"><span class="header-section-number">3</span> PG format</h2>
@@ -179,12 +171,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><em>See <a href="https://github.com/orgs/pg-format/discussions" class="uri">https://github.com/orgs/pg-format/discussions</a> and <a href="https://github.com/pg-format/pg-formatter/wiki" class="uri">https://github.com/pg-format/pg-formatter/wiki</a> for discussion and references</em></p>
 <section id="basic-structure" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="basic-structure"><span class="header-section-number">3.1</span> Basic structure</h3>
-<p>A PG format document encodes a property graph as Unicode string. The document MUST be encoded in UTF-8 (RFC 3629). Unicode codepoints can also be given by escape sequences in quoted strings.</p>
-<p>The document consists of a sequence of <strong>statements</strong>, each defining a <a href="#nodes">node</a> or an <a href="#edges">edge</a>. Statements are separated from each other with a <a href="#whitespace">line break</a>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> <a href="#whitespace">Empty lines</a> between statements are ignored.</p>
+<p>A PG format document encodes a property graph as Unicode string. The document MUST be encoded in UTF-8 (RFC 3629). Unicode codepoints can also be given by escape sequences in <a href="#quoted-strings">quoted strings</a>.</p>
+<p>The document consists of a sequence of <strong>statements</strong>, each defining a <a href="#nodes">node</a> or an <a href="#edges">edge</a>, or being <a href="#whitespace">empty</a>. Statements are separated from each other with a <a href="#whitespace">line break</a> <em>or with an explicit statement separator [still being discussed]</em>. Optional <a href="#whitespace">spaces</a> and/or a <a href="#whitespace">comment</a> at the end of a statement are ignored.</p>
 </section>
 <section id="nodes" class="level3" data-number="3.2">
 <h3 data-number="3.2" class="anchored" data-anchor-id="nodes"><span class="header-section-number">3.2</span> Nodes</h3>
-<p>A <strong>node</strong> consists of the following elements, given in this order and separated by <a href="#whitespace">whitespace</a>:</p>
+<p>A <strong>node</strong> consists of the following elements, given in this order and separated by <a href="#delimiting-whitespace">delimiting whitespace</a>:</p>
 <ul>
 <li>A REQUIRED <a href="#identifiers">identifier</a></li>
 <li>an OPTIONAL list of <a href="#labels">labels</a></li>
@@ -231,11 +223,11 @@ Example&nbsp;3: Same node defined by one statement
 </section>
 <section id="edges" class="level3" data-number="3.3">
 <h3 data-number="3.3" class="anchored" data-anchor-id="edges"><span class="header-section-number">3.3</span> Edges</h3>
-<p>A <strong>edge</strong> consists of the following elements, given in this order and separated by <a href="#whitespace">whitespace</a>:</p>
+<p>A <strong>edge</strong> consists of the following elements, given in this order and separated by <a href="#whitespace">delimiting whitespace</a>:</p>
 <ul>
-<li>an OPTIONAL <strong>edge identifier</strong> given as <a href="#identifiers">identifier</a> immediately followed by a colon</li>
+<li>an OPTIONAL <strong><a href="#edge-identifiers">edge identifier</a></strong></li>
 <li>a REQUIRED node <a href="#identifiers">identifier</a></li>
-<li>a REQUIRED <strong>direction</strong></li>
+<li>a REQUIRED <strong><a href="#edge-directions">direction</a></strong></li>
 <li>a REQUIRED node <a href="#identifiers">identifier</a></li>
 <li>an OPTIONAL list of <a href="#labels">labels</a></li>
 <li>an OPTIONAL list of <a href="#properties">properties</a></li>
@@ -273,32 +265,17 @@ Example&nbsp;6: Invalid edge statement
 </div>
 </figure>
 </div>
-<section id="multi-edges" class="level4" data-number="3.3.1">
-<h4 data-number="3.3.1" class="anchored" data-anchor-id="multi-edges"><span class="header-section-number">3.3.1</span> Multi-edges</h4>
-<p>The Property Graph Data Model allows for multiple edges between same nodes.</p>
-<div id="lst-multi-edges" class="pg listing quarto-float">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-multi-edges-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;7: Graph with two indistinguishable edges
-</figcaption>
-<div aria-describedby="lst-multi-edges-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="lst-multi-edges"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-multi-edges-1"><a href="#lst-multi-edges-1" aria-hidden="true" tabindex="-1"></a>a <span class="fu">-&gt;</span> b :follows since:2024</span>
-<span id="lst-multi-edges-2"><a href="#lst-multi-edges-2" aria-hidden="true" tabindex="-1"></a>a <span class="fu">-&gt;</span> b :follows since:2024</span></code></pre></div>
-</div>
-</figure>
-</div>
-</section>
-<section id="edge-identifiers" class="level4" data-number="3.3.2">
-<h4 data-number="3.3.2" class="anchored" data-anchor-id="edge-identifiers"><span class="header-section-number">3.3.2</span> Edge identifiers</h4>
-<p>Optional edge identifiers can be preceded an edge, directly followed by a colon and <a href="#whitespace">whitespace</a>.</p>
+<section id="edge-identifiers" class="level4" data-number="3.3.1">
+<h4 data-number="3.3.1" class="anchored" data-anchor-id="edge-identifiers"><span class="header-section-number">3.3.1</span> Edge identifiers</h4>
+<p>An edge identifier is an <a href="#identifiers">identifier</a> as first element of an edge statement, directly followed by a colon (<code>U+003A</code>).</p>
 <div id="lst-multi-edges-with-id" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-multi-edges-with-id-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;8: Graph with two equivalent edges, differentiated by edge identifiers
+Example&nbsp;7: Graph with two equivalent edges, differentiated by edge identifiers
 </figcaption>
 <div aria-describedby="lst-multi-edges-with-id-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-multi-edges-with-id"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-multi-edges-with-id-1"><a href="#lst-multi-edges-with-id-1" aria-hidden="true" tabindex="-1"></a>1: a <span class="fu">-&gt;</span> b :follows since:2024</span>
-<span id="lst-multi-edges-with-id-2"><a href="#lst-multi-edges-with-id-2" aria-hidden="true" tabindex="-1"></a>2: a <span class="fu">-&gt;</span> b :follows since:2024</span></code></pre></div>
+<span id="lst-multi-edges-with-id-2"><a href="#lst-multi-edges-with-id-2" aria-hidden="true" tabindex="-1"></a><span class="st">"x"</span>: a <span class="fu">-&gt;</span> b :follows since:2024</span></code></pre></div>
 </div>
 </figure>
 </div>
@@ -306,7 +283,7 @@ Example&nbsp;8: Graph with two equivalent edges, differentiated by edge identifi
 <div id="lst-invalid-edge-ids" class="pg invalid listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-invalid-edge-ids-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;9: The second statement is invalid because of repeated edge identifier
+Example&nbsp;8: The second statement is invalid because of repeated edge identifier
 </figcaption>
 <div aria-describedby="lst-invalid-edge-ids-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-invalid-edge-ids"><pre class="sourceCode pg invalid"><code class="sourceCode pg"><span id="lst-invalid-edge-ids-1"><a href="#lst-invalid-edge-ids-1" aria-hidden="true" tabindex="-1"></a>1: a <span class="fu">-&gt;</span> b :follows</span>
@@ -315,13 +292,47 @@ Example&nbsp;9: The second statement is invalid because of repeated edge identif
 </figure>
 </div>
 </section>
-<section id="implicit-nodes" class="level4" data-number="3.3.3">
-<h4 data-number="3.3.3" class="anchored" data-anchor-id="implicit-nodes"><span class="header-section-number">3.3.3</span> Implicit nodes</h4>
+<section id="edge-directions" class="level4" data-number="3.3.2">
+<h4 data-number="3.3.2" class="anchored" data-anchor-id="edge-directions"><span class="header-section-number">3.3.2</span> Edge directions</h4>
+<p>The direction element of an edge is either the character sequence <code>-&gt;</code> for a directed edge or the character sequence <code>--</code> for an undirected edge.</p>
+</section>
+<section id="loops" class="level4" data-number="3.3.3">
+<h4 data-number="3.3.3" class="anchored" data-anchor-id="loops"><span class="header-section-number">3.3.3</span> Loops</h4>
+<p>Edges can connect a node to itself.</p>
+<div id="lst-lops" class="pg listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-lops-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Example&nbsp;9: Directed and undirected loop
+</figcaption>
+<div aria-describedby="lst-lops-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-lops"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-lops-1"><a href="#lst-lops-1" aria-hidden="true" tabindex="-1"></a>a <span class="fu">-&gt;</span> a</span>
+<span id="lst-lops-2"><a href="#lst-lops-2" aria-hidden="true" tabindex="-1"></a>a <span class="fu">--</span> a</span></code></pre></div>
+</div>
+</figure>
+</div>
+</section>
+<section id="multi-edges" class="level4" data-number="3.3.4">
+<h4 data-number="3.3.4" class="anchored" data-anchor-id="multi-edges"><span class="header-section-number">3.3.4</span> Multi-edges</h4>
+<p>The Property Graph Data Model allows for multiple edges between same nodes.</p>
+<div id="lst-multi-edges" class="pg listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-multi-edges-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Example&nbsp;10: Graph with two indistinguishable edges
+</figcaption>
+<div aria-describedby="lst-multi-edges-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-multi-edges"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-multi-edges-1"><a href="#lst-multi-edges-1" aria-hidden="true" tabindex="-1"></a>a <span class="fu">-&gt;</span> b :follows since:2024</span>
+<span id="lst-multi-edges-2"><a href="#lst-multi-edges-2" aria-hidden="true" tabindex="-1"></a>a <span class="fu">-&gt;</span> b :follows since:2024</span></code></pre></div>
+</div>
+</figure>
+</div>
+</section>
+<section id="implicit-nodes" class="level4" data-number="3.3.5">
+<h4 data-number="3.3.5" class="anchored" data-anchor-id="implicit-nodes"><span class="header-section-number">3.3.5</span> Implicit nodes</h4>
 <p>Node identifiers referenced in edges imply the existence of nodes with these identifiers.</p>
 <div id="lst-implicit-nodes" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-implicit-nodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;10: Simple graph with two nodes and one edge
+Example&nbsp;11: Simple graph with two nodes and one edge
 </figcaption>
 <div aria-describedby="lst-implicit-nodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-implicit-nodes"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-implicit-nodes-1"><a href="#lst-implicit-nodes-1" aria-hidden="true" tabindex="-1"></a>a <span class="fu">-&gt;</span> b</span></code></pre></div>
@@ -331,7 +342,7 @@ Example&nbsp;10: Simple graph with two nodes and one edge
 <div id="lst-explicit-nodes" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-explicit-nodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;11: Same graph with explicit node statements
+Example&nbsp;12: Same graph with explicit node statements
 </figcaption>
 <div aria-describedby="lst-explicit-nodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-explicit-nodes"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-explicit-nodes-1"><a href="#lst-explicit-nodes-1" aria-hidden="true" tabindex="-1"></a>a</span>
@@ -344,30 +355,50 @@ Example&nbsp;11: Same graph with explicit node statements
 </section>
 <section id="identifiers" class="level3" data-number="3.4">
 <h3 data-number="3.4" class="anchored" data-anchor-id="identifiers"><span class="header-section-number">3.4</span> Identifiers</h3>
-<p>…</p>
+<p><em>This section has not been finished yet</em></p>
 </section>
 <section id="labels" class="level3" data-number="3.5">
 <h3 data-number="3.5" class="anchored" data-anchor-id="labels"><span class="header-section-number">3.5</span> Labels</h3>
-<p>…</p>
-<p>Labels of a node or edge are a sorted set.</p>
-<p>~<del>{.pg #lst-labels-repeated lst-cap=“Repeated labels on same node or edge are ignored} a :label1 :label2 :label1 # label1 is repeated a :label1 :label2 # equivalent statement</del>~</p>
+<p>A label is a an <a href="#identifiers">identifier</a> following a colon and optional [spaces].</p>
+<p>Labels of a node or an edge are unique: repeated labels are ignored. Applications SHOULD preserve the order of labels of a node or an edge.</p>
+<div id="lst-labels" class="pg listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-labels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Example&nbsp;13: Repeated labels on same node or edge are ignored
+</figcaption>
+<div aria-describedby="lst-labels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-labels"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-labels-1"><a href="#lst-labels-1" aria-hidden="true" tabindex="-1"></a>a :label1 :label2 :label1   # label1 is repeated</span>
+<span id="lst-labels-2"><a href="#lst-labels-2" aria-hidden="true" tabindex="-1"></a>a :label1 :label2           # equivalent statement</span>
+<span id="lst-labels-3"><a href="#lst-labels-3" aria-hidden="true" tabindex="-1"></a>a : label1 : label2         # equivalent statement</span></code></pre></div>
+</div>
+</figure>
+</div>
 </section>
 <section id="properties" class="level3" data-number="3.6">
 <h3 data-number="3.6" class="anchored" data-anchor-id="properties"><span class="header-section-number">3.6</span> Properties</h3>
+<p><em>This section has not been finished yet</em></p>
 <p>…</p>
+<ul>
+<li>values don’t have data types other than string, boolean, and number</li>
+<li>as specified in RFC 8259, implementations may set limits on the range and precision of numbers and double precision (IEEE754) is the most likely common limit</li>
+<li>values of the same property key are allowed to have different types</li>
+<li>a property must have at least one value</li>
+</ul>
 </section>
-<section id="whitespace" class="level3" data-number="3.7">
-<h3 data-number="3.7" class="anchored" data-anchor-id="whitespace"><span class="header-section-number">3.7</span> Whitespace</h3>
+<section id="quoted-strings" class="level3" data-number="3.7">
+<h3 data-number="3.7" class="anchored" data-anchor-id="quoted-strings"><span class="header-section-number">3.7</span> Quoted Strings</h3>
+<p><em>This section has not been finished yet</em></p>
+</section>
+<section id="whitespace" class="level3" data-number="3.8">
+<h3 data-number="3.8" class="anchored" data-anchor-id="whitespace"><span class="header-section-number">3.8</span> Whitespace</h3>
 <p>A <strong>line break</strong> is either a line feed (<code>U+000A</code>) or a carriage return (<code>U+000D</code>) optionally followed by a line feed.</p>
-<p><strong>Spaces</strong> is a non-empty sequence of space (<code>U+0020</code>) and/or tabular (<code>U+0009</code>).</p>
-<p>A <strong>comment</strong> begins with a hash (<code>#</code> = <code>U+0023</code>) and ends after the next line break or at the end of the document.</p>
-<p>An <strong>empty line</strong> begins after a line break or at the start of the document. It ends with a comment, after the next line break, or at the end of the document and it contains nothing but optional space in between.</p>
-<p>Mandatory <strong>whitespace</strong> separates elements of a statement. Whitespace consists of a non-empty sequence of any of space and/or comments.</p>
-<p>If a non-empty line begins with Spaces it is considered a continuation of the previous statement.</p>
+<p><strong>Spaces</strong> are a non-empty sequence of space (<code>U+0020</code>) and/or tabular (<code>U+0009</code>).</p>
+<p>A <strong>comment</strong> begins with a hash (<code>#</code> = <code>U+0023</code>) and it ends before the next <a href="#whitespace">line break</a> or at the end of the document.</p>
+<p><strong>Delimiting whitespace</strong> separates elements of a statement. Delimiting whitespace consists of an optional sequence of <a href="#whitespace">spaces</a>, <a href="#whitespace">comment</a>, and/or <a href="#whitespace">line breaks</a> and it ends with <a href="#whitespace">spaces</a>. The inclusion of line breaks in delimiting whitespace is also called <em>line folding</em>.</p>
 <div id="lst-line-folding" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-line-folding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;12: Line folding
+Example&nbsp;14: Line folding
 </figcaption>
 <div aria-describedby="lst-line-folding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-line-folding"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-line-folding-1"><a href="#lst-line-folding-1" aria-hidden="true" tabindex="-1"></a>a :x  # node id and label</span>
@@ -380,7 +411,7 @@ Example&nbsp;12: Line folding
 <div id="lst-line-folding" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-line-folding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;13: Same graph as above
+Example&nbsp;15: Same graph as above
 </figcaption>
 <div aria-describedby="lst-line-folding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-line-folding"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-line-folding-1"><a href="#lst-line-folding-1" aria-hidden="true" tabindex="-1"></a>a :x :y</span></code></pre></div>
@@ -388,8 +419,8 @@ Example&nbsp;13: Same graph as above
 </figure>
 </div>
 </section>
-<section id="grammar" class="level3" data-number="3.8">
-<h3 data-number="3.8" class="anchored" data-anchor-id="grammar"><span class="header-section-number">3.8</span> Grammar</h3>
+<section id="grammar" class="level3" data-number="3.9">
+<h3 data-number="3.9" class="anchored" data-anchor-id="grammar"><span class="header-section-number">3.9</span> Grammar</h3>
 <p><em>A formal grammar of PG format will be provided</em></p>
 </section>
 </section>
@@ -436,7 +467,6 @@ Example&nbsp;13: Same graph as above
 </section>
 <section id="robustness-principle" class="level2" data-number="7">
 <h2 data-number="7" class="anchored" data-anchor-id="robustness-principle"><span class="header-section-number">7</span> Robustness principle</h2>
-<p><em>This section is non-normative!</em></p>
 <p>Applications may automatically convert documents not fully conforming to the specification of PG-JSON and/or PG-JSONL to valid form, for instance by:</p>
 <ul>
 <li>creation of implicit nodes for node identifiers referenced in edges</li>
@@ -467,13 +497,7 @@ Example&nbsp;13: Same graph as above
 </section>
 </section>
 
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>As <a href="https://github.com/orgs/pg-format/discussions/22">discussed here</a> an additional explicit statement separator may also be used.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main>
+</main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
