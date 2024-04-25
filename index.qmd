@@ -192,7 +192,7 @@ a -> b
 
 Labels of a node or edge are a sorted set.
 
-~~~{.pg #lst-labels-repeated lst-cap="Repeated labels on same node or edge are ignored}
+~~~{.pg #lst-labels-repeated lst-cap="Repeated labels on same node or edge are ignored"}
 a :label1 :label2 :label1   # label1 is repeated
 a :label1 :label2           # equivalent statement
 ~~~
