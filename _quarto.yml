@@ -17,3 +17,6 @@ format:
      - pg.xml
     include-in-header:
       text: '<script type="text/javascript" src="script.js"></script>'
+    crossref:
+      lst-prefix: "Example"
+      lst-title: "Example"

@@ -85,10 +85,10 @@ separated by [whitespace]:
 - an OPTIONAL list of [labels]
 - an OPTIONAL list of [properties]
 
-~~~pg
+~~~{.pg #lst-nodes lst-cap="Some node statements"}
 id :label key:value
-1
-"node id"
+42 :answer
+"this is a node id"
 ~~~
 
 Nodes can also be [defined implicitly](#implicit-nodes) as part of an
@@ -99,16 +99,14 @@ Nodes can also be [defined implicitly](#implicit-nodes) as part of an
 
 Parts of the same node can be defined at multiple places in a PG format
 document. Nodes definitions with same identifier are merged by appending labels
-and property values. For instance the document
+and property values.
 
-~~~pg
+~~~{.pg #lst-node-merging-1 lst-cap="One node defined by multiple statements"}
 a :x k:1 m:true
 a :y k:2
 ~~~
 
-encodes the graph
-
-~~~pg
+~~~{.pg #lst-node-merging-2 lst-cap="Same node defined by one statement"}
 a :x :y k:1,2 m:true
 ~~~
 
@@ -124,29 +122,28 @@ A **edge** consists of the following elements, given in this order and separated
 - an OPTIONAL list of [labels]
 - an OPTIONAL list of [properties]
 
-~~~pg
+~~~{.pg #lst-edges lst-cap="Some edge statements"}
 1: a -> b :label key:value
 a -- b
 ~~~
 
 The following statement does not define an edge but a [node] with identifier "a--b":
 
-~~~pg
+~~~{.pg #lst-no-edge-but-node lst-cap="Not an edge statement"}
 a--b
 ~~~
 
 The following is not valid:
 
-~~~pg
+~~~{.pg .invalid #lst-invalid-edge lst-cap="Invalid edge statement"}
 a->b
 ~~~
 
 #### Multi-edges
 
-The Property Graph Data Model allows for multiple edges between same nodes. For
-instance the following graph contains two indistinguishable edges:
+The Property Graph Data Model allows for multiple edges between same nodes.
 
-~~~pg
+~~~{.pg #lst-multi-edges lst-cap="Graph with two indistinguishable edges"}
 a -> b :follows since:2024
 a -> b :follows since:2024
 ~~~
@@ -154,17 +151,16 @@ a -> b :follows since:2024
 #### Edge identifiers
 
 Optional edge identifiers can be preceded an edge, directly followed by a colon
-and [whitespace]. The following examples extends the previous example with
-individual identifiers for each edge: 
+and [whitespace].
 
-~~~pg
+~~~{.pg #lst-multi-edges-with-id lst-cap="Graph with two equivalent edges, differentiated by edge identifiers"}
 1: a -> b :follows since:2024
 2: a -> b :follows since:2024
 ~~~
 
-Edge identifiers MUST NOT be repeated. For instance the following is invalid:
+Edge identifiers MUST NOT be repeated.
 
-~~~pg
+~~~{.pg .invalid #lst-invalid-edge-ids lst-cap="The second statement is invalid because of repeated edge identifier"}
 1: a -> b :follows
 1: a -> b since:2024
 ~~~
@@ -172,13 +168,13 @@ Edge identifiers MUST NOT be repeated. For instance the following is invalid:
 #### Implicit nodes
 
 Node identifiers referenced in edges imply the existence of nodes with these
-identifiers. For instance the following documents encode the same graph:
+identifiers.
 
-~~~pg
+~~~{.pg #lst-implicit-nodes lst-cap="Simple graph with two nodes and one edge"}
 a -> b
 ~~~
 
-~~~pg
+~~~{.pg #lst-explicit-nodes lst-cap="Same graph with explicit node statements"}
 a
 b
 a -> b
@@ -194,12 +190,11 @@ a -> b
 
 ...
 
-Labels of a node or edge are a sorted set, so the following two statements are
-equivalent:
+Labels of a node or edge are a sorted set.
 
-~~~
-a :label1 :label2 :label1
-a :label1 :label2
+~~~{.pg #lst-labels-repeated lst-cap="Repeated labels on same node or edge are ignored}
+a :label1 :label2 :label1   # label1 is repeated
+a :label1 :label2           # equivalent statement
 ~~~
 
 ### Properties
@@ -211,7 +206,7 @@ a :label1 :label2
 A **line break** is either a line feed (`U+000A`) or a carriage return
 (`U+000D`) optionally followed by a line feed.
 
-**Space** is a non-empty sequence of space (`U+0020`) and/or tabular (`U+0009`).
+**Spaces** is a non-empty sequence of space (`U+0020`) and/or tabular (`U+0009`).
 
 A **comment** begins with a hash (`#` = `U+0023`) and ends after the next line
 break or at the end of the document.
@@ -223,17 +218,17 @@ and it contains nothing but optional space in between.
 Mandatory **whitespace** separates elements of a statement. Whitespace consists of
 a non-empty sequence of any of space and/or comments.
 
-If a non-empty line begins with Space it is considered a continuation of the
-previous statement. Thus the following two examples encode the same graph:
+If a non-empty line begins with Spaces it is considered a continuation of the
+previous statement.
 
-~~~pg
+~~~{.pg #lst-line-folding lst-cap="Line folding"}
 a :x  # node id and label
   # this and the following line are empty 
 
   :y  # another label of the same node at continuation line
 ~~~
 
-~~~pg
+~~~{.pg #lst-line-folding lst-cap="Same graph as above"}
 a :x :y
 ~~~
 

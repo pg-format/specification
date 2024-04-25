@@ -190,17 +190,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>an OPTIONAL list of <a href="#labels">labels</a></li>
 <li>an OPTIONAL list of <a href="#properties">properties</a></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource pg number-lines"><code class="sourceCode pg"><span id="cb1-1"><a href="#cb1-1"></a>id :label key:value</span>
-<span id="cb1-2"><a href="#cb1-2"></a>1</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="st">"node id"</span></span></code></pre></div>
+<div id="lst-nodes" class="pg listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-nodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Example&nbsp;1: Some node statements
+</figcaption>
+<div aria-describedby="lst-nodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-nodes"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-nodes-1"><a href="#lst-nodes-1" aria-hidden="true" tabindex="-1"></a>id :label key:value</span>
+<span id="lst-nodes-2"><a href="#lst-nodes-2" aria-hidden="true" tabindex="-1"></a>42 :answer</span>
+<span id="lst-nodes-3"><a href="#lst-nodes-3" aria-hidden="true" tabindex="-1"></a><span class="st">"this is a node id"</span></span></code></pre></div>
+</div>
+</figure>
+</div>
 <p>Nodes can also be <a href="#implicit-nodes">defined implicitly</a> as part of an <a href="#edges">edge</a>.</p>
 <section id="node-merging" class="level4" data-number="3.2.1">
 <h4 data-number="3.2.1" class="anchored" data-anchor-id="node-merging"><span class="header-section-number">3.2.1</span> Node merging</h4>
-<p>Parts of the same node can be defined at multiple places in a PG format document. Nodes definitions with same identifier are merged by appending labels and property values. For instance the document</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource pg number-lines"><code class="sourceCode pg"><span id="cb2-1"><a href="#cb2-1"></a>a :x k:1 m:true</span>
-<span id="cb2-2"><a href="#cb2-2"></a>a :y k:2</span></code></pre></div>
-<p>encodes the graph</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource pg number-lines"><code class="sourceCode pg"><span id="cb3-1"><a href="#cb3-1"></a>a :x :y k:1,2 m:true</span></code></pre></div>
+<p>Parts of the same node can be defined at multiple places in a PG format document. Nodes definitions with same identifier are merged by appending labels and property values.</p>
+<div id="lst-node-merging-1" class="pg listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-node-merging-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Example&nbsp;2: One node defined by multiple statements
+</figcaption>
+<div aria-describedby="lst-node-merging-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-node-merging-1"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-node-merging-1-1"><a href="#lst-node-merging-1-1" aria-hidden="true" tabindex="-1"></a>a :x k:1 m:true</span>
+<span id="lst-node-merging-1-2"><a href="#lst-node-merging-1-2" aria-hidden="true" tabindex="-1"></a>a :y k:2</span></code></pre></div>
+</div>
+</figure>
+</div>
+<div id="lst-node-merging-2" class="pg listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-node-merging-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Example&nbsp;3: Same node defined by one statement
+</figcaption>
+<div aria-describedby="lst-node-merging-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-node-merging-2"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-node-merging-2-1"><a href="#lst-node-merging-2-1" aria-hidden="true" tabindex="-1"></a>a :x :y k:1,2 m:true</span></code></pre></div>
+</div>
+</figure>
+</div>
 </section>
 </section>
 <section id="edges" class="level3" data-number="3.3">
@@ -214,34 +240,106 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>an OPTIONAL list of <a href="#labels">labels</a></li>
 <li>an OPTIONAL list of <a href="#properties">properties</a></li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource pg number-lines"><code class="sourceCode pg"><span id="cb4-1"><a href="#cb4-1"></a>1: a <span class="fu">-&gt;</span> b :label key:value</span>
-<span id="cb4-2"><a href="#cb4-2"></a>a <span class="fu">--</span> b</span></code></pre></div>
+<div id="lst-edges" class="pg listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-edges-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Example&nbsp;4: Some edge statements
+</figcaption>
+<div aria-describedby="lst-edges-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-edges"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-edges-1"><a href="#lst-edges-1" aria-hidden="true" tabindex="-1"></a>1: a <span class="fu">-&gt;</span> b :label key:value</span>
+<span id="lst-edges-2"><a href="#lst-edges-2" aria-hidden="true" tabindex="-1"></a>a <span class="fu">--</span> b</span></code></pre></div>
+</div>
+</figure>
+</div>
 <p>The following statement does not define an edge but a [node] with identifier “a–b”:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource pg number-lines"><code class="sourceCode pg"><span id="cb5-1"><a href="#cb5-1"></a>a<span class="fu">--</span>b</span></code></pre></div>
+<div id="lst-no-edge-but-node" class="pg listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-no-edge-but-node-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Example&nbsp;5: Not an edge statement
+</figcaption>
+<div aria-describedby="lst-no-edge-but-node-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-no-edge-but-node"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-no-edge-but-node-1"><a href="#lst-no-edge-but-node-1" aria-hidden="true" tabindex="-1"></a>a<span class="fu">--</span>b</span></code></pre></div>
+</div>
+</figure>
+</div>
 <p>The following is not valid:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource pg number-lines"><code class="sourceCode pg"><span id="cb6-1"><a href="#cb6-1"></a>a<span class="fu">-&gt;</span>b</span></code></pre></div>
+<div id="lst-invalid-edge" class="pg invalid listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-invalid-edge-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Example&nbsp;6: Invalid edge statement
+</figcaption>
+<div aria-describedby="lst-invalid-edge-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-invalid-edge"><pre class="sourceCode pg invalid"><code class="sourceCode pg"><span id="lst-invalid-edge-1"><a href="#lst-invalid-edge-1" aria-hidden="true" tabindex="-1"></a>a<span class="fu">-&gt;</span>b</span></code></pre></div>
+</div>
+</figure>
+</div>
 <section id="multi-edges" class="level4" data-number="3.3.1">
 <h4 data-number="3.3.1" class="anchored" data-anchor-id="multi-edges"><span class="header-section-number">3.3.1</span> Multi-edges</h4>
-<p>The Property Graph Data Model allows for multiple edges between same nodes. For instance the following graph contains two indistinguishable edges:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource pg number-lines"><code class="sourceCode pg"><span id="cb7-1"><a href="#cb7-1"></a>a <span class="fu">-&gt;</span> b :follows since:2024</span>
-<span id="cb7-2"><a href="#cb7-2"></a>a <span class="fu">-&gt;</span> b :follows since:2024</span></code></pre></div>
+<p>The Property Graph Data Model allows for multiple edges between same nodes.</p>
+<div id="lst-multi-edges" class="pg listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-multi-edges-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Example&nbsp;7: Graph with two indistinguishable edges
+</figcaption>
+<div aria-describedby="lst-multi-edges-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-multi-edges"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-multi-edges-1"><a href="#lst-multi-edges-1" aria-hidden="true" tabindex="-1"></a>a <span class="fu">-&gt;</span> b :follows since:2024</span>
+<span id="lst-multi-edges-2"><a href="#lst-multi-edges-2" aria-hidden="true" tabindex="-1"></a>a <span class="fu">-&gt;</span> b :follows since:2024</span></code></pre></div>
+</div>
+</figure>
+</div>
 </section>
 <section id="edge-identifiers" class="level4" data-number="3.3.2">
 <h4 data-number="3.3.2" class="anchored" data-anchor-id="edge-identifiers"><span class="header-section-number">3.3.2</span> Edge identifiers</h4>
-<p>Optional edge identifiers can be preceded an edge, directly followed by a colon and <a href="#whitespace">whitespace</a>. The following examples extends the previous example with individual identifiers for each edge:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource pg number-lines"><code class="sourceCode pg"><span id="cb8-1"><a href="#cb8-1"></a>1: a <span class="fu">-&gt;</span> b :follows since:2024</span>
-<span id="cb8-2"><a href="#cb8-2"></a>2: a <span class="fu">-&gt;</span> b :follows since:2024</span></code></pre></div>
-<p>Edge identifiers MUST NOT be repeated. For instance the following is invalid:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource pg number-lines"><code class="sourceCode pg"><span id="cb9-1"><a href="#cb9-1"></a>1: a <span class="fu">-&gt;</span> b :follows</span>
-<span id="cb9-2"><a href="#cb9-2"></a>1: a <span class="fu">-&gt;</span> b since:2024</span></code></pre></div>
+<p>Optional edge identifiers can be preceded an edge, directly followed by a colon and <a href="#whitespace">whitespace</a>.</p>
+<div id="lst-multi-edges-with-id" class="pg listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-multi-edges-with-id-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Example&nbsp;8: Graph with two equivalent edges, differentiated by edge identifiers
+</figcaption>
+<div aria-describedby="lst-multi-edges-with-id-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-multi-edges-with-id"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-multi-edges-with-id-1"><a href="#lst-multi-edges-with-id-1" aria-hidden="true" tabindex="-1"></a>1: a <span class="fu">-&gt;</span> b :follows since:2024</span>
+<span id="lst-multi-edges-with-id-2"><a href="#lst-multi-edges-with-id-2" aria-hidden="true" tabindex="-1"></a>2: a <span class="fu">-&gt;</span> b :follows since:2024</span></code></pre></div>
+</div>
+</figure>
+</div>
+<p>Edge identifiers MUST NOT be repeated.</p>
+<div id="lst-invalid-edge-ids" class="pg invalid listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-invalid-edge-ids-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Example&nbsp;9: The second statement is invalid because of repeated edge identifier
+</figcaption>
+<div aria-describedby="lst-invalid-edge-ids-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-invalid-edge-ids"><pre class="sourceCode pg invalid"><code class="sourceCode pg"><span id="lst-invalid-edge-ids-1"><a href="#lst-invalid-edge-ids-1" aria-hidden="true" tabindex="-1"></a>1: a <span class="fu">-&gt;</span> b :follows</span>
+<span id="lst-invalid-edge-ids-2"><a href="#lst-invalid-edge-ids-2" aria-hidden="true" tabindex="-1"></a>1: a <span class="fu">-&gt;</span> b since:2024</span></code></pre></div>
+</div>
+</figure>
+</div>
 </section>
 <section id="implicit-nodes" class="level4" data-number="3.3.3">
 <h4 data-number="3.3.3" class="anchored" data-anchor-id="implicit-nodes"><span class="header-section-number">3.3.3</span> Implicit nodes</h4>
-<p>Node identifiers referenced in edges imply the existence of nodes with these identifiers. For instance the following documents encode the same graph:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource pg number-lines"><code class="sourceCode pg"><span id="cb10-1"><a href="#cb10-1"></a>a <span class="fu">-&gt;</span> b</span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource pg number-lines"><code class="sourceCode pg"><span id="cb11-1"><a href="#cb11-1"></a>a</span>
-<span id="cb11-2"><a href="#cb11-2"></a>b</span>
-<span id="cb11-3"><a href="#cb11-3"></a>a <span class="fu">-&gt;</span> b</span></code></pre></div>
+<p>Node identifiers referenced in edges imply the existence of nodes with these identifiers.</p>
+<div id="lst-implicit-nodes" class="pg listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-implicit-nodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Example&nbsp;10: Simple graph with two nodes and one edge
+</figcaption>
+<div aria-describedby="lst-implicit-nodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-implicit-nodes"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-implicit-nodes-1"><a href="#lst-implicit-nodes-1" aria-hidden="true" tabindex="-1"></a>a <span class="fu">-&gt;</span> b</span></code></pre></div>
+</div>
+</figure>
+</div>
+<div id="lst-explicit-nodes" class="pg listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-explicit-nodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Example&nbsp;11: Same graph with explicit node statements
+</figcaption>
+<div aria-describedby="lst-explicit-nodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-explicit-nodes"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-explicit-nodes-1"><a href="#lst-explicit-nodes-1" aria-hidden="true" tabindex="-1"></a>a</span>
+<span id="lst-explicit-nodes-2"><a href="#lst-explicit-nodes-2" aria-hidden="true" tabindex="-1"></a>b</span>
+<span id="lst-explicit-nodes-3"><a href="#lst-explicit-nodes-3" aria-hidden="true" tabindex="-1"></a>a <span class="fu">-&gt;</span> b</span></code></pre></div>
+</div>
+</figure>
+</div>
 </section>
 </section>
 <section id="identifiers" class="level3" data-number="3.4">
@@ -251,9 +349,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="labels" class="level3" data-number="3.5">
 <h3 data-number="3.5" class="anchored" data-anchor-id="labels"><span class="header-section-number">3.5</span> Labels</h3>
 <p>…</p>
-<p>Labels of a node or edge are a sorted set, so the following two statements are equivalent:</p>
-<pre><code>a :label1 :label2 :label1
-a :label1 :label2</code></pre>
+<p>Labels of a node or edge are a sorted set.</p>
+<p>~<del>{.pg #lst-labels-repeated lst-cap=“Repeated labels on same node or edge are ignored} a :label1 :label2 :label1 # label1 is repeated a :label1 :label2 # equivalent statement</del>~</p>
 </section>
 <section id="properties" class="level3" data-number="3.6">
 <h3 data-number="3.6" class="anchored" data-anchor-id="properties"><span class="header-section-number">3.6</span> Properties</h3>
@@ -262,16 +359,34 @@ a :label1 :label2</code></pre>
 <section id="whitespace" class="level3" data-number="3.7">
 <h3 data-number="3.7" class="anchored" data-anchor-id="whitespace"><span class="header-section-number">3.7</span> Whitespace</h3>
 <p>A <strong>line break</strong> is either a line feed (<code>U+000A</code>) or a carriage return (<code>U+000D</code>) optionally followed by a line feed.</p>
-<p><strong>Space</strong> is a non-empty sequence of space (<code>U+0020</code>) and/or tabular (<code>U+0009</code>).</p>
+<p><strong>Spaces</strong> is a non-empty sequence of space (<code>U+0020</code>) and/or tabular (<code>U+0009</code>).</p>
 <p>A <strong>comment</strong> begins with a hash (<code>#</code> = <code>U+0023</code>) and ends after the next line break or at the end of the document.</p>
 <p>An <strong>empty line</strong> begins after a line break or at the start of the document. It ends with a comment, after the next line break, or at the end of the document and it contains nothing but optional space in between.</p>
 <p>Mandatory <strong>whitespace</strong> separates elements of a statement. Whitespace consists of a non-empty sequence of any of space and/or comments.</p>
-<p>If a non-empty line begins with Space it is considered a continuation of the previous statement. Thus the following two examples encode the same graph:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource pg number-lines"><code class="sourceCode pg"><span id="cb13-1"><a href="#cb13-1"></a>a :x  # node id and label</span>
-<span id="cb13-2"><a href="#cb13-2"></a>  # this and the following line are empty </span>
-<span id="cb13-3"><a href="#cb13-3"></a></span>
-<span id="cb13-4"><a href="#cb13-4"></a>  :y  # another label of the same node at continuation line</span></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource pg number-lines"><code class="sourceCode pg"><span id="cb14-1"><a href="#cb14-1"></a>a :x :y</span></code></pre></div>
+<p>If a non-empty line begins with Spaces it is considered a continuation of the previous statement.</p>
+<div id="lst-line-folding" class="pg listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-line-folding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Example&nbsp;12: Line folding
+</figcaption>
+<div aria-describedby="lst-line-folding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-line-folding"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-line-folding-1"><a href="#lst-line-folding-1" aria-hidden="true" tabindex="-1"></a>a :x  # node id and label</span>
+<span id="lst-line-folding-2"><a href="#lst-line-folding-2" aria-hidden="true" tabindex="-1"></a>  # this and the following line are empty </span>
+<span id="lst-line-folding-3"><a href="#lst-line-folding-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="lst-line-folding-4"><a href="#lst-line-folding-4" aria-hidden="true" tabindex="-1"></a>  :y  # another label of the same node at continuation line</span></code></pre></div>
+</div>
+</figure>
+</div>
+<div id="lst-line-folding" class="pg listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-line-folding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Example&nbsp;13: Same graph as above
+</figcaption>
+<div aria-describedby="lst-line-folding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-line-folding"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-line-folding-1"><a href="#lst-line-folding-1" aria-hidden="true" tabindex="-1"></a>a :x :y</span></code></pre></div>
+</div>
+</figure>
+</div>
 </section>
 <section id="grammar" class="level3" data-number="3.8">
 <h3 data-number="3.8" class="anchored" data-anchor-id="grammar"><span class="header-section-number">3.8</span> Grammar</h3>
