@@ -189,7 +189,8 @@ a -> b
 
 ### Labels
 
-A label is a an [identifier] following a colon and optional [spaces]. 
+A label is a an [identifier] following a colon. Optional [spaces](#whitespace)
+between colon and identifier are allowed but NOT RECOMMENDED.
 
 Labels of a node or an edge are unique: repeated labels are ignored.
 Applications SHOULD preserve the order of labels of a node or an edge.
@@ -197,7 +198,7 @@ Applications SHOULD preserve the order of labels of a node or an edge.
 ~~~{.pg #lst-labels lst-cap="Repeated labels on same node or edge are ignored"}
 a :label1 :label2 :label1   # label1 is repeated
 a :label1 :label2           # equivalent statement
-a : label1 : label2         # equivalent statement
+a : label1 : label2         # equivalent with additional spaces
 ~~~
 
 ### Properties

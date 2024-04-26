@@ -359,7 +359,7 @@ Example&nbsp;12: Same graph with explicit node statements
 </section>
 <section id="labels" class="level3" data-number="3.5">
 <h3 data-number="3.5" class="anchored" data-anchor-id="labels"><span class="header-section-number">3.5</span> Labels</h3>
-<p>A label is a an <a href="#identifiers">identifier</a> following a colon and optional [spaces].</p>
+<p>A label is a an <a href="#identifiers">identifier</a> following a colon. Optional <a href="#whitespace">spaces</a> between colon and identifier are allowed but NOT RECOMMENDED.</p>
 <p>Labels of a node or an edge are unique: repeated labels are ignored. Applications SHOULD preserve the order of labels of a node or an edge.</p>
 <div id="lst-labels" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
@@ -369,7 +369,7 @@ Example&nbsp;13: Repeated labels on same node or edge are ignored
 <div aria-describedby="lst-labels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-labels"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-labels-1"><a href="#lst-labels-1" aria-hidden="true" tabindex="-1"></a>a :label1 :label2 :label1   # label1 is repeated</span>
 <span id="lst-labels-2"><a href="#lst-labels-2" aria-hidden="true" tabindex="-1"></a>a :label1 :label2           # equivalent statement</span>
-<span id="lst-labels-3"><a href="#lst-labels-3" aria-hidden="true" tabindex="-1"></a>a : label1 : label2         # equivalent statement</span></code></pre></div>
+<span id="lst-labels-3"><a href="#lst-labels-3" aria-hidden="true" tabindex="-1"></a>a : label1 : label2         # equivalent with additional spaces</span></code></pre></div>
 </div>
 </figure>
 </div>
