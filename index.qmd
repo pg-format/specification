@@ -2,7 +2,7 @@
 title: Property Graph Exchange Format (PG)
 ---
 
-*THIS IS WORK IN PROGRESS*
+*THIS IS WORK IN PROGRESS. See also <https://github.com/orgs/pg-format/discussions> and <https://github.com/pg-format/pg-formatter/wiki> for discussion and references!*
 
 ## Introduction
 
@@ -50,8 +50,6 @@ A **PG format** document allows writing down a property graph in a compact textu
 form. A PG format document is a Unicode string that conforms to [grammar] and
 additional constraints going to be defined in this specification.
 
-*See <https://github.com/orgs/pg-format/discussions> and <https://github.com/pg-format/pg-formatter/wiki> for discussion and references*
-
 ### Basic structure
 
 A PG format document encodes a property graph as Unicode string. The document
@@ -60,10 +58,46 @@ escape sequences in [quoted strings](#quoted-strings).
 
 The document consists of a sequence of **statements**, each defining
 a [node](#nodes) or an [edge](#edges), or being [empty](#whitespace).
-Statements are separated from each other with a [line break](#whitespace) *or
-with an explicit statement separator [still being discussed]*. Optional
-[spaces](#whitespace) and/or a [comment](#whitespace) at the end of a statement
-are ignored.
+Statements are separated from each other with a [line break](#whitespace).
+Optional [spaces](#whitespace) and/or a [comment](#whitespace) at the end of
+a statement are ignored.
+
+### Identifiers
+
+[identifier]: #identifiers
+
+An **identifier** is a string used to uniquely identify a [node](#nodes), an
+[edge](#edges), a [label](#labels), or the name of a [properties](#properties).
+Identifiers can be given as [quoted string](#quoted-strings) or as unquoted
+identifier.
+
+An **unquoted identifier** is a non-empty string not including control codes
+(`U+0000` to `U+0020`, this includes line breaks and space), nor any of the
+characters "`<`" (`U+003C`), "`>`" (`U+003E`), '`"`' (`U+0022`), "`{`"
+(`U+007B`), "`}`" (`U+007D`), "`|`" (`U+007C`), "`\`" (`U+005C`), "`^`"
+(`U+005E`), and "`` ` ``" (`U+0060`).^[This definition is equivalent to the
+definition of IRI references [in
+Turtle](https://www.w3.org/TR/turtle/#grammar-production-IRIREF) and [in
+SPARQL](https://www.w3.org/TR/sparql11-query/#rIRIREF) with the exclusion of
+empty strings.]
+
+~~~{.pg #lst-identifiers lst-cap="Several unquoted identifiers"}
+abc
+~2
+木
+dc:title
+http://example.org/?a=b&c
+~~~
+
+An unquoted identifier MUST NOT start with a colon (`U+003A`).
+
+~~~{.pg .invalid #lst-invalid-id lst-cap="Invalid identifier"}
+:id
+~~~
+
+An unquoted identifier cannot start with "#" because this starts
+a [comment](#whitespace) nor with "'" because this starts a [quoted
+string](#quoted-strings).
 
 ### Nodes
 
@@ -77,17 +111,14 @@ separated by [delimiting whitespace](#delimiting-whitespace):
 ~~~{.pg #lst-nodes lst-cap="Some node statements"}
 id :label key:value
 42 :answer
-"this is a node id"
+"node id with spaces"
 ~~~
-
-Nodes can also be [defined implicitly](#implicit-nodes) as part of an
-[edge](#edges).
 
 #### Node merging
 
-Parts of the same node can be defined at multiple places in a PG format
-document. Nodes definitions with same identifier are merged by appending labels
-and property values.
+A node can be defined with multiple statements having the same node identifier:
+a node is **merged** with an existing node by appending labels and property
+values.
 
 ~~~{.pg #lst-node-merging-1 lst-cap="One node defined by multiple statements"}
 a :x k:1 m:true
@@ -98,14 +129,30 @@ a :y k:2
 a :x :y k:1,2 m:true
 ~~~
 
+#### Implicit nodes
+
+Nodes can also be defined implicitly as part of an [edge](#edges): node
+identifiers referenced in edges imply the existence of nodes with these
+identifiers.
+
+~~~{.pg #lst-implicit-nodes lst-cap="Simple graph with two nodes and one edge"}
+a -> b
+~~~
+
+~~~{.pg #lst-explicit-nodes lst-cap="Same graph with explicit node statements"}
+a
+b
+a -> b
+~~~
+
 ### Edges
 
 A **edge** consists of the following elements, given in this order and separated by [delimiting whitespace](#whitespace):
 
 - an OPTIONAL **[edge identifier](#edge-identifiers)**
-- a REQUIRED node [identifier]
+- a REQUIRED source node [identifier]
 - a REQUIRED **[direction](#edge-directions)**
-- a REQUIRED node [identifier]
+- a REQUIRED target node [identifier]
 - an OPTIONAL list of [labels]
 - an OPTIONAL list of [properties]
 
@@ -114,7 +161,7 @@ A **edge** consists of the following elements, given in this order and separated
 a -- b
 ~~~
 
-The following statement does not define an edge but a [node] with identifier "a--b":
+The following statement does not define an edge but a [node](#nodes) with identifier "`a--b`":
 
 ~~~{.pg #lst-no-edge-but-node lst-cap="Not an edge statement"}
 a--b
@@ -134,6 +181,13 @@ directly followed by a colon (`U+003A`).
 ~~~{.pg #lst-multi-edges-with-id lst-cap="Graph with two equivalent edges, differentiated by edge identifiers"}
 1: a -> b :follows since:2024
 "x": a -> b :follows since:2024
+~~~
+
+Colons are not forbidden in edge identifiers:
+
+~~~{.pg #lst-colon-in-edge-id lst-cap="Edge identifiers with colon"}
+x:: a -> b  # edge identifier "x:"
+":" a -> b  # edge identifier ":"
 ~~~
 
 Edge identifiers MUST NOT be repeated.
@@ -166,30 +220,13 @@ a -> b :follows since:2024
 a -> b :follows since:2024
 ~~~
 
-#### Implicit nodes
-
-Node identifiers referenced in edges imply the existence of nodes with these
-identifiers.
-
-~~~{.pg #lst-implicit-nodes lst-cap="Simple graph with two nodes and one edge"}
-a -> b
-~~~
-
-~~~{.pg #lst-explicit-nodes lst-cap="Same graph with explicit node statements"}
-a
-b
-a -> b
-~~~
-
-### Identifiers
-
-[identifier]: #identifiers
-
-*This section has not been finished yet*
+[Edge identifiers](#edge-identifiers) can be used to identify and reference
+individual multi-edges.
 
 ### Labels
 
-A label is a an [identifier] following a colon and optional [spaces]. 
+A label is a an [identifier] following a colon (`U+003A`) and optional
+[spaces](#whitespace).
 
 Labels of a node or an edge are unique: repeated labels are ignored.
 Applications SHOULD preserve the order of labels of a node or an edge.
@@ -198,6 +235,13 @@ Applications SHOULD preserve the order of labels of a node or an edge.
 a :label1 :label2 :label1   # label1 is repeated
 a :label1 :label2           # equivalent statement
 a : label1 : label2         # equivalent statement
+~~~
+
+Colons are not forbidden in labels:
+
+~~~{.pg #lst-colon-in-labels lst-cap="Labels with colons"}
+a :b:c                      # label "b:c"
+a :http://example.org/      # label "http://example.org/"
 ~~~
 
 ### Properties
@@ -271,8 +315,8 @@ Each edge is a JSON object with one optional and four mandatory fields:
 - `id` (optional) the edge identifier, being a non-empty string.
   Edge identifiers MUST be unique per PG-JSON document.
 - `undirected` (optional) a boolean value whether the edge is undirected
-- `from` an identifier of a node in this graph
-- `to` an identifier of a node in this graph
+- `from` an identifier of the source node from `nodes` array
+- `to` an identifier of the target node from `nodes` array
 - `labels` and `properties` as defined above at nodes
 
 ## PG-JSONL
