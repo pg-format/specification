@@ -12,11 +12,11 @@ title: Property Graph Exchange Format (PG)
 abstract data structure in graph databases and related applications. 
 
 Implementations of property graphs slightly differ in support of data types,
-restrictions on labels etc. The [definition of property graphs]
-specification](#data-model) used in this specification is aimed to be
-a superset of property graph models of common graph databases and formats. The
-model and its serializations have first been proposed by Hirokazu Chiba, Ryota
-Yamanaka, and Shota Matsumoto ([2019](https://arxiv.org/abs/1907.03936),
+restrictions on labels etc. The [definition of property graphs](#data-model)
+used in this specification is aimed to be a superset of property graph models
+of common graph databases and formats. The model and its serializations have
+first been proposed by Hirokazu Chiba, Ryota Yamanaka, and Shota Matsumoto
+([2019](https://arxiv.org/abs/1907.03936),
 [2022](https://arxiv.org/abs/2203.06393)) and revised into this specification
 together with Jakob Voß.
 
@@ -24,31 +24,32 @@ together with Jakob Voß.
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHOULD", "SHOULD NOT",
 "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to
-be interpreted as described in BCP 14 (RFC 2119 and RFC 8174) when, and only
-when, they appear in all capitals, as shown here.
+be interpreted as described in BCP 14 ([RFC 2119] and [RFC 8174]) when, and
+only when, they appear in all capitals, as shown here.
 
-Only sections [2](#data-model) to [5](#pg-jsonl) and [their
-references](#normative-references) are normative parts of this specification.
+Normative parts of this specification are limited to section [2](#data-model)
+to [6](#rubustness-priniciple) and [the normative
+references](#normative-references).
 
 ## Data Model
 
 A **property graph** consists of **nodes** and **edges** between these nodes.
 Each node has a unique **node identifier**. Each edge is either directed or
-undirected and may have an optional **edge identifier**. Each of the nodes and
+undirected and can have an optional **edge identifier**. Each of the nodes and
 edges can have **properties** and **labels**. Properties are mappings from
 **keys** to non-empty lists of **values**. Node identifiers, labels, and keys
 are non-empty Unicode strings. A value is a Unicode string, a boolean value, or
-a number as defined by RFC 8259.
+a number as defined by [RFC 8259].
 
-Extended features of graphs not being part of this data model include *graph
+Extended graph features not being part of this data model include *graph
 attributes*, *hierarchies*, *hyper-edges* and *semantics* of individual labels
 and property keys.
 
 ## PG format
 
 A **PG format** document allows writing down a property graph in a compact textual
-form. A PG format document is a Unicode string that conforms to [grammar] and
-additional constraints going to be defined in this specification.
+form. A PG format document is a Unicode string that conforms to [grammar] and rules
+defined in this specification.
 
 ### Basic structure
 
@@ -57,18 +58,18 @@ MUST be encoded in UTF-8 (RFC 3629). Unicode codepoints can also be given by
 escape sequences in [quoted strings](#quoted-strings).
 
 The document consists of a sequence of **statements**, each defining
-a [node](#nodes) or an [edge](#edges), or being [empty](#whitespace).
-Statements are separated from each other with a [line break](#whitespace).
-Optional [spaces](#whitespace) and/or a [comment](#whitespace) at the end of
-a statement are ignored.
+a [node](#nodes) or an [edge](#edges), being empty (consisting of
+[whitespace](#whitespace) only). Statements are separated from each other with
+a [line break](#whitespace). Optional [spaces](#whitespace) and/or
+a [comment](#whitespace) at the end of a statement are ignored.
 
 ### Identifiers
 
 [identifier]: #identifiers
 
 An **identifier** is a string used to uniquely identify a [node](#nodes), an
-[edge](#edges), a [label](#labels), or the name of a [properties](#properties).
-Identifiers can be given as [quoted string](#quoted-strings) or as unquoted
+[edge](#edges), a [label](#labels), or the name of a [property](#properties).
+An identifiers can be given as [quoted string](#quoted-strings) or as unquoted
 identifier.
 
 An **unquoted identifier** is a non-empty string not including control codes
@@ -91,18 +92,19 @@ http://example.org/?a=b&c
 
 An unquoted identifier MUST NOT start with a colon (`U+003A`).
 
-~~~{.pg .invalid #lst-invalid-id lst-cap="Invalid identifier"}
+~~~{.pg .invalid #lst-invalid-id lst-cap="Invalid unquoted identifier"}
 :id
 ~~~
 
-An unquoted identifier cannot start with "#" because this starts
-a [comment](#whitespace) nor with "'" because this starts a [quoted
-string](#quoted-strings).
+An unquoted identifier cannot start with hash ("`#`") because this starts
+a [comment](#whitespace) nor with apostrophe ("`'`") or quotation mark ("`"`")
+because these start a [quoted string](#quoted-strings). Colon, hash, and
+apostrophe can be used in unquoted identifiers if not as first character.
 
 ### Nodes
 
 A **node** consists of the following elements, given in this order and
-separated by [delimiting whitespace](#delimiting-whitespace):
+separated by [delimiting whitespace](#whitespace):
 
 - A REQUIRED [identifier](#identifiers)
 - an OPTIONAL list of [labels]
@@ -197,6 +199,12 @@ Edge identifiers MUST NOT be repeated.
 1: a -> b since:2024
 ~~~
 
+No space is allowed between edge identifier and its colon:
+
+~~~{.pg .invalid #lst-invalid-edge-id lst-cap="Invalid statement"}
+1 : a -> b
+~~~
+
 #### Edge directions
 
 The direction element of an edge is either the character sequence `->` for
@@ -252,14 +260,19 @@ a :http://example.org/      # label "http://example.org/"
 ...
 
 - values don't have data types other than string, boolean, and number
-- as specified in RFC 8259, implementations may set limits on the range and
+- as specified in [RFC 8259], implementations MAY set limits on the range and
   precision of numbers and double precision (IEEE754) is the most likely common limit
 - values of the same property key are allowed to have different types
 - a property must have at least one value
 
 ### Quoted Strings
 
+A quoted string starts with an apostrophe ("`'`") or quotation mark ("`"`") and
+ends with the same character.
+
 *This section has not been finished yet*
+
+- Same escape codes as allowed in JSON plus `\'` 
 
 ### Whitespace
 
@@ -296,7 +309,7 @@ a :x :y
 ## PG-JSON
 
 A **PG-JSON** document serializes a property graph in JSON. A PG-JSON document
-is a JSON document (RFC 8259) with a JSON object with exactely two fields:
+is a JSON document ([RFC 8259]) with a JSON object with exactely two fields:
 
 - `nodes` an array of nodes
 - `edges` an array of edges
@@ -338,6 +351,17 @@ cases. Applications MAY allow multiple node objects with same node identifier
 in PG-JSONL but they MUST make clear whether nodes with repeated identifier are
 ignored, merged into existing nodes, or replace existing nodes.
 
+## Robustness principle
+
+Applications MAY automatically convert documents not fully conforming to the
+specification of PG-JSON and/or PG-JSONL to valid form, for instance by:
+
+- creation of implicit nodes for node identifiers referenced in edges
+- addition of missing empty fields `labels` and/or `properties`
+- removal or mapping of invalid property values such as `null` and JSON objects
+- mapping of numeric node identifiers and edge identifiers to strings
+- removal of additional fields not defined in this specification
+
 ## JSON Schemas
 
 The [PG-JSON format](#pg-json) can be validated with a non-normative JSON Schema file [`pg-json.json`](schema/pg-json.json) in this repository. Rules not covered by the JSON schema include:
@@ -348,19 +372,14 @@ The [PG-JSON format](#pg-json) can be validated with a non-normative JSON Schema
 
 The [PG-JSONL format](#pg-jsonl) can be validated with a non-normative JSON Schema file [`pg-jsonl.json`](schema/pg-jsonl.json) in this repository. Validation is limited in the same way as validation of PG-JSON with its JSON Schema.
 
-## Robustness principle
-
-Applications may automatically convert documents not fully conforming to the specification of PG-JSON and/or PG-JSONL to valid form, for instance by:
-
-- creation of implicit nodes for node identifiers referenced in edges
-- addition of missing empty fields `labels` and/or `properties`
-- removal or mapping of invalid property values such as `null` and JSON objects
-- mapping of numeric node identifiers and edge identifiers to strings
-- removal of additional fields not defined in this specification
-
 ## References
 
 ### Normative References
+
+[RFC 2119]: https://tools.ietf.org/html/rfc2119
+[RFC 3629]: https://tools.ietf.org/html/rfc3629
+[RFC 8174]: https://tools.ietf.org/html/rfc8174
+[RFC 8259]: https://tools.ietf.org/html/rfc8259
 
 - Bradner, S.: Key words for use in RFCs to Indicate Requirement Levels.
   BCP 14, RFC 2119, March 1997,
