@@ -268,11 +268,27 @@ a :http://example.org/      # label "http://example.org/"
 ### Quoted Strings
 
 A quoted string starts with an apostrophe ("`'`") or quotation mark ("`"`") and
-ends with the same character.
+ends with the same character. In between all Unicode characters are allowed,
+except for the characters that MUST be escaped:
 
-*This section has not been finished yet*
+- apostrophe, when the string is quoted with apostrophe
+- quotation mark, when the string is quoted with quotation mark
+- reverse solidus (`\` `U+005C`)
+- control characters `U+0000` through `U+001F` except line feed
+  (`U+000A`), carriage return (`U+000D`), and tabular (`U+0009`)
 
-- Same escape codes as allowed in JSON plus `\'` 
+All characters can be escaped as defined by JSON specification ([RFC 8259],
+section 7) with the addition of the two-character escape sequence `\'` to
+escape an apostrophe. Quoted strings in PG format further differ from JSON by
+string quoting with apostrophe in addition to quotation mark and by allowing
+unquoted line feed, carriage return, and tabular. 
+
+~~~{.pg #lst-strings lst-cap="The same string given in multiple quoted forms"}
+"hello,\nworld"
+"hello,\u000Aworld"
+"hello,
+world"
+~~~
 
 ### Whitespace
 

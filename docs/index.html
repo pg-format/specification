@@ -448,11 +448,27 @@ Example&nbsp;18: Labels with colons
 </section>
 <section id="quoted-strings" class="level3" data-number="3.7">
 <h3 data-number="3.7" class="anchored" data-anchor-id="quoted-strings"><span class="header-section-number">3.7</span> Quoted Strings</h3>
-<p>A quoted string starts with an apostrophe (“<code>'</code>”) or quotation mark (“<code>"</code>”) and ends with the same character.</p>
-<p><em>This section has not been finished yet</em></p>
+<p>A quoted string starts with an apostrophe (“<code>'</code>”) or quotation mark (“<code>"</code>”) and ends with the same character. In between all Unicode characters are allowed, except for the characters that MUST be escaped:</p>
 <ul>
-<li>Same escape codes as allowed in JSON plus <code>\'</code></li>
+<li>apostrophe, when the string is quoted with apostrophe</li>
+<li>quotation mark, when the string is quoted with quotation mark</li>
+<li>reverse solidus (<code>\</code> <code>U+005C</code>)</li>
+<li>control characters <code>U+0000</code> through <code>U+001F</code> except line feed (<code>U+000A</code>), carriage return (<code>U+000D</code>), and tabular (<code>U+0009</code>)</li>
 </ul>
+<p>All characters can be escaped as defined by JSON specification (<a href="https://tools.ietf.org/html/rfc8259">RFC 8259</a>, section 7) with the addition of the two-character escape sequence <code>\'</code> to escape an apostrophe. Quoted strings in PG format further differ from JSON by string quoting with apostrophe in addition to quotation mark and by allowing unquoted line feed, carriage return, and tabular.</p>
+<div id="lst-strings" class="pg listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-strings-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Example&nbsp;19: The same string given in multiple quoted forms
+</figcaption>
+<div aria-describedby="lst-strings-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-strings"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-strings-1"><a href="#lst-strings-1" aria-hidden="true" tabindex="-1"></a><span class="st">"hello,</span><span class="sc">\n</span><span class="st">world"</span></span>
+<span id="lst-strings-2"><a href="#lst-strings-2" aria-hidden="true" tabindex="-1"></a><span class="st">"hello,</span><span class="sc">\u000A</span><span class="st">world"</span></span>
+<span id="lst-strings-3"><a href="#lst-strings-3" aria-hidden="true" tabindex="-1"></a><span class="st">"hello,</span></span>
+<span id="lst-strings-4"><a href="#lst-strings-4" aria-hidden="true" tabindex="-1"></a><span class="st">world"</span></span></code></pre></div>
+</div>
+</figure>
+</div>
 </section>
 <section id="whitespace" class="level3" data-number="3.8">
 <h3 data-number="3.8" class="anchored" data-anchor-id="whitespace"><span class="header-section-number">3.8</span> Whitespace</h3>
@@ -463,7 +479,7 @@ Example&nbsp;18: Labels with colons
 <div id="lst-line-folding" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-line-folding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;19: Line folding
+Example&nbsp;20: Line folding
 </figcaption>
 <div aria-describedby="lst-line-folding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-line-folding"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-line-folding-1"><a href="#lst-line-folding-1" aria-hidden="true" tabindex="-1"></a>a :x  # node id and label</span>
@@ -476,7 +492,7 @@ Example&nbsp;19: Line folding
 <div id="lst-line-folding" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-line-folding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;20: Same graph as above
+Example&nbsp;21: Same graph as above
 </figcaption>
 <div aria-describedby="lst-line-folding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-line-folding"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-line-folding-1"><a href="#lst-line-folding-1" aria-hidden="true" tabindex="-1"></a>a :x :y</span></code></pre></div>
