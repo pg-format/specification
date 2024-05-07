@@ -87,7 +87,7 @@ abc
 ~2
 木
 dc:title
-http://example.org/?a=b&c
+http://example.org/?a=-&c=0
 ~~~
 
 An unquoted identifier MUST NOT start with a colon (`U+003A`).
