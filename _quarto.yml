@@ -10,6 +10,7 @@ manuscript:
 format:
   html:
     code-line-numbers: true
+    highlight-style: ayu
     number-sections: true
     css: style.css
     code-copy: false  # there is try-out button instead

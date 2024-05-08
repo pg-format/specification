@@ -4,11 +4,13 @@
   <highlighting>
     <contexts>
       <context attribute="Normal Text" lineEndContext="#pop" name="Normal Text" >
+        <RegExpr attribute="Space" contex="#stay" String="\s+" />
         <RegExpr attribute="DirectionStyle" contex="#stay" String="--" />
         <RegExpr attribute="DirectionStyle" contex="#stay" String="-&gt;" />
         <DetectChar char="&quot;" context="DoubleQuotedString" attribute="StringStyle" />
         <DetectChar char="&apos;" context="SingleQuotedString" attribute="StringStyle" />
         <RegExpr String="#.*" context="#stay" attribute="CommentStyle" />
+        <RegExpr attribute="Label" contex="#stay" String=":[ \t]*[^{}&lt;&gt;\\\s&quot;`|^:][^{}&lt;&gt;\\\s&quot;`|^]*" />
         <RegExpr attribute="Identifier" contex="#stay" String="[^{}&lt;&gt;\\\s&quot;`|^][^{}&lt;&gt;\\\s&quot;`|^]*" />
       </context>
       <context name="DoubleQuotedString" lineEndContext="#stay" attribute="StringStyle">
@@ -26,11 +28,13 @@
     </contexts>
     <itemDatas>
       <itemData name="Normal Text" defStyleNum="dsError" />
+      <itemData name="Space" defStyleNum="dsNormal" />
       <itemData name="Identifier" defStyleNum="dsVerbatimString" />
+      <itemData name="Label" defStyleNum="dsAttribute" />
       <itemData name="DirectionStyle" defStyleNum="dsOperator" bold="true" />
       <itemData name="StringStyle"   defStyleNum="dsString" />
-      <itemData name="CommentStyle"   defStyleNum="dsComment" />
       <itemData name="EscapeSequenceStyle"  defStyleNum="dsSpecialChar" />
+      <itemData name="CommentStyle"   defStyleNum="dsComment" />
       <itemData name="SyntaxErrorStyle"     defStyleNum="dsError" />
     </itemDatas>
   </highlighting>
