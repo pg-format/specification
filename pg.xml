@@ -1,38 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE language SYSTEM "language.dtd">
+<!DOCTYPE language
+[
+  <!ENTITY reserved "\x00-\x20&lt;&gt;&quot;{}\\^`|">
+  <!ENTITY unquotedStart "[^&reserved;#:',]">
+  <!ENTITY unquotedNext "[^&reserved;]">
+]>
 <language name="pg" alternativeNames="PG format" kateversion="5.0" section="Scripts" extensions="*.pg" casesensitive="1" author="Jakob Voß" license="CC0">
   <highlighting>
+    <list name="Boolean">
+      <item>true</item>
+      <item>false</item>
+    </list>
+
     <contexts>
-      <context attribute="Normal Text" lineEndContext="#pop" name="Normal Text" >
+      <!--context name="LineStart" lineEndContext="#stay" fallthroughContext="Error" fallthrough="1">
+        <RegExpr String="[^ \t#]" context="Statement" lookAhead="1" />
+        <RegExpr String="[ \t]*#.*" context="#stay" attribute="CommentStyle" />
+        <RegExpr String="[ \t]+" context="Elements" />
+      </context-->
+
+      <context name="Statement" attribute="Statement" fallthroughContext="Error" fallthough="1">
+        <RegExpr String="#.*" attribute="CommentStyle" />
+
         <RegExpr attribute="Space" contex="#stay" String="\s+" />
-        <RegExpr attribute="DirectionStyle" contex="#stay" String="-[&gt;-]" />
+
+        <Detect2Chars char="-" char1="-" attribute="DirectionStyle" contex="Identifier" />
+        <Detect2Chars char="-" char1="&gt;" attribute="DirectionStyle" contex="Identifier" />
+
+        <IncludeRules context="Identifier" />
+
+        <RegExpr attribute="Label" contex="#stay" String=":[ \t]*&unquotedStart;&unquotedNext;*" />
+
+        <!-- TODO: only relevant after property key -->
+        <IncludeRules context="PropertyValue" />
+        <DetectChar char="," attribute="CommaStyle" contex="PropertyValue" /> <!-- #pop!PropertyValue -->
+      </context>
+
+      <context name="Error">
+        <AnyChar attribute="ErrorStyle" context="#pop" />
+      </context>
+
+      <context name="Identifier">
+        <IncludeRules context="QuotedString" />
+        <RegExpr attribute="Identifier" contex="#pop" String="&unquotedStart;&unquotedNext;*" />
+      </context>
+
+      <context name="QuotedString">
         <DetectChar char="&quot;" context="DoubleQuotedString" attribute="StringStyle" />
         <DetectChar char="&apos;" context="SingleQuotedString" attribute="StringStyle" />
-        <RegExpr String="#.*" context="#stay" attribute="CommentStyle" />
-        <RegExpr attribute="Label" contex="#stay" String=":[ \t]*[^{}&lt;&gt;\\\s&quot;`|^:][^{}&lt;&gt;\\\s&quot;`|^]*" />
-        <RegExpr attribute="Identifier" contex="#stay" String="[^{}&lt;&gt;\\\s&quot;`|^][^{}&lt;&gt;\\\s&quot;`|^]*" />
       </context>
       <context name="DoubleQuotedString" lineEndContext="#stay" attribute="StringStyle" noIndentationBasedFolding="1">
-        <DetectChar char="&quot;"  context="#pop" attribute="StringStyle" />
+        <DetectChar char="&quot;"  context="#pop#pop#pop" attribute="StringStyle" />
         <DetectChar char="\"       context="StringEscape" lookAhead="1" />
-      </context>      
-      <context name="SingleQuotedString" lineEndContext="#stay" attribute="StringStyle" noIndentationBasedFolding="1">
-        <DetectChar char="&apos;"  context="#pop" attribute="StringStyle" />
-        <DetectChar char="\"       context="StringEscape" lookAhead="1" />
-      </context>      
-      <context name="StringEscape" lineEndContext="#stay" attribute="Style_Normal">
-        <RegExpr String="\\(?:[&quot;&apos;\\/bfnrt]|u[0-9a-fA-f]{4})" context="#pop"  attribute="EscapeSequenceStyle" />
-        <RegExpr String="\\(u[0-9a-fA-f]+|.)?" context="#pop" attribute="SyntaxErrorStyle" />
       </context>
+      <context name="SingleQuotedString" lineEndContext="#stay" attribute="StringStyle" noIndentationBasedFolding="1">
+        <DetectChar char="&apos;"  context="#pop#pop#pop" attribute="StringStyle" />
+        <DetectChar char="\"       context="StringEscape" lookAhead="1" />
+      </context>     
+      <context name="StringEscape" lineEndContext="#stay">
+        <RegExpr String="\\(?:[&quot;&apos;\\/bfnrt]|u[0-9a-fA-f]{4})" context="#pop" attribute="EscapeSequenceStyle" />
+        <RegExpr String="\\(u[0-9a-fA-f]+|.)?" context="#pop" attribute="ErrorStyle" />
+      </context>
+
+      <context name="PropertyValue">
+        <IncludeRules context="QuotedString" />
+        <keyword String="Boolean" context="#pop" attribute="BooleanStyle" />
+        <RegExpr String="-?\b([1-9][0-9]*\.[0-9]+(?:[eE][+-]?[0-9]+)?)" context="#pop" attribute="FloatStyle" />
+        <RegExpr String="-?\b(0\b|[1-9][0-9]*(?:[eE][+-]?[0-9]+)?)" context="#pop" attribute="DecimalStyle" />
+        <RegExpr attribute="UnquotedValueStyle" contex="#pop" String="&unquotedStart;[^&reserved;,]*" />
+      </context>
+
     </contexts>
     <itemDatas>
-      <itemData name="Normal Text" defStyleNum="dsError" />
+      <itemData name="Statement" defStyleNum="dsError" />
+      <itemData name="ErrorStyle" defStyleNum="dsError" />
       <itemData name="Space" defStyleNum="dsNormal" />
       <itemData name="Identifier" defStyleNum="dsVerbatimString" />
       <itemData name="Label" defStyleNum="dsAttribute" />
-      <itemData name="DirectionStyle" defStyleNum="dsOperator" bold="true" />
+      <itemData name="DirectionStyle" defStyleNum="dsOperator" />
+      <itemData name="CommaStyle" defStyleNum="dsOperator" />
       <itemData name="StringStyle"   defStyleNum="dsString" />
+      <itemData name="UnquotedValueStyle"   defStyleNum="dsString" />
       <itemData name="EscapeSequenceStyle"  defStyleNum="dsSpecialChar" />
+      <itemData name="DecimalStyle"            defStyleNum="dsDecVal" />
+      <itemData name="FloatStyle"              defStyleNum="dsFloat" />
+      <itemData name="BooleanStyle"            defStyleNum="dsKeyword" />
+
       <itemData name="CommentStyle"   defStyleNum="dsComment" />
       <itemData name="SyntaxErrorStyle"     defStyleNum="dsError" />
     </itemDatas>
@@ -45,7 +98,7 @@
       <emptyLine regexpr="\s+"/>
       <emptyLine regexpr="\s*#.*"/>
     </emptyLines>
-    <keywords casesensitive="1"/>
-    <folding indentationsensitive="1"/>
+    <keywords casesensitive="true"/>
+    <folding indentationsensitive="true"/>
   </general>
 </language>

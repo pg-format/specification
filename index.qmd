@@ -84,11 +84,6 @@ characters "`<`" (`U+003C`), "`>`" (`U+003E`), '`"`' (`U+0022`), "`{`"
 definition of IRI references [in SPARQL](https://www.w3.org/TR/sparql11-query/#rIRIREF) and
 [in Turtle](https://www.w3.org/TR/turtle/#grammar-production-IRIREF) excluding empty strings and escape sequences. Forbidden characters are reserved for extensions of PG format.]
 
-An unquoted identifier MUST NOT start with hash ("`#`") because this starts
-a [comment](#whitespace) nor with apostrophe ("`'`") or quotation mark ("`"`")
-because these start a [quoted string](#quoted-strings). Colon, hash, and
-apostrophe are allowed in an unquoted identifier after its first character.
-
 ~~~{.pg #lst-identifiers lst-cap="Several unquoted identifiers"}
 abc
 ~2
@@ -103,6 +98,11 @@ An unquoted identifier MUST NOT start with a colon (`U+003A`).
 ~~~{.pg .invalid #lst-invalid-id lst-cap="Invalid unquoted identifier"}
 :id
 ~~~
+
+An unquoted identifier MUST NOT start with hash ("`#`") because this starts
+a [comment](#whitespace) nor with apostrophe ("`'`") or quotation mark ("`"`")
+because these start a [quoted string](#quoted-strings). Colon, hash, and
+apostrophe are allowed in an unquoted identifier after its first character.
 
 ### Nodes
 
@@ -344,9 +344,13 @@ unquoted line feed, carriage return, and tabular.
 
 ~~~{.pg #lst-strings lst-cap="The same string given in multiple quoted forms"}
 "hello,\nworld"
-"hello,\u000Aworld"
+'hello,\u000Aworld'
 "hello,
 world"
+~~~
+
+~~~{.pg .invalid #lst-invalid-string-escapes lst-cap="Invalid string escape sequences"}
+"h\ello\u21"
 ~~~
 
 ### Whitespace

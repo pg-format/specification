@@ -194,7 +194,6 @@ Note
 <h3 data-number="3.2" class="anchored" data-anchor-id="identifiers"><span class="header-section-number">3.2</span> Identifiers</h3>
 <p>An <strong>identifier</strong> is a string used to uniquely identify a <a href="#nodes">node</a>, an <a href="#edges">edge</a>, a <a href="#labels">label</a>, or the name of a <a href="#properties">property</a>. An identifiers can be given as <a href="#quoted-strings">quoted string</a> or as unquoted identifier.</p>
 <p>An <strong>unquoted identifier</strong> is a non-empty string not including control codes <code>U+0000</code> to <code>U+0020</code> (tabulator, line breaks, space…), nor any of the characters “<code>&lt;</code>” (<code>U+003C</code>), “<code>&gt;</code>” (<code>U+003E</code>), ‘<code>"</code>’ (<code>U+0022</code>), “<code>{</code>” (<code>U+007B</code>), “<code>}</code>” (<code>U+007D</code>), “<code>|</code>” (<code>U+007C</code>), “<code>\</code>” (<code>U+005C</code>), “<code>^</code>” (<code>U+005E</code>), and “<code>`</code>” (<code>U+0060</code>).<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<p>An unquoted identifier MUST NOT start with hash (“<code>#</code>”) because this starts a <a href="#whitespace">comment</a> nor with apostrophe (“<code>'</code>”) or quotation mark (“<code>"</code>”) because these start a <a href="#quoted-strings">quoted string</a>. Colon, hash, and apostrophe are allowed in an unquoted identifier after its first character.</p>
 <div id="lst-identifiers" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-identifiers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -221,6 +220,7 @@ Example&nbsp;2: Invalid unquoted identifier
 </div>
 </figure>
 </div>
+<p>An unquoted identifier MUST NOT start with hash (“<code>#</code>”) because this starts a <a href="#whitespace">comment</a> nor with apostrophe (“<code>'</code>”) or quotation mark (“<code>"</code>”) because these start a <a href="#quoted-strings">quoted string</a>. Colon, hash, and apostrophe are allowed in an unquoted identifier after its first character.</p>
 </section>
 <section id="nodes" class="level3" data-number="3.3">
 <h3 data-number="3.3" class="anchored" data-anchor-id="nodes"><span class="header-section-number">3.3</span> Nodes</h3>
@@ -334,7 +334,7 @@ Example&nbsp;9: Not an edge statement
 Example&nbsp;10: Invalid edge statement
 </figcaption>
 <div aria-describedby="lst-invalid-edge-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="lst-invalid-edge"><pre class="sourceCode pg invalid"><code class="sourceCode pg"><span id="lst-invalid-edge-1"><a href="#lst-invalid-edge-1" aria-hidden="true" tabindex="-1"></a><span class="vs">a-</span><span class="er">&gt;</span><span class="vs">b</span></span></code></pre></div>
+<div class="sourceCode" id="lst-invalid-edge"><pre class="sourceCode pg invalid"><code class="sourceCode pg"><span id="lst-invalid-edge-1"><a href="#lst-invalid-edge-1" aria-hidden="true" tabindex="-1"></a><span class="vs">a-</span>&gt;b</span></code></pre></div>
 </div>
 </figure>
 </div>
@@ -479,7 +479,7 @@ Example&nbsp;19: Property with optional spaces and/or whitespace
 <span id="lst-properties-8"><a href="#lst-properties-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="lst-properties-9"><a href="#lst-properties-9" aria-hidden="true" tabindex="-1"></a><span class="vs">a</span> <span class="vs">key:</span> <span class="vs">1,2</span>          <span class="co"># short form of a list</span></span>
 <span id="lst-properties-10"><a href="#lst-properties-10" aria-hidden="true" tabindex="-1"></a><span class="vs">a</span> <span class="vs">key:</span> <span class="vs">1</span>            <span class="co"># delimiting whitespace... </span></span>
-<span id="lst-properties-11"><a href="#lst-properties-11" aria-hidden="true" tabindex="-1"></a>  <span class="vs">,</span>                 <span class="co"># ...after value 1 and before value 2</span></span>
+<span id="lst-properties-11"><a href="#lst-properties-11" aria-hidden="true" tabindex="-1"></a>  <span class="op">,</span>                 <span class="co"># ...after value 1 and before value 2</span></span>
 <span id="lst-properties-12"><a href="#lst-properties-12" aria-hidden="true" tabindex="-1"></a>  <span class="vs">2</span></span></code></pre></div>
 </div>
 </figure>
@@ -516,7 +516,7 @@ Example&nbsp;21: Property values
 <div aria-describedby="lst-property-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-property-values"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-property-values-1"><a href="#lst-property-values-1" aria-hidden="true" tabindex="-1"></a><span class="vs">x</span> <span class="vs">n:</span> <span class="vs">1,-1,2e+3</span>          <span class="co"># numbers </span></span>
 <span id="lst-property-values-2"><a href="#lst-property-values-2" aria-hidden="true" tabindex="-1"></a>  <span class="vs">b:</span> <span class="vs">true,</span> <span class="vs">false</span>        <span class="co"># boolean values       </span></span>
-<span id="lst-property-values-3"><a href="#lst-property-values-3" aria-hidden="true" tabindex="-1"></a>  <span class="vs">s:</span> <span class="vs">hello,</span><span class="st">"true"</span><span class="vs">,</span><span class="st">""</span>    <span class="co"># strings</span></span></code></pre></div>
+<span id="lst-property-values-3"><a href="#lst-property-values-3" aria-hidden="true" tabindex="-1"></a>  <span class="vs">s:</span> <span class="vs">hello,</span><span class="st">"true"</span><span class="op">,</span><span class="st">""</span>    <span class="co"># strings</span></span></code></pre></div>
 </div>
 </figure>
 </div>
@@ -556,9 +556,19 @@ Example&nbsp;23: The same string given in multiple quoted forms
 </figcaption>
 <div aria-describedby="lst-strings-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-strings"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-strings-1"><a href="#lst-strings-1" aria-hidden="true" tabindex="-1"></a><span class="st">"hello,</span><span class="sc">\n</span><span class="st">world"</span></span>
-<span id="lst-strings-2"><a href="#lst-strings-2" aria-hidden="true" tabindex="-1"></a><span class="st">"hello,</span><span class="sc">\u000A</span><span class="st">world"</span></span>
+<span id="lst-strings-2"><a href="#lst-strings-2" aria-hidden="true" tabindex="-1"></a><span class="st">'hello,</span><span class="sc">\u000A</span><span class="st">world'</span></span>
 <span id="lst-strings-3"><a href="#lst-strings-3" aria-hidden="true" tabindex="-1"></a><span class="st">"hello,</span></span>
 <span id="lst-strings-4"><a href="#lst-strings-4" aria-hidden="true" tabindex="-1"></a><span class="st">world"</span></span></code></pre></div>
+</div>
+</figure>
+</div>
+<div id="lst-invalid-string-escapes" class="pg invalid listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-invalid-string-escapes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Example&nbsp;24: Invalid string escape sequences
+</figcaption>
+<div aria-describedby="lst-invalid-string-escapes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-invalid-string-escapes"><pre class="sourceCode pg invalid"><code class="sourceCode pg"><span id="lst-invalid-string-escapes-1"><a href="#lst-invalid-string-escapes-1" aria-hidden="true" tabindex="-1"></a><span class="st">"h</span><span class="er">\e</span><span class="st">llo</span><span class="er">\u21</span><span class="st">"</span></span></code></pre></div>
 </div>
 </figure>
 </div>
@@ -572,7 +582,7 @@ Example&nbsp;23: The same string given in multiple quoted forms
 <div id="lst-line-folding" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-line-folding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;24: Line folding
+Example&nbsp;25: Line folding
 </figcaption>
 <div aria-describedby="lst-line-folding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-line-folding"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-line-folding-1"><a href="#lst-line-folding-1" aria-hidden="true" tabindex="-1"></a><span class="vs">a</span> <span class="at">:x</span>  <span class="co"># node id and label</span></span>
@@ -585,7 +595,7 @@ Example&nbsp;24: Line folding
 <div id="lst-line-folding" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-line-folding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;25: Same graph as above
+Example&nbsp;26: Same graph as above
 </figcaption>
 <div aria-describedby="lst-line-folding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-line-folding"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-line-folding-1"><a href="#lst-line-folding-1" aria-hidden="true" tabindex="-1"></a><span class="vs">a</span> <span class="at">:x</span> <span class="at">:y</span></span></code></pre></div>
