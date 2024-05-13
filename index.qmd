@@ -482,3 +482,19 @@ The [PG-JSONL format](#pg-jsonl) can be validated with a non-normative JSON Sche
 
 - [IEEE Standard for Floating-Point Arithmetic](https://doi.org/10.1109/IEEESTD.2019.8766229)
 
+- Chiba, H., Yamanaka, R., Matsumoto, S.:
+  [Property Graph Exchange Format](http://arxiv.org/abs/1907.03936). 2019
+
+## Changes
+
+### Version 1.0.0 
+
+*not published yet*
+
+Introduced comments, line folding, edge identifiers. Aligned property values with JSON syntax. Added more formal rules for quoted strings and unquoted identifiers. Added PG-JSONL. Changed node identifiers to be strings.
+
+### Version 0.3
+
+Less formal specification published in 2019. See
+[latest version from 2020](https://pg-format.readthedocs.io/en/0.3/contents/pg-format.html).
+
