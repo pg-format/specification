@@ -93,7 +93,7 @@ http://example.org/?a=-&c=0#x
 -':
 ~~~
 
-An unquoted identifier MUST NOT start with a colon (`U+003A`).
+An unquoted identifier MUST NOT start with a colon (`U+003A`) or comma (`U+002C`).
 
 ~~~{.pg .invalid #lst-invalid-id lst-cap="Invalid unquoted identifier"}
 :id
@@ -101,8 +101,8 @@ An unquoted identifier MUST NOT start with a colon (`U+003A`).
 
 An unquoted identifier MUST NOT start with hash ("`#`") because this starts
 a [comment](#whitespace) nor with apostrophe ("`'`") or quotation mark ("`"`")
-because these start a [quoted string](#quoted-strings). Colon, hash, and
-apostrophe are allowed in an unquoted identifier after its first character.
+because these start a [quoted string](#quoted-strings). Colon, hash, comman,
+and apostrophe are allowed in an unquoted identifier after its first character.
 
 ### Nodes
 
