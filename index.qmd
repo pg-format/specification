@@ -2,7 +2,11 @@
 title: Property Graph Exchange Format (PG)
 ---
 
-*THIS IS WORK IN PROGRESS. See also <https://github.com/orgs/pg-format/discussions> and <https://github.com/pg-format/pg-formatter/wiki> for discussion and references!*
+::: {.callout-note}
+
+*THIS IS WORK IN PROGRESS. See also <https://github.com/orgs/pg-format/discussions> and <https://github.com/pg-format/pg-formatter/wiki> for discussion and references! Issue tracker of this specification document is at <https://github.com/pg-format/specification/issues>.*
+
+:::
 
 ## Introduction
 
@@ -58,10 +62,10 @@ MUST be encoded in UTF-8 (RFC 3629). Unicode codepoints can also be given by
 escape sequences in [quoted strings](#quoted-strings).
 
 The document consists of a sequence of **statements**, each defining
-a [node](#nodes) or an [edge](#edges), being empty (consisting of
-[whitespace](#whitespace) only). Statements are separated from each other with
-a [line break](#whitespace). Optional [spaces](#whitespace) and/or
-a [comment](#whitespace) at the end of a statement are ignored.
+a [node](#nodes) or an [edge](#edges), or being empty. Statements are separated
+from each other with a [line break](#whitespace). Optional
+[spaces](#whitespace) and/or a [comment](#whitespace) at the end of a statement
+are ignored.
 
 ### Identifiers
 
@@ -73,21 +77,25 @@ An identifiers can be given as [quoted string](#quoted-strings) or as unquoted
 identifier.
 
 An **unquoted identifier** is a non-empty string not including control codes
-(`U+0000` to `U+0020`, this includes line breaks and space), nor any of the
+`U+0000` to `U+0020` (tabulator, line breaks, space...), nor any of the
 characters "`<`" (`U+003C`), "`>`" (`U+003E`), '`"`' (`U+0022`), "`{`"
 (`U+007B`), "`}`" (`U+007D`), "`|`" (`U+007C`), "`\`" (`U+005C`), "`^`"
 (`U+005E`), and "`` ` ``" (`U+0060`).^[This definition is equivalent to the
-definition of IRI references [in
-Turtle](https://www.w3.org/TR/turtle/#grammar-production-IRIREF) and [in
-SPARQL](https://www.w3.org/TR/sparql11-query/#rIRIREF) with the exclusion of
-empty strings.]
+definition of IRI references [in SPARQL](https://www.w3.org/TR/sparql11-query/#rIRIREF) and
+[in Turtle](https://www.w3.org/TR/turtle/#grammar-production-IRIREF) excluding empty strings and escape sequences. Forbidden characters are reserved for extensions of PG format.]
+
+An unquoted identifier MUST NOT start with hash ("`#`") because this starts
+a [comment](#whitespace) nor with apostrophe ("`'`") or quotation mark ("`"`")
+because these start a [quoted string](#quoted-strings). Colon, hash, and
+apostrophe are allowed in an unquoted identifier after its first character.
 
 ~~~{.pg #lst-identifiers lst-cap="Several unquoted identifiers"}
 abc
 ~2
 木
 dc:title
-http://example.org/?a=-&c=0
+http://example.org/?a=-&c=0#x
+-':
 ~~~
 
 An unquoted identifier MUST NOT start with a colon (`U+003A`).
@@ -95,11 +103,6 @@ An unquoted identifier MUST NOT start with a colon (`U+003A`).
 ~~~{.pg .invalid #lst-invalid-id lst-cap="Invalid unquoted identifier"}
 :id
 ~~~
-
-An unquoted identifier cannot start with hash ("`#`") because this starts
-a [comment](#whitespace) nor with apostrophe ("`'`") or quotation mark ("`"`")
-because these start a [quoted string](#quoted-strings). Colon, hash, and
-apostrophe can be used in unquoted identifiers if not as first character.
 
 ### Nodes
 
@@ -233,8 +236,9 @@ individual multi-edges.
 
 ### Labels
 
-A label is a an [identifier] following a colon (`U+003A`) and optional
-[spaces](#whitespace).
+A label is a an [identifier] following a colon (`U+003A`).
+[Spaces](#whitespace) between colon and label identifier are OPTIONAL but NOT
+RECOMMENDED.
 
 Labels of a node or an edge are unique: repeated labels are ignored.
 Applications SHOULD preserve the order of labels of a node or an edge.
@@ -254,16 +258,71 @@ a :http://example.org/      # label "http://example.org/"
 
 ### Properties
 
+A **property** consists of the following elements, given in this order:
 
-*This section has not been finished yet*
+- a REQUIRED **property key**, being an [identifier](#identifiers)
+- OPTIONAL [spaces](#whitespace)
+- a colon (`U+003A`)
+- a non-empty list of **[property values](#property-values)**, separated by comma (`U+002C`)
 
-...
+A property value MAY further be preceded and followed by [delimiting whitespace](#whitespace).
 
-- values don't have data types other than string, boolean, and number
-- as specified in [RFC 8259], implementations MAY set limits on the range and
-  precision of numbers and double precision (IEEE754) is the most likely common limit
-- values of the same property key are allowed to have different types
-- a property must have at least one value
+~~~{.pg #lst-properties lst-cap="Property with optional spaces and/or whitespace"}
+a key: value        # spaces before value
+a key:value         # short form
+a "key":value       # key can be quoted string
+a key : value       # optional spaces around colon
+a key :value        # allowed but not recommended (value looks like label)
+a key:              # delimiting whitespace between colon and value
+  value             
+
+a key: 1,2          # short form of a list
+a key: 1            # delimiting whitespace... 
+  ,                 # ...after value 1 and before value 2
+  2
+
+~~~
+
+~~~{.pg .invalid #lst-invalid-properties lst-cap="Invalid property"}
+a key               # delimiting whitespace not allowed before colon
+  : value
+~~~
+
+#### Property values
+
+A **property value** is one of
+
+- a **number value**, given as defined in section 6 of [RFC 8259]. As mentioned
+  there, implementations MAY set limits on the range and precision of numbers
+  and double precision (IEEE754) is the most likely common limit.
+- a **boolean value**, given as one of the literal character sequences `true` and `false`
+- a **string value**, given as one of
+  - a [quoted string](#quoted-strings)
+  - an [unquoted identifier](#identifiers) not including a comma
+
+The data type of a property value in PG format is either string, or number, or
+boolean.^[This is identical to scalar JSON values (string, number, boolean) and
+every serialized JSON scalar is a valid property value in PG format.]
+Applications MAY internally map these types to other type systems. Values of
+the same property are allowed to have different data types.
+
+~~~{.pg #lst-property-values lst-cap="Property values"}
+x n: 1,-1,2e+3          # numbers 
+  b: true, false        # boolean values       
+  s: hello,"true",""    # strings
+~~~
+
+#### Property merging
+
+Value lists of properties of the same property key are concatenated. Value
+lists are no sets: the same value can be included multiple times.
+
+~~~{.pg #lst-property-values lst-cap="Three nodes with same properties"}
+a x:1,2,3       # property values given as list
+b x:1 x:2,3     # property values given as two lists
+c x:1           # property values given...
+c x:2 x:3       # ...in two node statements
+~~~
 
 ### Quoted Strings
 
@@ -319,8 +378,11 @@ a :x :y
 
 ### Grammar
 
+::: {.callout-note}
+
 *A formal grammar of PG format will be provided*
 
+:::
 
 ## PG-JSON
 

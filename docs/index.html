@@ -146,7 +146,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-<p><em>THIS IS WORK IN PROGRESS. See also <a href="https://github.com/orgs/pg-format/discussions" class="uri">https://github.com/orgs/pg-format/discussions</a> and <a href="https://github.com/pg-format/pg-formatter/wiki" class="uri">https://github.com/pg-format/pg-formatter/wiki</a> for discussion and references!</em></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><em>THIS IS WORK IN PROGRESS. See also <a href="https://github.com/orgs/pg-format/discussions" class="uri">https://github.com/orgs/pg-format/discussions</a> and <a href="https://github.com/pg-format/pg-formatter/wiki" class="uri">https://github.com/pg-format/pg-formatter/wiki</a> for discussion and references! Issue tracker of this specification document is at <a href="https://github.com/pg-format/specification/issues" class="uri">https://github.com/pg-format/specification/issues</a>.</em></p>
+</div>
+</div>
 <section id="introduction" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
 <section id="why-property-graphs" class="level3" data-number="1.1">
@@ -171,12 +183,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="basic-structure" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="basic-structure"><span class="header-section-number">3.1</span> Basic structure</h3>
 <p>A PG format document encodes a property graph as Unicode string. The document MUST be encoded in UTF-8 (RFC 3629). Unicode codepoints can also be given by escape sequences in <a href="#quoted-strings">quoted strings</a>.</p>
-<p>The document consists of a sequence of <strong>statements</strong>, each defining a <a href="#nodes">node</a> or an <a href="#edges">edge</a>, being empty (consisting of <a href="#whitespace">whitespace</a> only). Statements are separated from each other with a <a href="#whitespace">line break</a>. Optional <a href="#whitespace">spaces</a> and/or a <a href="#whitespace">comment</a> at the end of a statement are ignored.</p>
+<p>The document consists of a sequence of <strong>statements</strong>, each defining a <a href="#nodes">node</a> or an <a href="#edges">edge</a>, or being empty. Statements are separated from each other with a <a href="#whitespace">line break</a>. Optional <a href="#whitespace">spaces</a> and/or a <a href="#whitespace">comment</a> at the end of a statement are ignored.</p>
 </section>
 <section id="identifiers" class="level3" data-number="3.2">
 <h3 data-number="3.2" class="anchored" data-anchor-id="identifiers"><span class="header-section-number">3.2</span> Identifiers</h3>
 <p>An <strong>identifier</strong> is a string used to uniquely identify a <a href="#nodes">node</a>, an <a href="#edges">edge</a>, a <a href="#labels">label</a>, or the name of a <a href="#properties">property</a>. An identifiers can be given as <a href="#quoted-strings">quoted string</a> or as unquoted identifier.</p>
-<p>An <strong>unquoted identifier</strong> is a non-empty string not including control codes (<code>U+0000</code> to <code>U+0020</code>, this includes line breaks and space), nor any of the characters “<code>&lt;</code>” (<code>U+003C</code>), “<code>&gt;</code>” (<code>U+003E</code>), ‘<code>"</code>’ (<code>U+0022</code>), “<code>{</code>” (<code>U+007B</code>), “<code>}</code>” (<code>U+007D</code>), “<code>|</code>” (<code>U+007C</code>), “<code>\</code>” (<code>U+005C</code>), “<code>^</code>” (<code>U+005E</code>), and “<code>`</code>” (<code>U+0060</code>).<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>An <strong>unquoted identifier</strong> is a non-empty string not including control codes <code>U+0000</code> to <code>U+0020</code> (tabulator, line breaks, space…), nor any of the characters “<code>&lt;</code>” (<code>U+003C</code>), “<code>&gt;</code>” (<code>U+003E</code>), ‘<code>"</code>’ (<code>U+0022</code>), “<code>{</code>” (<code>U+007B</code>), “<code>}</code>” (<code>U+007D</code>), “<code>|</code>” (<code>U+007C</code>), “<code>\</code>” (<code>U+005C</code>), “<code>^</code>” (<code>U+005E</code>), and “<code>`</code>” (<code>U+0060</code>).<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>An unquoted identifier MUST NOT start with hash (“<code>#</code>”) because this starts a <a href="#whitespace">comment</a> nor with apostrophe (“<code>'</code>”) or quotation mark (“<code>"</code>”) because these start a <a href="#quoted-strings">quoted string</a>. Colon, hash, and apostrophe are allowed in an unquoted identifier after its first character.</p>
 <div id="lst-identifiers" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-identifiers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -187,7 +200,8 @@ Example&nbsp;1: Several unquoted identifiers
 <span id="lst-identifiers-2"><a href="#lst-identifiers-2" aria-hidden="true" tabindex="-1"></a><span class="vs">~2</span></span>
 <span id="lst-identifiers-3"><a href="#lst-identifiers-3" aria-hidden="true" tabindex="-1"></a><span class="vs">木</span></span>
 <span id="lst-identifiers-4"><a href="#lst-identifiers-4" aria-hidden="true" tabindex="-1"></a><span class="vs">dc:title</span></span>
-<span id="lst-identifiers-5"><a href="#lst-identifiers-5" aria-hidden="true" tabindex="-1"></a><span class="vs">http://example.org/?a=-&amp;c=0</span></span></code></pre></div>
+<span id="lst-identifiers-5"><a href="#lst-identifiers-5" aria-hidden="true" tabindex="-1"></a><span class="vs">http://example.org/?a=-&amp;c=0#x</span></span>
+<span id="lst-identifiers-6"><a href="#lst-identifiers-6" aria-hidden="true" tabindex="-1"></a><span class="vs">-':</span></span></code></pre></div>
 </div>
 </figure>
 </div>
@@ -202,7 +216,6 @@ Example&nbsp;2: Invalid unquoted identifier
 </div>
 </figure>
 </div>
-<p>An unquoted identifier cannot start with hash (“<code>#</code>”) because this starts a <a href="#whitespace">comment</a> nor with apostrophe (“<code>'</code>”) or quotation mark (“<code>"</code>”) because these start a <a href="#quoted-strings">quoted string</a>. Colon, hash, and apostrophe can be used in unquoted identifiers if not as first character.</p>
 </section>
 <section id="nodes" class="level3" data-number="3.3">
 <h3 data-number="3.3" class="anchored" data-anchor-id="nodes"><span class="header-section-number">3.3</span> Nodes</h3>
@@ -408,7 +421,7 @@ Example&nbsp;16: Graph with two indistinguishable edges
 </section>
 <section id="labels" class="level3" data-number="3.5">
 <h3 data-number="3.5" class="anchored" data-anchor-id="labels"><span class="header-section-number">3.5</span> Labels</h3>
-<p>A label is a an <a href="#identifiers">identifier</a> following a colon (<code>U+003A</code>) and optional <a href="#whitespace">spaces</a>.</p>
+<p>A label is a an <a href="#identifiers">identifier</a> following a colon (<code>U+003A</code>). <a href="#whitespace">Spaces</a> between colon and label identifier are OPTIONAL but NOT RECOMMENDED.</p>
 <p>Labels of a node or an edge are unique: repeated labels are ignored. Applications SHOULD preserve the order of labels of a node or an edge.</p>
 <div id="lst-labels" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
@@ -437,14 +450,89 @@ Example&nbsp;18: Labels with colons
 </section>
 <section id="properties" class="level3" data-number="3.6">
 <h3 data-number="3.6" class="anchored" data-anchor-id="properties"><span class="header-section-number">3.6</span> Properties</h3>
-<p><em>This section has not been finished yet</em></p>
-<p>…</p>
+<p>A <strong>property</strong> consists of the following elements, given in this order:</p>
 <ul>
-<li>values don’t have data types other than string, boolean, and number</li>
-<li>as specified in <a href="https://tools.ietf.org/html/rfc8259">RFC 8259</a>, implementations MAY set limits on the range and precision of numbers and double precision (IEEE754) is the most likely common limit</li>
-<li>values of the same property key are allowed to have different types</li>
-<li>a property must have at least one value</li>
+<li>a REQUIRED <strong>property key</strong>, being an <a href="#identifiers">identifier</a></li>
+<li>OPTIONAL <a href="#whitespace">spaces</a></li>
+<li>a colon (<code>U+003A</code>)</li>
+<li>a non-empty list of <strong><a href="#property-values">property values</a></strong>, separated by comma (<code>U+002C</code>)</li>
 </ul>
+<p>A property value MAY further be preceded and followed by <a href="#whitespace">delimiting whitespace</a>.</p>
+<div id="lst-properties" class="pg listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-properties-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Example&nbsp;19: Property with optional spaces and/or whitespace
+</figcaption>
+<div aria-describedby="lst-properties-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-properties"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-properties-1"><a href="#lst-properties-1" aria-hidden="true" tabindex="-1"></a><span class="vs">a</span> <span class="vs">key:</span> <span class="vs">value</span>        <span class="co"># spaces before value</span></span>
+<span id="lst-properties-2"><a href="#lst-properties-2" aria-hidden="true" tabindex="-1"></a><span class="vs">a</span> <span class="vs">key:value</span>         <span class="co"># short form</span></span>
+<span id="lst-properties-3"><a href="#lst-properties-3" aria-hidden="true" tabindex="-1"></a><span class="vs">a</span> <span class="st">"key"</span><span class="at">:value</span>       <span class="co"># key can be quoted string</span></span>
+<span id="lst-properties-4"><a href="#lst-properties-4" aria-hidden="true" tabindex="-1"></a><span class="vs">a</span> <span class="vs">key</span> <span class="at">: value</span>       <span class="co"># optional spaces around colon</span></span>
+<span id="lst-properties-5"><a href="#lst-properties-5" aria-hidden="true" tabindex="-1"></a><span class="vs">a</span> <span class="vs">key</span> <span class="at">:value</span>        <span class="co"># allowed but not recommended (value looks like label)</span></span>
+<span id="lst-properties-6"><a href="#lst-properties-6" aria-hidden="true" tabindex="-1"></a><span class="vs">a</span> <span class="vs">key:</span>              <span class="co"># delimiting whitespace between colon and value</span></span>
+<span id="lst-properties-7"><a href="#lst-properties-7" aria-hidden="true" tabindex="-1"></a>  <span class="vs">value</span>             </span>
+<span id="lst-properties-8"><a href="#lst-properties-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="lst-properties-9"><a href="#lst-properties-9" aria-hidden="true" tabindex="-1"></a><span class="vs">a</span> <span class="vs">key:</span> <span class="vs">1,2</span>          <span class="co"># short form of a list</span></span>
+<span id="lst-properties-10"><a href="#lst-properties-10" aria-hidden="true" tabindex="-1"></a><span class="vs">a</span> <span class="vs">key:</span> <span class="vs">1</span>            <span class="co"># delimiting whitespace... </span></span>
+<span id="lst-properties-11"><a href="#lst-properties-11" aria-hidden="true" tabindex="-1"></a>  <span class="vs">,</span>                 <span class="co"># ...after value 1 and before value 2</span></span>
+<span id="lst-properties-12"><a href="#lst-properties-12" aria-hidden="true" tabindex="-1"></a>  <span class="vs">2</span></span></code></pre></div>
+</div>
+</figure>
+</div>
+<div id="lst-invalid-properties" class="pg invalid listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-invalid-properties-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Example&nbsp;20: Invalid property
+</figcaption>
+<div aria-describedby="lst-invalid-properties-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-invalid-properties"><pre class="sourceCode pg invalid"><code class="sourceCode pg"><span id="lst-invalid-properties-1"><a href="#lst-invalid-properties-1" aria-hidden="true" tabindex="-1"></a><span class="vs">a</span> <span class="vs">key</span>               <span class="co"># delimiting whitespace not allowed before colon</span></span>
+<span id="lst-invalid-properties-2"><a href="#lst-invalid-properties-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">: value</span></span></code></pre></div>
+</div>
+</figure>
+</div>
+<section id="property-values" class="level4" data-number="3.6.1">
+<h4 data-number="3.6.1" class="anchored" data-anchor-id="property-values"><span class="header-section-number">3.6.1</span> Property values</h4>
+<p>A <strong>property value</strong> is one of</p>
+<ul>
+<li>a <strong>number value</strong>, given as defined in section 6 of <a href="https://tools.ietf.org/html/rfc8259">RFC 8259</a>. As mentioned there, implementations MAY set limits on the range and precision of numbers and double precision (IEEE754) is the most likely common limit.</li>
+<li>a <strong>boolean value</strong>, given as one of the literal character sequences <code>true</code> and <code>false</code></li>
+<li>a <strong>string value</strong>, given as one of
+<ul>
+<li>a <a href="#quoted-strings">quoted string</a></li>
+<li>an <a href="#identifiers">unquoted identifier</a> not including a comma</li>
+</ul></li>
+</ul>
+<p>The data type of a property value in PG format is either string, or number, or boolean.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Applications MAY internally map these types to other type systems. Values of the same property are allowed to have different data types.</p>
+<div id="lst-property-values" class="pg listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-property-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Example&nbsp;21: Property values
+</figcaption>
+<div aria-describedby="lst-property-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-property-values"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-property-values-1"><a href="#lst-property-values-1" aria-hidden="true" tabindex="-1"></a><span class="vs">x</span> <span class="vs">n:</span> <span class="vs">1,-1,2e+3</span>          <span class="co"># numbers </span></span>
+<span id="lst-property-values-2"><a href="#lst-property-values-2" aria-hidden="true" tabindex="-1"></a>  <span class="vs">b:</span> <span class="vs">true,</span> <span class="vs">false</span>        <span class="co"># boolean values       </span></span>
+<span id="lst-property-values-3"><a href="#lst-property-values-3" aria-hidden="true" tabindex="-1"></a>  <span class="vs">s:</span> <span class="vs">hello,</span><span class="st">"true"</span><span class="vs">,</span><span class="st">""</span>    <span class="co"># strings</span></span></code></pre></div>
+</div>
+</figure>
+</div>
+</section>
+<section id="property-merging" class="level4" data-number="3.6.2">
+<h4 data-number="3.6.2" class="anchored" data-anchor-id="property-merging"><span class="header-section-number">3.6.2</span> Property merging</h4>
+<p>Value lists of properties of the same property key are concatenated. Value lists are no sets: the same value can be included multiple times.</p>
+<div id="lst-property-values" class="pg listing quarto-float">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-property-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Example&nbsp;22: Three nodes with same properties
+</figcaption>
+<div aria-describedby="lst-property-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-property-values"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-property-values-1"><a href="#lst-property-values-1" aria-hidden="true" tabindex="-1"></a><span class="vs">a</span> <span class="vs">x:1,2,3</span>       <span class="co"># property values given as list</span></span>
+<span id="lst-property-values-2"><a href="#lst-property-values-2" aria-hidden="true" tabindex="-1"></a><span class="vs">b</span> <span class="vs">x:1</span> <span class="vs">x:2,3</span>     <span class="co"># property values given as two lists</span></span>
+<span id="lst-property-values-3"><a href="#lst-property-values-3" aria-hidden="true" tabindex="-1"></a><span class="vs">c</span> <span class="vs">x:1</span>           <span class="co"># property values given...</span></span>
+<span id="lst-property-values-4"><a href="#lst-property-values-4" aria-hidden="true" tabindex="-1"></a><span class="vs">c</span> <span class="vs">x:2</span> <span class="vs">x:3</span>       <span class="co"># ...in two node statements</span></span></code></pre></div>
+</div>
+</figure>
+</div>
+</section>
 </section>
 <section id="quoted-strings" class="level3" data-number="3.7">
 <h3 data-number="3.7" class="anchored" data-anchor-id="quoted-strings"><span class="header-section-number">3.7</span> Quoted Strings</h3>
@@ -459,7 +547,7 @@ Example&nbsp;18: Labels with colons
 <div id="lst-strings" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-strings-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;19: The same string given in multiple quoted forms
+Example&nbsp;23: The same string given in multiple quoted forms
 </figcaption>
 <div aria-describedby="lst-strings-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-strings"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-strings-1"><a href="#lst-strings-1" aria-hidden="true" tabindex="-1"></a><span class="st">"hello,</span><span class="sc">\n</span><span class="st">world"</span></span>
@@ -479,7 +567,7 @@ Example&nbsp;19: The same string given in multiple quoted forms
 <div id="lst-line-folding" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-line-folding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;20: Line folding
+Example&nbsp;24: Line folding
 </figcaption>
 <div aria-describedby="lst-line-folding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-line-folding"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-line-folding-1"><a href="#lst-line-folding-1" aria-hidden="true" tabindex="-1"></a><span class="vs">a</span> <span class="at">:x</span>  <span class="co"># node id and label</span></span>
@@ -492,7 +580,7 @@ Example&nbsp;20: Line folding
 <div id="lst-line-folding" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-line-folding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;21: Same graph as above
+Example&nbsp;25: Same graph as above
 </figcaption>
 <div aria-describedby="lst-line-folding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-line-folding"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-line-folding-1"><a href="#lst-line-folding-1" aria-hidden="true" tabindex="-1"></a><span class="vs">a</span> <span class="at">:x</span> <span class="at">:y</span></span></code></pre></div>
@@ -502,7 +590,19 @@ Example&nbsp;21: Same graph as above
 </section>
 <section id="grammar" class="level3" data-number="3.9">
 <h3 data-number="3.9" class="anchored" data-anchor-id="grammar"><span class="header-section-number">3.9</span> Grammar</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><em>A formal grammar of PG format will be provided</em></p>
+</div>
+</div>
 </section>
 </section>
 <section id="pg-json" class="level2" data-number="4">
@@ -582,7 +682,8 @@ Example&nbsp;21: Same graph as above
 <div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>This definition is equivalent to the definition of IRI references <a href="https://www.w3.org/TR/turtle/#grammar-production-IRIREF">in Turtle</a> and <a href="https://www.w3.org/TR/sparql11-query/#rIRIREF">in SPARQL</a> with the exclusion of empty strings.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>This definition is equivalent to the definition of IRI references <a href="https://www.w3.org/TR/sparql11-query/#rIRIREF">in SPARQL</a> and <a href="https://www.w3.org/TR/turtle/#grammar-production-IRIREF">in Turtle</a> excluding empty strings and escape sequences. Forbidden characters are reserved for extensions of PG format.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>This is identical to scalar JSON values (string, number, boolean) and every serialized JSON scalar is a valid property value in PG format.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main>
 <!-- /main column -->

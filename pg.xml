@@ -5,19 +5,18 @@
     <contexts>
       <context attribute="Normal Text" lineEndContext="#pop" name="Normal Text" >
         <RegExpr attribute="Space" contex="#stay" String="\s+" />
-        <RegExpr attribute="DirectionStyle" contex="#stay" String="--" />
-        <RegExpr attribute="DirectionStyle" contex="#stay" String="-&gt;" />
+        <RegExpr attribute="DirectionStyle" contex="#stay" String="-[&gt;-]" />
         <DetectChar char="&quot;" context="DoubleQuotedString" attribute="StringStyle" />
         <DetectChar char="&apos;" context="SingleQuotedString" attribute="StringStyle" />
         <RegExpr String="#.*" context="#stay" attribute="CommentStyle" />
         <RegExpr attribute="Label" contex="#stay" String=":[ \t]*[^{}&lt;&gt;\\\s&quot;`|^:][^{}&lt;&gt;\\\s&quot;`|^]*" />
         <RegExpr attribute="Identifier" contex="#stay" String="[^{}&lt;&gt;\\\s&quot;`|^][^{}&lt;&gt;\\\s&quot;`|^]*" />
       </context>
-      <context name="DoubleQuotedString" lineEndContext="#stay" attribute="StringStyle">
+      <context name="DoubleQuotedString" lineEndContext="#stay" attribute="StringStyle" noIndentationBasedFolding="1">
         <DetectChar char="&quot;"  context="#pop" attribute="StringStyle" />
         <DetectChar char="\"       context="StringEscape" lookAhead="1" />
       </context>      
-      <context name="SingleQuotedString" lineEndContext="#stay" attribute="StringStyle">
+      <context name="SingleQuotedString" lineEndContext="#stay" attribute="StringStyle" noIndentationBasedFolding="1">
         <DetectChar char="&apos;"  context="#pop" attribute="StringStyle" />
         <DetectChar char="\"       context="StringEscape" lookAhead="1" />
       </context>      
@@ -40,8 +39,13 @@
   </highlighting>
   <general>
     <comments>
-      <comment name="singleLine" start="#"/>
+      <comment name="singleLine" start="#" position="afterwhitespace"/>
     </comments>
+    <emptyLines>
+      <emptyLine regexpr="\s+"/>
+      <emptyLine regexpr="\s*#.*"/>
+    </emptyLines>
     <keywords casesensitive="1"/>
+    <folding indentationsensitive="1"/>
   </general>
 </language>
