@@ -1,0 +1,16 @@
+[ [ ( VerbatimStringTok , "a" )
+  , ( NormalTok , " " )
+  , ( AttributeTok , ":b" )
+  , ( NormalTok , " " )
+  , ( AttributeTok , ": c" )
+  , ( NormalTok , " " )
+  , ( AttributeTok , ":\"1" )
+  , ( SpecialCharTok , "\\n" )
+  , ( ErrorTok , "\\x" )
+  , ( AttributeTok , "2\"" )
+  , ( NormalTok , " " )
+  , ( AttributeTok , ":'d'" )
+  ]
+, [ ( NormalTok , "  " ) , ( AttributeTok , ": \"e" ) ]
+, [ ( AttributeTok , "e\"" ) ]
+]

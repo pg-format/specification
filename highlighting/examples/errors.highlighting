@@ -1,0 +1,18 @@
+[ [ ( CommentTok
+    , "# file must not start with a continuation line"
+    )
+  ]
+, [ ( ErrorTok , " x" ) ]
+, []
+, [ ( CommentTok
+    , "# unquoted identifier must not start with colon"
+    )
+  ]
+, [ ( ErrorTok , ":" ) , ( VerbatimStringTok , "x" ) ]
+, []
+, [ ( CommentTok
+    , "# unquoted identifier must not start with comma"
+    )
+  ]
+, [ ( ErrorTok , "," ) , ( VerbatimStringTok , "x" ) ]
+]

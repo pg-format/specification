@@ -13,7 +13,7 @@ Source files:
 
 - `index.qmd`: specification in Quarto Markdown
 - `_quarto.yml`: quarto configuration
-- `pg.xml`: draft of Kate syntax highlighting file of PG format
 - `script.js` and `style.css`: additional JavaScript and CSS
+- `highlighting/pg.xml`: draft of Kate syntax highlighting file of PG format
 
 Calling `quarto render` will update the HTML version in directory `docs`.

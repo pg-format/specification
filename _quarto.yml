@@ -15,7 +15,7 @@ format:
     css: style.css
     code-copy: false  # there is try-out button instead
     syntax-definitions:
-     - pg.xml
+     - highlighting/pg.xml
     include-in-header:
       text: '<script type="text/javascript" src="script.js"></script>'
     crossref:

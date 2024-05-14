@@ -1,0 +1,8 @@
+# file must not start with a continuation line
+ x
+
+# unquoted identifier must not start with colon
+:x
+
+# unquoted identifier must not start with comma
+,x
