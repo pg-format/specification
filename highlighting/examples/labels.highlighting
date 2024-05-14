@@ -1,4 +1,4 @@
-[ [ ( VerbatimStringTok , "a" )
+[ [ ( StringTok , "a" )
   , ( NormalTok , " " )
   , ( AttributeTok , ":b" )
   , ( NormalTok , " " )

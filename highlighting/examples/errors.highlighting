@@ -8,11 +8,11 @@
     , "# unquoted identifier must not start with colon"
     )
   ]
-, [ ( ErrorTok , ":" ) , ( VerbatimStringTok , "x" ) ]
+, [ ( ErrorTok , ":" ) , ( StringTok , "x" ) ]
 , []
 , [ ( CommentTok
     , "# unquoted identifier must not start with comma"
     )
   ]
-, [ ( ErrorTok , "," ) , ( VerbatimStringTok , "x" ) ]
+, [ ( ErrorTok , "," ) , ( StringTok , "x" ) ]
 ]

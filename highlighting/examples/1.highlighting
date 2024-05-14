@@ -1,1 +1,1 @@
-[ [ ( ErrorTok , ":" ) , ( VerbatimStringTok , "id" ) ] ]
+[ [ ( ErrorTok , ":" ) , ( StringTok , "id" ) ] ]

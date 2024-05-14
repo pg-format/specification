@@ -1,0 +1,7 @@
+a key: 1 , 2 , # comment
+  true, false ,
+
+# empty line
+
+  42,"x",-1.0
+
