@@ -1,0 +1,6 @@
+"hello,\nworld"
+'hello,\u000Aworld'
+"hello,
+world"
+# invalid
+"h\ello\u21"

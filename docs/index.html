@@ -236,8 +236,8 @@ Example&nbsp;2: Invalid unquoted identifier
 Example&nbsp;3: Some node statements
 </figcaption>
 <div aria-describedby="lst-nodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="lst-nodes"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-nodes-1"><a href="#lst-nodes-1" aria-hidden="true" tabindex="-1"></a><span class="st">id</span> <span class="at">:label</span> <span class="st">key:value</span></span>
-<span id="lst-nodes-2"><a href="#lst-nodes-2" aria-hidden="true" tabindex="-1"></a><span class="st">42</span> <span class="at">:answer</span></span>
+<div class="sourceCode" id="lst-nodes"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-nodes-1"><a href="#lst-nodes-1" aria-hidden="true" tabindex="-1"></a><span class="st">id</span><span class="at"> :label</span> <span class="fu">key:</span><span class="ss">value</span></span>
+<span id="lst-nodes-2"><a href="#lst-nodes-2" aria-hidden="true" tabindex="-1"></a><span class="st">42</span><span class="at"> :answer</span></span>
 <span id="lst-nodes-3"><a href="#lst-nodes-3" aria-hidden="true" tabindex="-1"></a><span class="st">"node id with spaces"</span></span></code></pre></div>
 </div>
 </figure>
@@ -251,8 +251,8 @@ Example&nbsp;3: Some node statements
 Example&nbsp;4: One node defined by multiple statements
 </figcaption>
 <div aria-describedby="lst-node-merging-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="lst-node-merging-1"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-node-merging-1-1"><a href="#lst-node-merging-1-1" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="at">:x</span> <span class="st">k:1</span> <span class="st">m:true</span></span>
-<span id="lst-node-merging-1-2"><a href="#lst-node-merging-1-2" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="at">:y</span> <span class="st">k:2</span></span></code></pre></div>
+<div class="sourceCode" id="lst-node-merging-1"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-node-merging-1-1"><a href="#lst-node-merging-1-1" aria-hidden="true" tabindex="-1"></a><span class="st">a</span><span class="at"> :x</span> <span class="fu">k:</span><span class="dv">1</span> <span class="fu">m:</span><span class="kw">true</span></span>
+<span id="lst-node-merging-1-2"><a href="#lst-node-merging-1-2" aria-hidden="true" tabindex="-1"></a><span class="st">a</span><span class="at"> :y</span> <span class="fu">k:</span><span class="dv">2</span></span></code></pre></div>
 </div>
 </figure>
 </div>
@@ -262,7 +262,7 @@ Example&nbsp;4: One node defined by multiple statements
 Example&nbsp;5: Same node defined by one statement
 </figcaption>
 <div aria-describedby="lst-node-merging-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="lst-node-merging-2"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-node-merging-2-1"><a href="#lst-node-merging-2-1" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="at">:x</span> <span class="at">:y</span> <span class="st">k:1,2</span> <span class="st">m:true</span></span></code></pre></div>
+<div class="sourceCode" id="lst-node-merging-2"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-node-merging-2-1"><a href="#lst-node-merging-2-1" aria-hidden="true" tabindex="-1"></a><span class="st">a</span><span class="at"> :x :y</span> <span class="fu">k:</span><span class="dv">1</span><span class="op">,</span><span class="dv">2</span> <span class="fu">m:</span><span class="kw">true</span></span></code></pre></div>
 </div>
 </figure>
 </div>
@@ -311,7 +311,7 @@ Example&nbsp;7: Same graph with explicit node statements
 Example&nbsp;8: Some edge statements
 </figcaption>
 <div aria-describedby="lst-edges-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="lst-edges"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-edges-1"><a href="#lst-edges-1" aria-hidden="true" tabindex="-1"></a><span class="st">1:</span> <span class="st">a</span> <span class="op">-&gt;</span> <span class="st">b</span> <span class="at">:label</span> <span class="st">key:value</span></span>
+<div class="sourceCode" id="lst-edges"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-edges-1"><a href="#lst-edges-1" aria-hidden="true" tabindex="-1"></a><span class="st">1:</span> <span class="st">a</span> <span class="op">-&gt;</span> <span class="st">b</span><span class="at"> :label</span> <span class="fu">key:</span><span class="ss">value</span></span>
 <span id="lst-edges-2"><a href="#lst-edges-2" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="op">--</span> <span class="st">b</span></span></code></pre></div>
 </div>
 </figure>
@@ -347,8 +347,8 @@ Example&nbsp;10: Invalid edge statement
 Example&nbsp;11: Graph with two equivalent edges, differentiated by edge identifiers
 </figcaption>
 <div aria-describedby="lst-multi-edges-with-id-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="lst-multi-edges-with-id"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-multi-edges-with-id-1"><a href="#lst-multi-edges-with-id-1" aria-hidden="true" tabindex="-1"></a><span class="st">1:</span> <span class="st">a</span> <span class="op">-&gt;</span> <span class="st">b</span> <span class="at">:follows</span> <span class="st">since:2024</span></span>
-<span id="lst-multi-edges-with-id-2"><a href="#lst-multi-edges-with-id-2" aria-hidden="true" tabindex="-1"></a><span class="st">"x"</span><span class="at">: a</span> <span class="op">-&gt;</span> <span class="st">b</span> <span class="at">:follows</span> <span class="st">since:2024</span></span></code></pre></div>
+<div class="sourceCode" id="lst-multi-edges-with-id"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-multi-edges-with-id-1"><a href="#lst-multi-edges-with-id-1" aria-hidden="true" tabindex="-1"></a><span class="st">1:</span> <span class="st">a</span> <span class="op">-&gt;</span> <span class="st">b</span><span class="at"> :follows</span> <span class="fu">since:</span><span class="dv">2024</span></span>
+<span id="lst-multi-edges-with-id-2"><a href="#lst-multi-edges-with-id-2" aria-hidden="true" tabindex="-1"></a><span class="st">"x"</span>: <span class="ss">a</span> <span class="op">-&gt;</span> <span class="st">b</span><span class="at"> :follows</span> <span class="fu">since:</span><span class="dv">2024</span></span></code></pre></div>
 </div>
 </figure>
 </div>
@@ -359,8 +359,8 @@ Example&nbsp;11: Graph with two equivalent edges, differentiated by edge identif
 Example&nbsp;12: Edge identifiers with colon
 </figcaption>
 <div aria-describedby="lst-colon-in-edge-id-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="lst-colon-in-edge-id"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-colon-in-edge-id-1"><a href="#lst-colon-in-edge-id-1" aria-hidden="true" tabindex="-1"></a><span class="st">x::</span> <span class="st">a</span> <span class="op">-&gt;</span> <span class="st">b</span>  <span class="co"># edge identifier "x:"</span></span>
-<span id="lst-colon-in-edge-id-2"><a href="#lst-colon-in-edge-id-2" aria-hidden="true" tabindex="-1"></a><span class="st">":"</span> <span class="st">a</span> <span class="op">-&gt;</span> <span class="st">b</span>  <span class="co"># edge identifier ":"</span></span></code></pre></div>
+<div class="sourceCode" id="lst-colon-in-edge-id"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-colon-in-edge-id-1"><a href="#lst-colon-in-edge-id-1" aria-hidden="true" tabindex="-1"></a><span class="st">x::</span> <span class="st">a</span> <span class="op">-&gt;</span> <span class="st">b</span><span class="co">  # edge identifier "x:"</span></span>
+<span id="lst-colon-in-edge-id-2"><a href="#lst-colon-in-edge-id-2" aria-hidden="true" tabindex="-1"></a><span class="st">":"</span> <span class="st">a</span> <span class="op">-&gt;</span> <span class="st">b</span><span class="co">  # edge identifier ":"</span></span></code></pre></div>
 </div>
 </figure>
 </div>
@@ -371,7 +371,7 @@ Example&nbsp;12: Edge identifiers with colon
 Example&nbsp;13: The second statement is invalid because of repeated edge identifier
 </figcaption>
 <div aria-describedby="lst-invalid-edge-ids-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="lst-invalid-edge-ids"><pre class="sourceCode pg invalid"><code class="sourceCode pg"><span id="lst-invalid-edge-ids-1"><a href="#lst-invalid-edge-ids-1" aria-hidden="true" tabindex="-1"></a><span class="st">1:</span> <span class="st">a</span> <span class="op">-&gt;</span> <span class="st">b</span> <span class="at">:follows</span></span>
+<div class="sourceCode" id="lst-invalid-edge-ids"><pre class="sourceCode pg invalid"><code class="sourceCode pg"><span id="lst-invalid-edge-ids-1"><a href="#lst-invalid-edge-ids-1" aria-hidden="true" tabindex="-1"></a><span class="st">1:</span> <span class="st">a</span> <span class="op">-&gt;</span> <span class="st">b</span><span class="at"> :follows</span></span>
 <span id="lst-invalid-edge-ids-2"><a href="#lst-invalid-edge-ids-2" aria-hidden="true" tabindex="-1"></a><span class="st">1:</span> <span class="st">a</span> <span class="op">-&gt;</span> <span class="st">b</span> <span class="st">since:2024</span></span></code></pre></div>
 </div>
 </figure>
@@ -383,7 +383,7 @@ Example&nbsp;13: The second statement is invalid because of repeated edge identi
 Example&nbsp;14: Invalid statement
 </figcaption>
 <div aria-describedby="lst-invalid-edge-id-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="lst-invalid-edge-id"><pre class="sourceCode pg invalid"><code class="sourceCode pg"><span id="lst-invalid-edge-id-1"><a href="#lst-invalid-edge-id-1" aria-hidden="true" tabindex="-1"></a><span class="st">1</span> <span class="at">: a</span> <span class="op">-&gt;</span> <span class="st">b</span></span></code></pre></div>
+<div class="sourceCode" id="lst-invalid-edge-id"><pre class="sourceCode pg invalid"><code class="sourceCode pg"><span id="lst-invalid-edge-id-1"><a href="#lst-invalid-edge-id-1" aria-hidden="true" tabindex="-1"></a><span class="st">1</span><span class="at"> : a</span> <span class="er">-&gt;</span> <span class="er">b</span></span></code></pre></div>
 </div>
 </figure>
 </div>
@@ -416,8 +416,8 @@ Example&nbsp;15: Directed and undirected loop
 Example&nbsp;16: Graph with two indistinguishable edges
 </figcaption>
 <div aria-describedby="lst-multi-edges-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="lst-multi-edges"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-multi-edges-1"><a href="#lst-multi-edges-1" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="op">-&gt;</span> <span class="st">b</span> <span class="at">:follows</span> <span class="st">since:2024</span></span>
-<span id="lst-multi-edges-2"><a href="#lst-multi-edges-2" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="op">-&gt;</span> <span class="st">b</span> <span class="at">:follows</span> <span class="st">since:2024</span></span></code></pre></div>
+<div class="sourceCode" id="lst-multi-edges"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-multi-edges-1"><a href="#lst-multi-edges-1" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="op">-&gt;</span> <span class="st">b</span><span class="at"> :follows</span> <span class="fu">since:</span><span class="dv">2024</span></span>
+<span id="lst-multi-edges-2"><a href="#lst-multi-edges-2" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="op">-&gt;</span> <span class="st">b</span><span class="at"> :follows</span> <span class="fu">since:</span><span class="dv">2024</span></span></code></pre></div>
 </div>
 </figure>
 </div>
@@ -434,9 +434,9 @@ Example&nbsp;16: Graph with two indistinguishable edges
 Example&nbsp;17: Repeated labels on same node or edge are ignored
 </figcaption>
 <div aria-describedby="lst-labels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="lst-labels"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-labels-1"><a href="#lst-labels-1" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="at">:label1</span> <span class="at">:label2</span> <span class="at">:label1</span>   <span class="co"># label1 is repeated</span></span>
-<span id="lst-labels-2"><a href="#lst-labels-2" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="at">:label1</span> <span class="at">:label2</span>           <span class="co"># equivalent statement</span></span>
-<span id="lst-labels-3"><a href="#lst-labels-3" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="at">: label1</span> <span class="at">: label2</span>         <span class="co"># equivalent statement</span></span></code></pre></div>
+<div class="sourceCode" id="lst-labels"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-labels-1"><a href="#lst-labels-1" aria-hidden="true" tabindex="-1"></a><span class="st">a</span><span class="at"> :label1 :label2 :label1</span><span class="co">   # label1 is repeated</span></span>
+<span id="lst-labels-2"><a href="#lst-labels-2" aria-hidden="true" tabindex="-1"></a><span class="st">a</span><span class="at"> :label1 :label2</span><span class="co">           # equivalent statement</span></span>
+<span id="lst-labels-3"><a href="#lst-labels-3" aria-hidden="true" tabindex="-1"></a><span class="st">a</span><span class="at"> : label1 : label2</span><span class="co">         # equivalent statement</span></span></code></pre></div>
 </div>
 </figure>
 </div>
@@ -447,8 +447,8 @@ Example&nbsp;17: Repeated labels on same node or edge are ignored
 Example&nbsp;18: Labels with colons
 </figcaption>
 <div aria-describedby="lst-colon-in-labels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="lst-colon-in-labels"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-colon-in-labels-1"><a href="#lst-colon-in-labels-1" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="at">:b:c</span>                      <span class="co"># label "b:c"</span></span>
-<span id="lst-colon-in-labels-2"><a href="#lst-colon-in-labels-2" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="at">:http://example.org/</span>      <span class="co"># label "http://example.org/"</span></span></code></pre></div>
+<div class="sourceCode" id="lst-colon-in-labels"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-colon-in-labels-1"><a href="#lst-colon-in-labels-1" aria-hidden="true" tabindex="-1"></a><span class="st">a</span><span class="at"> :b:c</span><span class="co">                      # label "b:c"</span></span>
+<span id="lst-colon-in-labels-2"><a href="#lst-colon-in-labels-2" aria-hidden="true" tabindex="-1"></a><span class="st">a</span><span class="at"> :http://example.org/</span><span class="co">      # label "http://example.org/"</span></span></code></pre></div>
 </div>
 </figure>
 </div>
@@ -469,16 +469,16 @@ Example&nbsp;18: Labels with colons
 Example&nbsp;19: Property with optional spaces and/or whitespace
 </figcaption>
 <div aria-describedby="lst-properties-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="lst-properties"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-properties-1"><a href="#lst-properties-1" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="st">key:</span> <span class="st">value</span>        <span class="co"># spaces before value</span></span>
-<span id="lst-properties-2"><a href="#lst-properties-2" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="st">key:value</span>         <span class="co"># short form</span></span>
-<span id="lst-properties-3"><a href="#lst-properties-3" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="st">"key"</span><span class="at">:value</span>       <span class="co"># key can be quoted string</span></span>
-<span id="lst-properties-4"><a href="#lst-properties-4" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="st">key</span> <span class="at">: value</span>       <span class="co"># optional spaces around colon</span></span>
-<span id="lst-properties-5"><a href="#lst-properties-5" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="st">key</span> <span class="at">:value</span>        <span class="co"># allowed but not recommended (value looks like label)</span></span>
-<span id="lst-properties-6"><a href="#lst-properties-6" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="st">key:</span>              <span class="co"># delimiting whitespace between colon and value</span></span>
+<div class="sourceCode" id="lst-properties"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-properties-1"><a href="#lst-properties-1" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="st">key:</span> <span class="st">value</span><span class="co">        # spaces before value</span></span>
+<span id="lst-properties-2"><a href="#lst-properties-2" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="st">key:value</span><span class="co">         # short form</span></span>
+<span id="lst-properties-3"><a href="#lst-properties-3" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="st">"key"</span>:<span class="ss">value</span><span class="co">       # key can be quoted string</span></span>
+<span id="lst-properties-4"><a href="#lst-properties-4" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="st">key</span><span class="at"> : value</span><span class="co">       # optional spaces around colon</span></span>
+<span id="lst-properties-5"><a href="#lst-properties-5" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="st">key</span><span class="at"> :value</span><span class="co">        # allowed but not recommended (value looks like label)</span></span>
+<span id="lst-properties-6"><a href="#lst-properties-6" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="st">key:</span><span class="co">              # delimiting whitespace between colon and value</span></span>
 <span id="lst-properties-7"><a href="#lst-properties-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">value</span>             </span>
 <span id="lst-properties-8"><a href="#lst-properties-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="lst-properties-9"><a href="#lst-properties-9" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="st">key:</span> <span class="st">1,2</span>          <span class="co"># short form of a list</span></span>
-<span id="lst-properties-10"><a href="#lst-properties-10" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="st">key:</span> <span class="st">1</span>            <span class="co"># delimiting whitespace... </span></span>
+<span id="lst-properties-9"><a href="#lst-properties-9" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="st">key:</span> <span class="st">1,2</span><span class="co">          # short form of a list</span></span>
+<span id="lst-properties-10"><a href="#lst-properties-10" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="st">key:</span> <span class="st">1</span><span class="co">            # delimiting whitespace... </span></span>
 <span id="lst-properties-11"><a href="#lst-properties-11" aria-hidden="true" tabindex="-1"></a>  <span class="op">,</span>                 <span class="co"># ...after value 1 and before value 2</span></span>
 <span id="lst-properties-12"><a href="#lst-properties-12" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span></span></code></pre></div>
 </div>
@@ -490,8 +490,8 @@ Example&nbsp;19: Property with optional spaces and/or whitespace
 Example&nbsp;20: Invalid property
 </figcaption>
 <div aria-describedby="lst-invalid-properties-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="lst-invalid-properties"><pre class="sourceCode pg invalid"><code class="sourceCode pg"><span id="lst-invalid-properties-1"><a href="#lst-invalid-properties-1" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="st">key</span>               <span class="co"># delimiting whitespace not allowed before colon</span></span>
-<span id="lst-invalid-properties-2"><a href="#lst-invalid-properties-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">: value</span></span></code></pre></div>
+<div class="sourceCode" id="lst-invalid-properties"><pre class="sourceCode pg invalid"><code class="sourceCode pg"><span id="lst-invalid-properties-1"><a href="#lst-invalid-properties-1" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="st">key</span><span class="co">               # delimiting whitespace not allowed before colon</span></span>
+<span id="lst-invalid-properties-2"><a href="#lst-invalid-properties-2" aria-hidden="true" tabindex="-1"></a><span class="at">  : value</span></span></code></pre></div>
 </div>
 </figure>
 </div>
@@ -514,9 +514,9 @@ Example&nbsp;20: Invalid property
 Example&nbsp;21: Property values
 </figcaption>
 <div aria-describedby="lst-property-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="lst-property-values"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-property-values-1"><a href="#lst-property-values-1" aria-hidden="true" tabindex="-1"></a><span class="st">x</span> <span class="st">n:</span> <span class="st">1,-1,2e+3</span>          <span class="co"># numbers </span></span>
-<span id="lst-property-values-2"><a href="#lst-property-values-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">b:</span> <span class="st">true,</span> <span class="st">false</span>        <span class="co"># boolean values       </span></span>
-<span id="lst-property-values-3"><a href="#lst-property-values-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">s:</span> <span class="st">hello,"true"</span><span class="op">,</span><span class="st">""</span>    <span class="co"># strings</span></span></code></pre></div>
+<div class="sourceCode" id="lst-property-values"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-property-values-1"><a href="#lst-property-values-1" aria-hidden="true" tabindex="-1"></a><span class="st">x</span> <span class="st">n:</span> <span class="st">1,-1,2e+3</span><span class="co">          # numbers </span></span>
+<span id="lst-property-values-2"><a href="#lst-property-values-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">b:</span> <span class="st">true,</span> <span class="st">false</span><span class="co">        # boolean values       </span></span>
+<span id="lst-property-values-3"><a href="#lst-property-values-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">s:</span> <span class="st">hello,"true"</span><span class="op">,</span><span class="ss">""</span><span class="co">    # strings</span></span></code></pre></div>
 </div>
 </figure>
 </div>
@@ -530,10 +530,10 @@ Example&nbsp;21: Property values
 Example&nbsp;22: Three nodes with same properties
 </figcaption>
 <div aria-describedby="lst-property-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="lst-property-values"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-property-values-1"><a href="#lst-property-values-1" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="st">x:1,2,3</span>       <span class="co"># property values given as list</span></span>
-<span id="lst-property-values-2"><a href="#lst-property-values-2" aria-hidden="true" tabindex="-1"></a><span class="st">b</span> <span class="st">x:1</span> <span class="st">x:2,3</span>     <span class="co"># property values given as two lists</span></span>
-<span id="lst-property-values-3"><a href="#lst-property-values-3" aria-hidden="true" tabindex="-1"></a><span class="st">c</span> <span class="st">x:1</span>           <span class="co"># property values given...</span></span>
-<span id="lst-property-values-4"><a href="#lst-property-values-4" aria-hidden="true" tabindex="-1"></a><span class="st">c</span> <span class="st">x:2</span> <span class="st">x:3</span>       <span class="co"># ...in two node statements</span></span></code></pre></div>
+<div class="sourceCode" id="lst-property-values"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-property-values-1"><a href="#lst-property-values-1" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="st">x:1,2,3</span><span class="co">       # property values given as list</span></span>
+<span id="lst-property-values-2"><a href="#lst-property-values-2" aria-hidden="true" tabindex="-1"></a><span class="st">b</span> <span class="st">x:1</span> <span class="st">x:2,3</span><span class="co">     # property values given as two lists</span></span>
+<span id="lst-property-values-3"><a href="#lst-property-values-3" aria-hidden="true" tabindex="-1"></a><span class="st">c</span> <span class="st">x:1</span><span class="co">           # property values given...</span></span>
+<span id="lst-property-values-4"><a href="#lst-property-values-4" aria-hidden="true" tabindex="-1"></a><span class="st">c</span> <span class="st">x:2</span> <span class="st">x:3</span><span class="co">       # ...in two node statements</span></span></code></pre></div>
 </div>
 </figure>
 </div>
@@ -585,10 +585,10 @@ Example&nbsp;24: Invalid string escape sequences
 Example&nbsp;25: Line folding
 </figcaption>
 <div aria-describedby="lst-line-folding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="lst-line-folding"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-line-folding-1"><a href="#lst-line-folding-1" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="at">:x</span>  <span class="co"># node id and label</span></span>
+<div class="sourceCode" id="lst-line-folding"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-line-folding-1"><a href="#lst-line-folding-1" aria-hidden="true" tabindex="-1"></a><span class="st">a</span><span class="at"> :x</span><span class="co">  # node id and label</span></span>
 <span id="lst-line-folding-2"><a href="#lst-line-folding-2" aria-hidden="true" tabindex="-1"></a><span class="co">  # this and the following line are empty </span></span>
 <span id="lst-line-folding-3"><a href="#lst-line-folding-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="lst-line-folding-4"><a href="#lst-line-folding-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">:y</span>  <span class="co"># another label of the same node at continuation line</span></span></code></pre></div>
+<span id="lst-line-folding-4"><a href="#lst-line-folding-4" aria-hidden="true" tabindex="-1"></a><span class="at">  :y</span><span class="co">  # another label of the same node at continuation line</span></span></code></pre></div>
 </div>
 </figure>
 </div>
@@ -598,7 +598,7 @@ Example&nbsp;25: Line folding
 Example&nbsp;26: Same graph as above
 </figcaption>
 <div aria-describedby="lst-line-folding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="lst-line-folding"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-line-folding-1"><a href="#lst-line-folding-1" aria-hidden="true" tabindex="-1"></a><span class="st">a</span> <span class="at">:x</span> <span class="at">:y</span></span></code></pre></div>
+<div class="sourceCode" id="lst-line-folding"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-line-folding-1"><a href="#lst-line-folding-1" aria-hidden="true" tabindex="-1"></a><span class="st">a</span><span class="at"> :x :y</span></span></code></pre></div>
 </div>
 </figure>
 </div>

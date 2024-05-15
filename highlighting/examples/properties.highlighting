@@ -1,0 +1,25 @@
+[ [ ( StringTok , "a" )
+  , ( AttributeTok , " :label" )
+  , ( NormalTok , " " )
+  , ( FunctionTok , "key:" )
+  , ( KeywordTok , "true" )
+  , ( NormalTok , " " )
+  ]
+, [ ( NormalTok , "  " )
+  , ( FunctionTok , "'key':" )
+  , ( DecValTok , "-2" )
+  , ( NormalTok , " " )
+  , ( FunctionTok , "\"key\":" )
+  , ( NormalTok , " " )
+  , ( DecValTok , "1" )
+  ]
+, [ ( StringTok , "b" )
+  , ( AttributeTok , " :label" )
+  , ( NormalTok , " " )
+  , ( FunctionTok , "key:" )
+  , ( KeywordTok , "true" )
+  , ( NormalTok , " " )
+  , ( FunctionTok , "0:" )
+  , ( SpecialStringTok , "xxx" )
+  ]
+]

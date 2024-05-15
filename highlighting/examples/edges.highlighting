@@ -1,0 +1,40 @@
+[ [ ( StringTok , "a" )
+  , ( NormalTok , " " )
+  , ( OperatorTok , "->" )
+  , ( NormalTok , " " )
+  , ( StringTok , "b" )
+  ]
+, [ ( StringTok , "a" )
+  , ( NormalTok , " " )
+  , ( OperatorTok , "--" )
+  , ( NormalTok , " " )
+  , ( StringTok , "b" )
+  ]
+, []
+, [ ( StringTok , "1:" )
+  , ( NormalTok , " " )
+  , ( StringTok , "a" )
+  , ( NormalTok , " " )
+  , ( OperatorTok , "->" )
+  , ( NormalTok , " " )
+  , ( StringTok , "b" )
+  ]
+, [ ( StringTok , "\"1\"" )
+  , ( NormalTok , ": " )
+  , ( StringTok , "a" )
+  , ( NormalTok , " " )
+  , ( OperatorTok , "->" )
+  , ( NormalTok , " " )
+  , ( StringTok , "b" )
+  ]
+, [ ( StringTok , "'" )
+  , ( SpecialCharTok , "\\n" )
+  , ( StringTok , "'" )
+  , ( NormalTok , ": " )
+  , ( StringTok , "a" )
+  , ( NormalTok , " " )
+  , ( OperatorTok , "->" )
+  , ( NormalTok , " " )
+  , ( StringTok , "b" )
+  ]
+]
