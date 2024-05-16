@@ -27,3 +27,8 @@ pre.invalid {
     background-color: rgba(0, 0, 0, 0);
     z-index: 3;
 }
+figure {
+    box-shadow: 0px 0px 5px 0px #ccc;
+    border: 1px solid #ccc;
+    padding: 0rem 0.5rem;
+}

@@ -162,8 +162,9 @@ A **edge** consists of the following elements, given in this order and separated
 - an OPTIONAL list of [properties]
 
 ~~~{.pg #lst-edges lst-cap="Some edge statements"}
+a -> b
+a -- b key:value
 1: a -> b :label key:value
-a -- b
 ~~~
 
 The following statement does not define an edge but a [node](#nodes) with identifier "`a--b`":
@@ -191,8 +192,8 @@ directly followed by a colon (`U+003A`).
 Colons are not forbidden in edge identifiers:
 
 ~~~{.pg #lst-colon-in-edge-id lst-cap="Edge identifiers with colon"}
-x:: a -> b  # edge identifier "x:"
-":" a -> b  # edge identifier ":"
+x::  a -> b  # edge identifier "x:"
+":": a -> b  # edge identifier ":"
 ~~~
 
 Edge identifiers MUST NOT be repeated.

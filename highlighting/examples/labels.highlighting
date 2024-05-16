@@ -1,9 +1,0 @@
-[ [ ( StringTok , "a" )
-  , ( AttributeTok , " :b : c :\"1" )
-  , ( SpecialCharTok , "\\n" )
-  , ( ErrorTok , "\\x" )
-  , ( AttributeTok , "2\" :'d'" )
-  ]
-, [ ( AttributeTok , "  : \"e" ) ]
-, [ ( AttributeTok , "e\"" ) ]
-]
