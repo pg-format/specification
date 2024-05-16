@@ -1,0 +1,9 @@
+[ [ ( StringTok , "id" )
+  , ( AttributeTok , " :label" )
+  , ( NormalTok , " " )
+  , ( FunctionTok , "key:" )
+  , ( StringTok , "value" )
+  ]
+, [ ( StringTok , "42" ) , ( AttributeTok , " :answer" ) ]
+, [ ( StringTok , "\"node id with spaces\"" ) ]
+]

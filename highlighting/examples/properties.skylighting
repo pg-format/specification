@@ -20,6 +20,6 @@
   , ( KeywordTok , "true" )
   , ( NormalTok , " " )
   , ( FunctionTok , "0:" )
-  , ( SpecialStringTok , "xxx" )
+  , ( StringTok , "xxx" )
   ]
 ]
