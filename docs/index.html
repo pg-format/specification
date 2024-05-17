@@ -459,11 +459,10 @@ Example&nbsp;18: Labels with colons
 <p>A <strong>property</strong> consists of the following elements, given in this order:</p>
 <ul>
 <li>a REQUIRED <strong>property key</strong>, being an <a href="#identifiers">identifier</a></li>
-<li>OPTIONAL <a href="#whitespace">spaces</a></li>
 <li>a colon (<code>U+003A</code>)</li>
 <li>a non-empty list of <strong><a href="#property-values">property values</a></strong>, separated by comma (<code>U+002C</code>)</li>
 </ul>
-<p>A property value MAY further be preceded and followed by <a href="#whitespace">delimiting whitespace</a>.</p>
+<p>Each property value MAY be preceded and followed by <a href="#whitespace">delimiting whitespace</a>.</p>
 <div id="lst-properties" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-properties-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -473,15 +472,13 @@ Example&nbsp;19: Property with optional spaces and/or whitespace
 <div class="sourceCode" id="lst-properties"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-properties-1"><a href="#lst-properties-1" aria-hidden="true" tabindex="-1"></a>a <span class="fu">key:</span> <span class="st">value</span>        <span class="co"># spaces before value</span></span>
 <span id="lst-properties-2"><a href="#lst-properties-2" aria-hidden="true" tabindex="-1"></a>a <span class="fu">key:</span><span class="st">value</span>         <span class="co"># short form</span></span>
 <span id="lst-properties-3"><a href="#lst-properties-3" aria-hidden="true" tabindex="-1"></a>a <span class="fu">"key":</span><span class="st">value</span>       <span class="co"># key can be quoted string</span></span>
-<span id="lst-properties-4"><a href="#lst-properties-4" aria-hidden="true" tabindex="-1"></a>a <span class="er">key</span> <span class="er">:</span> <span class="er">value</span>       <span class="co"># optional spaces around colon</span></span>
-<span id="lst-properties-5"><a href="#lst-properties-5" aria-hidden="true" tabindex="-1"></a>a <span class="er">key</span> <span class="er">:value</span>        <span class="co"># allowed but not recommended (value looks like label)</span></span>
-<span id="lst-properties-6"><a href="#lst-properties-6" aria-hidden="true" tabindex="-1"></a>a <span class="fu">key:</span>              <span class="co"># delimiting whitespace between colon and value</span></span>
-<span id="lst-properties-7"><a href="#lst-properties-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">value</span>             </span>
-<span id="lst-properties-8"><a href="#lst-properties-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="lst-properties-9"><a href="#lst-properties-9" aria-hidden="true" tabindex="-1"></a>a <span class="fu">key:</span> <span class="dv">1</span><span class="cf">,</span><span class="dv">2</span>          <span class="co"># short form of a list</span></span>
-<span id="lst-properties-10"><a href="#lst-properties-10" aria-hidden="true" tabindex="-1"></a>a <span class="fu">key:</span> <span class="dv">1</span>            <span class="co"># delimiting whitespace... </span></span>
-<span id="lst-properties-11"><a href="#lst-properties-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">,</span>                 <span class="co"># ...after value 1 and before value 2</span></span>
-<span id="lst-properties-12"><a href="#lst-properties-12" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span></span></code></pre></div>
+<span id="lst-properties-4"><a href="#lst-properties-4" aria-hidden="true" tabindex="-1"></a>a <span class="fu">key:</span>              <span class="co"># delimiting whitespace between colon and value</span></span>
+<span id="lst-properties-5"><a href="#lst-properties-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">value</span>             </span>
+<span id="lst-properties-6"><a href="#lst-properties-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="lst-properties-7"><a href="#lst-properties-7" aria-hidden="true" tabindex="-1"></a>a <span class="fu">key:</span> <span class="dv">1</span><span class="cf">,</span><span class="dv">2</span>          <span class="co"># short form of a list</span></span>
+<span id="lst-properties-8"><a href="#lst-properties-8" aria-hidden="true" tabindex="-1"></a>a <span class="fu">key:</span> <span class="dv">1</span>            <span class="co"># delimiting whitespace... </span></span>
+<span id="lst-properties-9"><a href="#lst-properties-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">,</span>                 <span class="co"># ...after value 1 and before value 2</span></span>
+<span id="lst-properties-10"><a href="#lst-properties-10" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span></span></code></pre></div>
 </div>
 </figure>
 </div>

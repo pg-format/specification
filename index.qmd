@@ -262,18 +262,15 @@ a :http://example.org/      # label "http://example.org/"
 A **property** consists of the following elements, given in this order:
 
 - a REQUIRED **property key**, being an [identifier](#identifiers)
-- OPTIONAL [spaces](#whitespace)
 - a colon (`U+003A`)
 - a non-empty list of **[property values](#property-values)**, separated by comma (`U+002C`)
 
-A property value MAY further be preceded and followed by [delimiting whitespace](#whitespace).
+Each property value MAY be preceded and followed by [delimiting whitespace](#whitespace).
 
 ~~~{.pg #lst-properties lst-cap="Property with optional spaces and/or whitespace"}
 a key: value        # spaces before value
 a key:value         # short form
 a "key":value       # key can be quoted string
-a key : value       # optional spaces around colon
-a key :value        # allowed but not recommended (value looks like label)
 a key:              # delimiting whitespace between colon and value
   value             
 
@@ -281,7 +278,6 @@ a key: 1,2          # short form of a list
 a key: 1            # delimiting whitespace... 
   ,                 # ...after value 1 and before value 2
   2
-
 ~~~
 
 ~~~{.pg .invalid #lst-invalid-properties lst-cap="Invalid property"}
