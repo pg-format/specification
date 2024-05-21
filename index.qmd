@@ -268,23 +268,29 @@ A **property** consists of the following elements, given in this order:
 - a colon (`U+003A`)
 - a non-empty list of **[property values](#property-values)**, separated by comma (`U+002C`)
 
-Each property value MAY be preceded and followed by [delimiting whitespace](#whitespace).
+Each property value MAY be preceded and followed by [delimiting
+whitespace](#whitespace). If the property key is an unquoted identifier and no
+delimiting whitespace is given before the first value then the property key
+MUST NOT contain a colon.
 
 ~~~{.pg #lst-properties lst-cap="Property with optional spaces and/or whitespace"}
-a key: value        # spaces before value
-a key:value         # short form
-a "key":value       # key can be quoted string
-a key:              # delimiting whitespace between colon and value
+node key: value     # spaces before value
+node key:value      # short form
+node "key":value    # key can be quoted string
+node key:           # delimiting whitespace between colon and value
   value             
 
-a key: 1,2          # short form of a list
-a key: 1            # delimiting whitespace... 
+node key: 1,2       # short form of a list
+node key: 1         # delimiting whitespace... 
   ,                 # ...after value 1 and before value 2
   2
+
+node a:b:c          # property key "a" with value "b:c"
+node a:b: c         # property key "a:b" with value "c"
 ~~~
 
 ~~~{.pg .invalid #lst-invalid-properties lst-cap="Invalid property"}
-a key               # delimiting whitespace not allowed before colon
+node key            # delimiting whitespace not allowed before colon
   : value
 ~~~
 
