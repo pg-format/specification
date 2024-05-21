@@ -35,6 +35,9 @@ Normative parts of this specification are limited to section [2](#data-model)
 to [6](#rubustness-priniciple) and [the normative
 references](#normative-references).
 
+More information about Property Graph Exchange Format is summarized
+**[at its homepage](https://pg-format.github.io/)**. 
+
 ## Data Model
 
 A **property graph** consists of **nodes** and **edges** between these nodes.
@@ -304,9 +307,9 @@ Applications MAY internally map these types to other type systems. Values of
 the same property are allowed to have different data types.
 
 ~~~{.pg #lst-property-values lst-cap="Property values"}
-x n: 1,-1,2e+3          # numbers 
-  b: true, false        # boolean values       
-  s: hello,"true",""    # strings
+node n: 1,-1,2e+3          # numbers 
+     b: true, false        # boolean values       
+     s: hello,"true",""    # strings
 ~~~
 
 #### Property merging
@@ -478,6 +481,8 @@ The [PG-JSONL format](#pg-jsonl) can be validated with a non-normative JSON Sche
   RFC 3629, November 2003. <https://tools.ietf.org/html/rfc3629>
 
 ### Informative references
+
+- [Property Graph Exchange Format Homepage](https://pg-format.github.io/specification/)
 
 - [JSON Schema](https://json-schema.org/) schema language
 
