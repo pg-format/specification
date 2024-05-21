@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE language
-[
+<!DOCTYPE language SYSTEM "language.dtd" [
   <!ENTITY space "[ \t]">
   <!ENTITY nonSpace "[^ \t]">
   <!ENTITY trailingSpace "&space;*(?:#.*)?$">
   <!ENTITY ignoredLine "^&trailingSpace;$">
   <!ENTITY reserved "\x00-\x20&lt;&gt;&quot;{}\\^`|">
-  <!ENTITY unquotedStart "[^&reserved;#:',]">
+  <!ENTITY unquotedStart "[^&reserved;#:',-]">
   <!ENTITY unquoted "&unquotedStart;[^&reserved;]*">
   <!ENTITY idStart "&unquotedStart;|&quot;|&apos;">
   <!ENTITY escapeSequence "\\(?:[&quot;'\\/bfnrt]|u[0-9a-fA-f]{4})">
@@ -14,7 +13,8 @@
   <!ENTITY singleQuotedString "&apos;(?:[^&apos;\\]*(?:&escapeSequence;)?)*&apos;">
   <!ENTITY doubleQuotedString "&quot;(?:[^&quot;\\]*(?:&escapeSequence;)?)*&quot;">
 ]>
-<language name="pg" kateversion="5.0" section="Scripts" extensions="*.pg" casesensitive="1" author="Jakob Voß" license="CC0" version="0">
+
+<language name="PG format" version="1" kateversion="5.0" section="Database" extensions="*.pg" author="Jakob Voß (voss@gbv.de>" license="CC0">
   <highlighting>
     <list name="Boolean">
       <item>true</item>
@@ -30,28 +30,26 @@
 
       <context name="Statement" lineEndContext="StartLine" fallthroughContext="Error" fallthrough="true" attribute="Error">
         <!-- This does not catch quoted multiline edge identifiers and will wrongly mark nodes with id ending in colon! -->
-        <RegExpr String="&unquoted;:"   context="EdgeIdentifier" lookAhead="1"/>
-        <RegExpr String="&doubleQuotedString;:" context="EdgeIdentifier" lookAhead="1"/>
-        <RegExpr String="&singleQuotedString;:" context="EdgeIdentifier" lookAhead="1"/>
+        <RegExpr String="(?:&doubleQuotedString;|&singleQuotedString;|&unquoted;):"   context="EdgeIdentifier" lookAhead="1"/>
         <RegExpr String="&idStart;" lookAhead="true" context="FirstIdentifier"/>
       </context>
 
-      <context name="EdgeIdentifier" fallthroughContext="Error" fallthrough="true" attribute="Identifier">
+      <context name="EdgeIdentifier" lineEndContext="Error" fallthroughContext="Error" fallthrough="true" attribute="Identifier">
         <DetectChar char="&quot;"     attribute="Identifier" context="DoubleQuotedEdgeIdentifier"/>
         <DetectChar char="&apos;"     attribute="Identifier" context="SingleQuotedEdgeIdentifier"/>
         <RegExpr String="([^&reserved;:]+:+)+" attribute="Identifier" context="AfterEdgeIdentifier"/>
       </context>
 
-      <context name="AfterEdgeIdentifier" fallthroughContext="#pop!FirstIdentifier" fallthrough="true" attribute="Space">
+      <context name="AfterEdgeIdentifier" lineEndContext="StartLine" fallthroughContext="#pop!FirstIdentifier" fallthrough="true" attribute="Space">
         <IncludeRules context="DelimitingSpace"/>
       </context>
       
-      <context name="Error" attribute="Error">
+      <context name="Error" attribute="Error" lineEndContext="Error">
         <RegExpr String="." context="#pop" attribute="Error"/>
       </context>
 
       <!-- Node identifier of a node statement or source of an edge statement -->
-      <context name="FirstIdentifier" fallthroughContext="Error" fallthrough="true" attribute="Identifier">
+      <context name="FirstIdentifier" lineEndContext="Error" fallthroughContext="Error" fallthrough="true" attribute="Identifier">
         <DetectChar char="&quot;"    attribute="Identifier" context="DoubleQuotedFirstIdentifier"/>
         <DetectChar char="&apos;"    attribute="Identifier" context="SingleQuotedFirstIdentifier"/>
         <RegExpr String="&unquoted;" attribute="Identifier" context="AfterFirstIdentifier"/>
@@ -79,17 +77,15 @@
       </context>
 
       <context name="Properties" attribute="PropertyKey" lineEndContext="StartLine" fallthroughContext="Error" fallthrough="true">
-        <RegExpr String="([^&reserved;:]+:)+"   context="PropertyValue" attribute="PropertyKey" />
-        <RegExpr String="&doubleQuotedString;:" context="PropertyValue" attribute="PropertyKey" />
-        <RegExpr String="&singleQuotedString;:" context="PropertyValue" attribute="PropertyKey" />
-        <RegExpr String="&space;+" attribute="Space"/>
+        <AnyChar String=" &#x9;" attribute="Space"/>
+        <RegExpr String="(?:[^&reserved;:]+:)+|(?:(?:&doubleQuotedString;|&singleQuotedString;):)" context="PropertyValue" attribute="PropertyKey" />
         <RegExpr String="#.*" attribute="Comment"/>
         <DetectChar char="," attribute="Comma" context="PropertyValue"/>
       </context>
 
       <context name="StartLine" lineEndContext="#stay" fallthroughContext="Error" fallthrough="true" attribute="Error">
         <RegExpr String="&ignoredLine;" column="0" attribute="Comment"/>
-        <RegExpr String="&space;+" context="#pop" lookAhead="true"/>
+        <AnyChar String=" &#x9;" context="#pop" lookAhead="true"/>
         <RegExpr String="^&nonSpace;" column="0" lookAhead="true" context="#pop#pop#pop#pop!Statement"/>
       </context>
 
@@ -140,10 +136,11 @@
         <RegExpr String="\\(u[0-9a-fA-f]+|.)?" context="#pop" attribute="Error"/>
       </context>
 
+      <!-- this context is only included -->
       <context name="DelimitingSpace" lineEndContext="#stay" attribute="Comment">
         <RegExpr String="#.*$" attribute="Comment"/>
-        <RegExpr String="&ignoredLine;" column="0" attribute="Comment"/>
-        <RegExpr String="&space;+" attribute="Space"/>
+        <!--RegExpr String="&ignoredLine;" column="0" attribute="Comment"/-->
+        <AnyChar String=" &#x9;" attribute="Space"/>
         <RegExpr String="^&nonSpace;" column="0" lookAhead="true" context="Error"/>
       </context>
 
@@ -151,12 +148,11 @@
 
         <IncludeRules context="DelimitingSpace"/>
 
-        <RegExpr String="&quot;" attribute="Value" context="DoubleQuotedValue"/>
-        <RegExpr String="&apos;" attribute="Value" context="SingleQuotedValue"/>
+        <DetectChar char="&quot;" attribute="Value" context="DoubleQuotedValue"/>
+        <DetectChar char="&apos;" attribute="Value" context="SingleQuotedValue"/>
 
         <keyword String="Boolean" context="#pop" attribute="Boolean"/>
-        <RegExpr String="-?\b([1-9][0-9]*\.[0-9]+(?:[eE][+-]?[0-9]+)?)" context="#pop" attribute="Number"/>
-        <RegExpr String="-?\b(0\b|[1-9][0-9]*(?:[eE][+-]?[0-9]+)?)" context="#pop" attribute="Number"/>
+        <RegExpr String="-?(0|[1-9][0-9]*(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?)" context="#pop" attribute="Number"/>
 
         <RegExpr attribute="UnquotedValue" context="#pop" String="&unquotedStart;[^&reserved;,]*"/>
       </context>

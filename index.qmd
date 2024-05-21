@@ -89,17 +89,20 @@ definition of IRI references [in SPARQL](https://www.w3.org/TR/sparql11-query/#r
 
 ~~~{.pg #lst-identifiers lst-cap="Several unquoted identifiers"}
 abc
-~2
+42
 木
 dc:title
 http://example.org/?a=-&c=0#x
--':
+~',-:
 ~~~
 
-An unquoted identifier MUST NOT start with a colon (`U+003A`) or comma (`U+002C`).
+An unquoted identifier MUST NOT start with a colon (`U+003A`), comma
+(`U+002C`), or minus (`U+002D`).
 
-~~~{.pg .invalid #lst-invalid-id lst-cap="Invalid unquoted identifier"}
-:id
+~~~{.pg .invalid #lst-invalid-id lst-cap="Invalid unquoted identifiers"}
+:1
+,2
+-3
 ~~~
 
 An unquoted identifier MUST NOT start with hash ("`#`") because this starts
