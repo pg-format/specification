@@ -13,7 +13,7 @@ title: Property Graph Exchange Format (PG)
 ### Why property graphs?
 
 **Property Graphs** (also known as **Labeled Property Graphs**) are used as
-abstract data structure in graph databases and related applications. 
+an abstract data structure in graph databases and related applications. 
 
 Implementations of property graphs slightly differ in support of data types,
 restrictions on labels etc. The [definition of property graphs](#data-model)
@@ -31,7 +31,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHOULD", "SHOULD NOT",
 be interpreted as described in BCP 14 ([RFC 2119] and [RFC 8174]) when, and
 only when, they appear in all capitals, as shown here.
 
-Normative parts of this specification are limited to section [2](#data-model)
+Normative parts of this specification are limited to sections [2](#data-model)
 to [6](#rubustness-priniciple) and [the normative
 references](#normative-references).
 
@@ -66,7 +66,7 @@ escape sequences in [quoted strings](#quoted-strings).
 
 The document consists of a sequence of **statements**, each defining
 a [node](#nodes) or an [edge](#edges), or being empty. Statements are separated
-from each other with a [line break](#whitespace). Optional
+from each other by a [line break](#whitespace). Optional
 [spaces](#whitespace) and/or a [comment](#whitespace) at the end of a statement
 are ignored.
 
@@ -76,8 +76,8 @@ are ignored.
 
 An **identifier** is a string used to uniquely identify a [node](#nodes), an
 [edge](#edges), a [label](#labels), or the name of a [property](#properties).
-An identifiers can be given as [quoted string](#quoted-strings) or as unquoted
-identifier.
+An identifier can be given as a [quoted string](#quoted-strings) or as an
+unquoted identifier.
 
 An **unquoted identifier** is a non-empty string not including control codes
 `U+0000` to `U+0020` (tabulator, line breaks, space...), nor any of the
@@ -107,7 +107,7 @@ An unquoted identifier MUST NOT start with a colon (`U+003A`), comma
 
 An unquoted identifier MUST NOT start with hash ("`#`") because this starts
 a [comment](#whitespace) nor with apostrophe ("`'`") or quotation mark ("`"`")
-because these start a [quoted string](#quoted-strings). Colon, hash, comman,
+because these start a [quoted string](#quoted-strings). Colon, hash, comma,
 and apostrophe are allowed in an unquoted identifier after its first character.
 
 ### Nodes
@@ -115,7 +115,7 @@ and apostrophe are allowed in an unquoted identifier after its first character.
 A **node** consists of the following elements, given in this order and
 separated by [delimiting whitespace](#whitespace):
 
-- A REQUIRED [identifier](#identifiers)
+- a REQUIRED [identifier](#identifiers)
 - an OPTIONAL list of [labels]
 - an OPTIONAL list of [properties]
 
@@ -158,7 +158,7 @@ a -> b
 
 ### Edges
 
-A **edge** consists of the following elements, given in this order and separated by [delimiting whitespace](#whitespace):
+An **edge** consists of the following elements, given in this order and separated by [delimiting whitespace](#whitespace):
 
 - an OPTIONAL **[edge identifier](#edge-identifiers)**
 - a REQUIRED source node [identifier]
@@ -173,7 +173,7 @@ a -- b key:value
 1: a -> b :label key:value
 ~~~
 
-The following statement does not define an edge but a [node](#nodes) with identifier "`a--b`":
+The following statement does not define an edge but a [node](#nodes) with the identifier "`a--b`":
 
 ~~~{.pg #lst-no-edge-but-node lst-cap="Not an edge statement"}
 a--b
@@ -187,7 +187,7 @@ a->b
 
 #### Edge identifiers
 
-An edge identifier is an [identifier] as first element of an edge statement,
+An edge identifier is an [identifier] as the first element of an edge statement,
 directly followed by a colon (`U+003A`).
 
 ~~~{.pg #lst-multi-edges-with-id lst-cap="Graph with two equivalent edges, differentiated by edge identifiers"}
@@ -209,7 +209,7 @@ Edge identifiers MUST NOT be repeated.
 1: a -> b since:2024
 ~~~
 
-No space is allowed between edge identifier and its colon:
+No space is allowed between the edge identifier and its colon:
 
 ~~~{.pg .invalid #lst-invalid-edge-id lst-cap="Invalid statement"}
 1 : a -> b
@@ -231,7 +231,7 @@ a -- a
 
 #### Multi-edges
 
-The Property Graph Data Model allows for multiple edges between same nodes.
+The Property Graph Data Model allows for multiple edges between the same node.
 
 ~~~{.pg #lst-multi-edges lst-cap="Graph with two indistinguishable edges"}
 a -> b :follows since:2024
@@ -243,7 +243,7 @@ individual multi-edges.
 
 ### Labels
 
-A label is a an [identifier] following a colon (`U+003A`).
+A label is an [identifier] following a colon (`U+003A`).
 [Spaces](#whitespace) between colon and label identifier are OPTIONAL but NOT
 RECOMMENDED.
 
@@ -273,7 +273,7 @@ A **property** consists of the following elements, given in this order:
 
 Each property value MAY be preceded and followed by [delimiting
 whitespace](#whitespace). If the property key is an unquoted identifier and no
-delimiting whitespace is given before the first value then the property key
+delimiting whitespace is given before the first value, then the property key
 MUST NOT contain a colon.
 
 ~~~{.pg #lst-properties lst-cap="Property with optional spaces and/or whitespace"}
@@ -336,11 +336,11 @@ c x:2 x:3       # ...in two node statements
 ### Quoted Strings
 
 A quoted string starts with an apostrophe ("`'`") or quotation mark ("`"`") and
-ends with the same character. In between all Unicode characters are allowed,
+ends with the same character. In between, all Unicode characters are allowed,
 except for the characters that MUST be escaped:
 
 - apostrophe, when the string is quoted with apostrophe
-- quotation mark, when the string is quoted with quotation mark
+- quotation mark, when the string is quoted with a quotation mark
 - reverse solidus (`\` `U+005C`)
 - control characters `U+0000` through `U+001F` except line feed
   (`U+000A`), carriage return (`U+000D`), and tabular (`U+0009`)
@@ -431,21 +431,21 @@ of JSON objects, separated by line separator (`U+000A`) and optional whitespace
 (`U+0020`, `U+0009`, and `U+000D`) around JSON objects, and an optional line
 separator at the end. Each object is
 
-- either a node with field `type` having string value `"node"` and the same
+- either a node with field `type` having the string value `"node"` and the same
   mandatory node fields from PG-JSON format,
-- or an edge with field `type` having string value `"edge"` and the same
+- or an edge with field `type` having the string value `"edge"` and the same
   mandatory edge fields from PG-JSON format.
 
 Node objects SHOULD be given before their node identifiers are referenced in an
-edge object but applications MAY also create implicit node objects for this
-cases. Applications MAY allow multiple node objects with same node identifier
-in PG-JSONL but they MUST make clear whether nodes with repeated identifier are
+edge object, but applications MAY also create implicit node objects for these
+cases. Applications MAY allow multiple node objects with identical node identifier
+in PG-JSONL but they MUST make clear whether nodes with repeated identifiers are
 ignored, merged into existing nodes, or replace existing nodes.
 
 ## Robustness principle
 
 Applications MAY automatically convert documents not fully conforming to the
-specification of PG-JSON and/or PG-JSONL to valid form, for instance by:
+specification of PG-JSON and/or PG-JSONL to a valid form, for instance by:
 
 - creation of implicit nodes for node identifiers referenced in edges
 - addition of missing empty fields `labels` and/or `properties`
