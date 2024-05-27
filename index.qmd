@@ -491,7 +491,7 @@ The [PG-JSONL format](#pg-jsonl) can be validated with a non-normative JSON Sche
 
 ### Informative references
 
-- [Property Graph Exchange Format Homepage](https://pg-format.github.io/specification/)
+- [Property Graph Exchange Format Homepage](https://pg-format.github.io/)
 
 - [JSON Schema](https://json-schema.org/) schema language
 
