@@ -48,8 +48,8 @@ edges can have **properties** and **labels**. Properties are mappings from
 are non-empty Unicode strings. A value is a Unicode string, a boolean value, or
 a number as defined by [RFC 8259].
 
-Extended graph features not being part of this data model include *graph
-attributes*, *hierarchies*, *hyper-edges* and *semantics* of individual labels
+Extended graph features not being part of this data model include graph
+attributes, hierarchies, hyper-edges and semantics of individual labels
 and property keys.
 
 ## PG format
@@ -501,6 +501,8 @@ The [PG-JSONL format](#pg-jsonl) can be validated with a non-normative JSON Sche
   [Property Graph Exchange Format](http://arxiv.org/abs/1907.03936). 2019
 
 ## Changes
+
+This document is managed in a revision control system at <https://github.com/pg-format/specification>.
 
 ### Version 1.0.0 
 
