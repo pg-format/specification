@@ -4,7 +4,8 @@ title: Property Graph Exchange Format (PG)
 
 ::: {.callout-note}
 
-*THIS IS WORK IN PROGRESS. See also <https://github.com/orgs/pg-format/discussions> and <https://github.com/pg-format/pg-formatter/wiki> for discussion and references! Issue tracker of this specification document is at <https://github.com/pg-format/specification/issues>.*
+*THIS IS WORK IN PROGRESS*. See also [discussion forum](https://github.com/orgs/pg-format/discussions) and 
+[issue tracker](https://github.com/pg-format/specification/issues) for updates!*
 
 :::
 
@@ -52,15 +53,15 @@ Extended graph features not being part of this data model include graph
 attributes, hierarchies, hyper-edges and semantics of individual labels
 and property keys.
 
-## PG format
+## PG Format
 
-A **PG format** document allows writing down a property graph in a compact textual
-form. A PG format document is a Unicode string that conforms to [grammar] and rules
+A **PG Format** document allows writing down a property graph in a compact textual
+form. A PG Format document is a Unicode string that conforms to [grammar] and rules
 defined in this specification.
 
 ### Basic structure
 
-A PG format document encodes a property graph as Unicode string. The document
+A PG Format document encodes a property graph as Unicode string. The document
 MUST be encoded in UTF-8 (RFC 3629). Unicode codepoints can also be given by
 escape sequences in [quoted strings](#quoted-strings).
 
@@ -85,7 +86,7 @@ characters "`<`" (`U+003C`), "`>`" (`U+003E`), '`"`' (`U+0022`), "`{`"
 (`U+007B`), "`}`" (`U+007D`), "`|`" (`U+007C`), "`\`" (`U+005C`), "`^`"
 (`U+005E`), and "`` ` ``" (`U+0060`).^[This definition is equivalent to the
 definition of IRI references [in SPARQL](https://www.w3.org/TR/sparql11-query/#rIRIREF) and
-[in Turtle](https://www.w3.org/TR/turtle/#grammar-production-IRIREF) excluding empty strings and escape sequences. Forbidden characters are reserved for extensions of PG format.]
+[in Turtle](https://www.w3.org/TR/turtle/#grammar-production-IRIREF) excluding empty strings and escape sequences. Forbidden characters are reserved for extensions of PG Format.]
 
 ~~~{.pg #lst-identifiers lst-cap="Several unquoted identifiers"}
 abc
@@ -309,9 +310,9 @@ A **property value** is one of
   - a [quoted string](#quoted-strings)
   - an [unquoted identifier](#identifiers) not including a comma
 
-The data type of a property value in PG format is either string, or number, or
+The data type of a property value in PG Format is either string, or number, or
 boolean.^[This is identical to scalar JSON values (string, number, boolean) and
-every serialized JSON scalar is a valid property value in PG format.]
+every serialized JSON scalar is a valid property value in PG Format.]
 Applications MAY internally map these types to other type systems. Values of
 the same property are allowed to have different data types.
 
@@ -347,7 +348,7 @@ except for the characters that MUST be escaped:
 
 All characters can be escaped as defined by JSON specification ([RFC 8259],
 section 7) with the addition of the two-character escape sequence `\'` to
-escape an apostrophe. Quoted strings in PG format further differ from JSON by
+escape an apostrophe. Quoted strings in PG Format further differ from JSON by
 string quoting with apostrophe in addition to quotation mark and by allowing
 unquoted line feed, carriage return, and tabular. 
 
@@ -393,7 +394,7 @@ a :x :y
 
 ::: {.callout-note}
 
-*A formal grammar of PG format will be provided*
+*A formal grammar of PG Format will be provided*
 
 :::
 
