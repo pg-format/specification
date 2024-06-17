@@ -511,6 +511,8 @@ The [PG-JSONL format](#pg-jsonl) can be validated with a non-normative JSON Sche
 
 - [Property Graph Exchange Format Homepage](https://pg-format.github.io/)
 
+- [PG Test Suite](https://github.com/pg-format/pg-test-suite)
+
 - [JSON Schema](https://json-schema.org/) schema language
 
 - [IEEE Standard for Floating-Point Arithmetic](https://doi.org/10.1109/IEEESTD.2019.8766229)
