@@ -1,5 +1,22 @@
 ---
 title: Property Graph Exchange Format (PG)
+authors:
+- name: Hirokazu Chiba
+  orcid: 0000-0003-4062-8903
+  affiliations:
+  - name: Database Center for Life Science (DBCLS)
+- name: Ryota Yamanaka
+#  orcid: ???
+  affiliations:
+  - name: Meer Consulting Group
+- name: Jakob Voß
+  orcid: 0000-0002-7613-4123
+  affiliations:
+   - name: Verbundzentrale des GBV (VZG)
+#- name: Shota Matsumoto
+#  orcid: 0000-0002-8243-7163
+#  affiliations:
+#  - name: Showa Pharmaceutical University
 ---
 
 ::: {.callout-note}
