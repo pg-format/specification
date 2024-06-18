@@ -22,7 +22,7 @@ authors:
 ::: {.callout-note}
 
 *THIS IS WORK IN PROGRESS*. See also [discussion forum](https://github.com/orgs/pg-format/discussions) and 
-[issue tracker](https://github.com/pg-format/specification/issues) for updates!*
+[issue tracker](https://github.com/pg-format/specification/issues) for updates!
 
 :::
 
@@ -441,6 +441,27 @@ Each edge is a JSON object with one optional and four mandatory fields:
 - `to` an identifier of the target node from `nodes` array
 - `labels` and `properties` as defined above at nodes
 
+~~~{.json #lst-json-example lst-cap="Example graph in PG-JSON"}
+{
+  "nodes": [{
+    "id": "101", "labels": [ "person" ],
+    "properties": { "name": [ "Alice", "Carol" ], "country": [ "United States" ] }
+   },{
+    "id": "102", "labels": [ "person", "student" ],
+    "properties": { "name": [ "Bob" ], "country": [ "Japan" ] }
+  }],
+  "edges": [{
+    "from": "101", "to": "102", "undirected": true,
+    "labels": [ "same_school", "same_class" ],
+    "properties": { "since": [ 2012 ] }
+   },{
+    "from": "101", "to": "102",
+    "labels": [ "likes" ],
+    "properties": { "engaged": [ false ], "since": [ 2015 ] }
+  }]
+}
+~~~
+
 ## PG-JSONL
 
 A **PG-JSONL** document or stream serializes a property graph in JSON Lines
@@ -459,6 +480,17 @@ edge object, but applications MAY also create implicit node objects for these
 cases. Applications MAY allow multiple node objects with identical node identifier
 in PG-JSONL but they MUST make clear whether nodes with repeated identifiers are
 ignored, merged into existing nodes, or replace existing nodes.
+
+:::{.column-screen-inset-right}
+
+~~~{.json #lst-json-example lst-cap="Example graph in PG-JSONL"}
+{"type":"node","id":"101","labels":["person"],"properties":{"country":["United States"],"name":["Alice","Carol"]}}
+{"type":"node","id":"102","labels":["person","student"],"properties":{"country":["Japan"],"name":["Bob"]}}
+{"type":"edge","from":"101","to":"102","labels":["same_school","same_class"],"properties":{"since":[2012]},"undirected":true}
+{"type":"edge","from":"101","to":"102","labels":["likes"],"properties":{"engaged":[false],"since":[2015]}}
+~~~
+
+:::
 
 ## Robustness principle
 

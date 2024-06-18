@@ -176,7 +176,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
 </div>
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
 
 
@@ -193,7 +193,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><em>THIS IS WORK IN PROGRESS</em>. See also <a href="https://github.com/orgs/pg-format/discussions">discussion forum</a> and <a href="https://github.com/pg-format/specification/issues">issue tracker</a> for updates!*</p>
+<p><em>THIS IS WORK IN PROGRESS</em>. See also <a href="https://github.com/orgs/pg-format/discussions">discussion forum</a> and <a href="https://github.com/pg-format/specification/issues">issue tracker</a> for updates!</p>
 </div>
 </div>
 <section id="introduction" class="level2" data-number="1">
@@ -677,8 +677,35 @@ Note
 <li><code>to</code> an identifier of the target node from <code>nodes</code> array</li>
 <li><code>labels</code> and <code>properties</code> as defined above at nodes</li>
 </ul>
+<div id="lst-json-example" class="json listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-json-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Example&nbsp;27: Example graph in PG-JSON
+</figcaption>
+<div aria-describedby="lst-json-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-json-example"><pre class="sourceCode json"><code class="sourceCode json"><span id="lst-json-example-1"><a href="#lst-json-example-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="lst-json-example-2"><a href="#lst-json-example-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"nodes"</span><span class="fu">:</span> <span class="ot">[</span><span class="fu">{</span></span>
+<span id="lst-json-example-3"><a href="#lst-json-example-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"id"</span><span class="fu">:</span> <span class="st">"101"</span><span class="fu">,</span> <span class="dt">"labels"</span><span class="fu">:</span> <span class="ot">[</span> <span class="st">"person"</span> <span class="ot">]</span><span class="fu">,</span></span>
+<span id="lst-json-example-4"><a href="#lst-json-example-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"properties"</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">"name"</span><span class="fu">:</span> <span class="ot">[</span> <span class="st">"Alice"</span><span class="ot">,</span> <span class="st">"Carol"</span> <span class="ot">]</span><span class="fu">,</span> <span class="dt">"country"</span><span class="fu">:</span> <span class="ot">[</span> <span class="st">"United States"</span> <span class="ot">]</span> <span class="fu">}</span></span>
+<span id="lst-json-example-5"><a href="#lst-json-example-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">}</span><span class="ot">,</span><span class="fu">{</span></span>
+<span id="lst-json-example-6"><a href="#lst-json-example-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"id"</span><span class="fu">:</span> <span class="st">"102"</span><span class="fu">,</span> <span class="dt">"labels"</span><span class="fu">:</span> <span class="ot">[</span> <span class="st">"person"</span><span class="ot">,</span> <span class="st">"student"</span> <span class="ot">]</span><span class="fu">,</span></span>
+<span id="lst-json-example-7"><a href="#lst-json-example-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"properties"</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">"name"</span><span class="fu">:</span> <span class="ot">[</span> <span class="st">"Bob"</span> <span class="ot">]</span><span class="fu">,</span> <span class="dt">"country"</span><span class="fu">:</span> <span class="ot">[</span> <span class="st">"Japan"</span> <span class="ot">]</span> <span class="fu">}</span></span>
+<span id="lst-json-example-8"><a href="#lst-json-example-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="lst-json-example-9"><a href="#lst-json-example-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"edges"</span><span class="fu">:</span> <span class="ot">[</span><span class="fu">{</span></span>
+<span id="lst-json-example-10"><a href="#lst-json-example-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"from"</span><span class="fu">:</span> <span class="st">"101"</span><span class="fu">,</span> <span class="dt">"to"</span><span class="fu">:</span> <span class="st">"102"</span><span class="fu">,</span> <span class="dt">"undirected"</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="lst-json-example-11"><a href="#lst-json-example-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"labels"</span><span class="fu">:</span> <span class="ot">[</span> <span class="st">"same_school"</span><span class="ot">,</span> <span class="st">"same_class"</span> <span class="ot">]</span><span class="fu">,</span></span>
+<span id="lst-json-example-12"><a href="#lst-json-example-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"properties"</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">"since"</span><span class="fu">:</span> <span class="ot">[</span> <span class="dv">2012</span> <span class="ot">]</span> <span class="fu">}</span></span>
+<span id="lst-json-example-13"><a href="#lst-json-example-13" aria-hidden="true" tabindex="-1"></a>   <span class="fu">}</span><span class="ot">,</span><span class="fu">{</span></span>
+<span id="lst-json-example-14"><a href="#lst-json-example-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"from"</span><span class="fu">:</span> <span class="st">"101"</span><span class="fu">,</span> <span class="dt">"to"</span><span class="fu">:</span> <span class="st">"102"</span><span class="fu">,</span></span>
+<span id="lst-json-example-15"><a href="#lst-json-example-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"labels"</span><span class="fu">:</span> <span class="ot">[</span> <span class="st">"likes"</span> <span class="ot">]</span><span class="fu">,</span></span>
+<span id="lst-json-example-16"><a href="#lst-json-example-16" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"properties"</span><span class="fu">:</span> <span class="fu">{</span> <span class="dt">"engaged"</span><span class="fu">:</span> <span class="ot">[</span> <span class="kw">false</span> <span class="ot">]</span><span class="fu">,</span> <span class="dt">"since"</span><span class="fu">:</span> <span class="ot">[</span> <span class="dv">2015</span> <span class="ot">]</span> <span class="fu">}</span></span>
+<span id="lst-json-example-17"><a href="#lst-json-example-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span><span class="ot">]</span></span>
+<span id="lst-json-example-18"><a href="#lst-json-example-18" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+</div>
+</figure>
+</div>
 </section>
-<section id="pg-jsonl" class="level2" data-number="5">
+<section id="pg-jsonl" class="level2 page-columns page-full" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="pg-jsonl"><span class="header-section-number">5</span> PG-JSONL</h2>
 <p>A <strong>PG-JSONL</strong> document or stream serializes a property graph in JSON Lines format, also known as newline-delimited JSON. A PG-JSONL document is a sequence of JSON objects, separated by line separator (<code>U+000A</code>) and optional whitespace (<code>U+0020</code>, <code>U+0009</code>, and <code>U+000D</code>) around JSON objects, and an optional line separator at the end. Each object is</p>
 <ul>
@@ -686,6 +713,21 @@ Note
 <li>or an edge with field <code>type</code> having the string value <code>"edge"</code> and the same mandatory edge fields from PG-JSON format.</li>
 </ul>
 <p>Node objects SHOULD be given before their node identifiers are referenced in an edge object, but applications MAY also create implicit node objects for these cases. Applications MAY allow multiple node objects with identical node identifier in PG-JSONL but they MUST make clear whether nodes with repeated identifiers are ignored, merged into existing nodes, or replace existing nodes.</p>
+<div class="column-screen-inset-right">
+<div id="lst-json-example" class="json listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-json-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Example&nbsp;28: Example graph in PG-JSONL
+</figcaption>
+<div aria-describedby="lst-json-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode" id="lst-json-example"><pre class="sourceCode json"><code class="sourceCode json"><span id="lst-json-example-1"><a href="#lst-json-example-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span><span class="dt">"type"</span><span class="fu">:</span><span class="st">"node"</span><span class="fu">,</span><span class="dt">"id"</span><span class="fu">:</span><span class="st">"101"</span><span class="fu">,</span><span class="dt">"labels"</span><span class="fu">:</span><span class="ot">[</span><span class="st">"person"</span><span class="ot">]</span><span class="fu">,</span><span class="dt">"properties"</span><span class="fu">:{</span><span class="dt">"country"</span><span class="fu">:</span><span class="ot">[</span><span class="st">"United States"</span><span class="ot">]</span><span class="fu">,</span><span class="dt">"name"</span><span class="fu">:</span><span class="ot">[</span><span class="st">"Alice"</span><span class="ot">,</span><span class="st">"Carol"</span><span class="ot">]</span><span class="fu">}}</span></span>
+<span id="lst-json-example-2"><a href="#lst-json-example-2" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span><span class="dt">"type"</span><span class="fu">:</span><span class="st">"node"</span><span class="fu">,</span><span class="dt">"id"</span><span class="fu">:</span><span class="st">"102"</span><span class="fu">,</span><span class="dt">"labels"</span><span class="fu">:</span><span class="ot">[</span><span class="st">"person"</span><span class="ot">,</span><span class="st">"student"</span><span class="ot">]</span><span class="fu">,</span><span class="dt">"properties"</span><span class="fu">:{</span><span class="dt">"country"</span><span class="fu">:</span><span class="ot">[</span><span class="st">"Japan"</span><span class="ot">]</span><span class="fu">,</span><span class="dt">"name"</span><span class="fu">:</span><span class="ot">[</span><span class="st">"Bob"</span><span class="ot">]</span><span class="fu">}}</span></span>
+<span id="lst-json-example-3"><a href="#lst-json-example-3" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span><span class="dt">"type"</span><span class="fu">:</span><span class="st">"edge"</span><span class="fu">,</span><span class="dt">"from"</span><span class="fu">:</span><span class="st">"101"</span><span class="fu">,</span><span class="dt">"to"</span><span class="fu">:</span><span class="st">"102"</span><span class="fu">,</span><span class="dt">"labels"</span><span class="fu">:</span><span class="ot">[</span><span class="st">"same_school"</span><span class="ot">,</span><span class="st">"same_class"</span><span class="ot">]</span><span class="fu">,</span><span class="dt">"properties"</span><span class="fu">:{</span><span class="dt">"since"</span><span class="fu">:</span><span class="ot">[</span><span class="dv">2012</span><span class="ot">]</span><span class="fu">},</span><span class="dt">"undirected"</span><span class="fu">:</span><span class="kw">true</span><span class="fu">}</span></span>
+<span id="lst-json-example-4"><a href="#lst-json-example-4" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span><span class="dt">"type"</span><span class="fu">:</span><span class="st">"edge"</span><span class="fu">,</span><span class="dt">"from"</span><span class="fu">:</span><span class="st">"101"</span><span class="fu">,</span><span class="dt">"to"</span><span class="fu">:</span><span class="st">"102"</span><span class="fu">,</span><span class="dt">"labels"</span><span class="fu">:</span><span class="ot">[</span><span class="st">"likes"</span><span class="ot">]</span><span class="fu">,</span><span class="dt">"properties"</span><span class="fu">:{</span><span class="dt">"engaged"</span><span class="fu">:</span><span class="ot">[</span><span class="kw">false</span><span class="ot">]</span><span class="fu">,</span><span class="dt">"since"</span><span class="fu">:</span><span class="ot">[</span><span class="dv">2015</span><span class="ot">]</span><span class="fu">}}</span></span></code></pre></div>
+</div>
+</figure>
+</div>
+</div>
 </section>
 <section id="robustness-principle" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="robustness-principle"><span class="header-section-number">6</span> Robustness principle</h2>
