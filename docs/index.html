@@ -160,16 +160,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#pg-json" id="toc-pg-json" class="nav-link" data-scroll-target="#pg-json"><span class="header-section-number">4</span> PG-JSON</a></li>
   <li><a href="#pg-jsonl" id="toc-pg-jsonl" class="nav-link" data-scroll-target="#pg-jsonl"><span class="header-section-number">5</span> PG-JSONL</a></li>
   <li><a href="#robustness-principle" id="toc-robustness-principle" class="nav-link" data-scroll-target="#robustness-principle"><span class="header-section-number">6</span> Robustness principle</a></li>
-  <li><a href="#json-schemas" id="toc-json-schemas" class="nav-link" data-scroll-target="#json-schemas"><span class="header-section-number">7</span> JSON Schemas</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">8</span> References</a>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">7</span> References</a>
   <ul class="collapse">
-  <li><a href="#normative-references" id="toc-normative-references" class="nav-link" data-scroll-target="#normative-references"><span class="header-section-number">8.1</span> Normative References</a></li>
-  <li><a href="#informative-references" id="toc-informative-references" class="nav-link" data-scroll-target="#informative-references"><span class="header-section-number">8.2</span> Informative references</a></li>
+  <li><a href="#normative-references" id="toc-normative-references" class="nav-link" data-scroll-target="#normative-references"><span class="header-section-number">7.1</span> Normative References</a></li>
+  <li><a href="#informative-references" id="toc-informative-references" class="nav-link" data-scroll-target="#informative-references"><span class="header-section-number">7.2</span> Informative references</a></li>
   </ul></li>
-  <li><a href="#changes" id="toc-changes" class="nav-link" data-scroll-target="#changes"><span class="header-section-number">9</span> Changes</a>
+  <li><a href="#appendices" id="toc-appendices" class="nav-link" data-scroll-target="#appendices"><span class="header-section-number">8</span> Appendices</a>
   <ul class="collapse">
-  <li><a href="#version-1.0.0" id="toc-version-1.0.0" class="nav-link" data-scroll-target="#version-1.0.0"><span class="header-section-number">9.1</span> Version 1.0.0</a></li>
-  <li><a href="#version-0.3" id="toc-version-0.3" class="nav-link" data-scroll-target="#version-0.3"><span class="header-section-number">9.2</span> Version 0.3</a></li>
+  <li><a href="#json-schemas" id="toc-json-schemas" class="nav-link" data-scroll-target="#json-schemas"><span class="header-section-number">8.1</span> JSON Schemas</a></li>
+  <li><a href="#changes" id="toc-changes" class="nav-link" data-scroll-target="#changes"><span class="header-section-number">8.2</span> Changes</a></li>
+  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements"><span class="header-section-number">8.3</span> Acknowledgements</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -698,20 +698,10 @@ Note
 <li>removal of additional fields not defined in this specification</li>
 </ul>
 </section>
-<section id="json-schemas" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="json-schemas"><span class="header-section-number">7</span> JSON Schemas</h2>
-<p>The <a href="#pg-json">PG-JSON format</a> can be validated with a non-normative JSON Schema file <a href="schema/pg-json.json"><code>pg-json.json</code></a> in this repository. Rules not covered by the JSON schema include:</p>
-<ul>
-<li>nodes referenced in edges must be defined (no implicit nodes)</li>
-<li>node identifiers must be unique per graph</li>
-<li>edge identifiers must be unique per graph</li>
-</ul>
-<p>The <a href="#pg-jsonl">PG-JSONL format</a> can be validated with a non-normative JSON Schema file <a href="schema/pg-jsonl.json"><code>pg-jsonl.json</code></a> in this repository. Validation is limited in the same way as validation of PG-JSON with its JSON Schema.</p>
-</section>
-<section id="references" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="references"><span class="header-section-number">8</span> References</h2>
-<section id="normative-references" class="level3" data-number="8.1">
-<h3 data-number="8.1" class="anchored" data-anchor-id="normative-references"><span class="header-section-number">8.1</span> Normative References</h3>
+<section id="references" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="references"><span class="header-section-number">7</span> References</h2>
+<section id="normative-references" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="normative-references"><span class="header-section-number">7.1</span> Normative References</h3>
 <ul>
 <li><p>Bradner, S.: Key words for use in RFCs to Indicate Requirement Levels. BCP 14, RFC 2119, March 1997, <a href="http://www.rfc-editor.org/info/rfc2119" class="uri">http://www.rfc-editor.org/info/rfc2119</a>.</p></li>
 <li><p>Bray, T.: The JavaScript Object Notation (JSON) Data Interchange Format. RFC 8259, December 2017. <a href="https://tools.ietf.org/html/rfc8259" class="uri">https://tools.ietf.org/html/rfc8259</a></p></li>
@@ -720,8 +710,8 @@ Note
 <li><p>Yergeau, F.: UTF-8, a transformation format of ISO 10646. RFC 3629, November 2003. <a href="https://tools.ietf.org/html/rfc3629" class="uri">https://tools.ietf.org/html/rfc3629</a></p></li>
 </ul>
 </section>
-<section id="informative-references" class="level3" data-number="8.2">
-<h3 data-number="8.2" class="anchored" data-anchor-id="informative-references"><span class="header-section-number">8.2</span> Informative references</h3>
+<section id="informative-references" class="level3" data-number="7.2">
+<h3 data-number="7.2" class="anchored" data-anchor-id="informative-references"><span class="header-section-number">7.2</span> Informative references</h3>
 <ul>
 <li><p><a href="https://pg-format.github.io/">Property Graph Exchange Format Homepage</a></p></li>
 <li><p><a href="https://github.com/pg-format/pg-test-suite">PG Test Suite</a></p></li>
@@ -731,17 +721,34 @@ Note
 </ul>
 </section>
 </section>
-<section id="changes" class="level2" data-number="9">
-<h2 data-number="9" class="anchored" data-anchor-id="changes"><span class="header-section-number">9</span> Changes</h2>
+<section id="appendices" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="appendices"><span class="header-section-number">8</span> Appendices</h2>
+<section id="json-schemas" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="json-schemas"><span class="header-section-number">8.1</span> JSON Schemas</h3>
+<p>The <a href="#pg-json">PG-JSON format</a> can be validated with a non-normative JSON Schema file <a href="schema/pg-json.json"><code>pg-json.json</code></a> in this repository. Rules not covered by the JSON schema include:</p>
+<ul>
+<li>nodes referenced in edges must be defined (no implicit nodes)</li>
+<li>node identifiers must be unique per graph</li>
+<li>edge identifiers must be unique per graph</li>
+</ul>
+<p>The <a href="#pg-jsonl">PG-JSONL format</a> can be validated with a non-normative JSON Schema file <a href="schema/pg-jsonl.json"><code>pg-jsonl.json</code></a> in this repository. Validation is limited in the same way as validation of PG-JSON with its JSON Schema.</p>
+</section>
+<section id="changes" class="level3" data-number="8.2">
+<h3 data-number="8.2" class="anchored" data-anchor-id="changes"><span class="header-section-number">8.2</span> Changes</h3>
 <p>This document is managed in a revision control system at <a href="https://github.com/pg-format/specification" class="uri">https://github.com/pg-format/specification</a>.</p>
-<section id="version-1.0.0" class="level3" data-number="9.1">
-<h3 data-number="9.1" class="anchored" data-anchor-id="version-1.0.0"><span class="header-section-number">9.1</span> Version 1.0.0</h3>
+<section id="version-1.0.0" class="level4" data-number="8.2.1">
+<h4 data-number="8.2.1" class="anchored" data-anchor-id="version-1.0.0"><span class="header-section-number">8.2.1</span> Version 1.0.0</h4>
 <p><em>not published yet</em></p>
 <p>Introduced comments, line folding, edge identifiers. Aligned property values with JSON syntax. Added more formal rules for quoted strings and unquoted identifiers. Added PG-JSONL. Changed node identifiers to be strings.</p>
 </section>
-<section id="version-0.3" class="level3" data-number="9.2">
-<h3 data-number="9.2" class="anchored" data-anchor-id="version-0.3"><span class="header-section-number">9.2</span> Version 0.3</h3>
+<section id="version-0.3" class="level4" data-number="8.2.2">
+<h4 data-number="8.2.2" class="anchored" data-anchor-id="version-0.3"><span class="header-section-number">8.2.2</span> Version 0.3</h4>
 <p>Less formal specification published in 2019. See <a href="https://pg-format.readthedocs.io/en/0.3/contents/pg-format.html">latest version from 2020</a>.</p>
+</section>
+</section>
+<section id="acknowledgements" class="level3" data-number="8.3">
+<h3 data-number="8.3" class="anchored" data-anchor-id="acknowledgements"><span class="header-section-number">8.3</span> Acknowledgements</h3>
+<p>Many thanks to Shota Matsumoto (<a href="https://orcid.org/0000-0002-8243-7163">ORCID</a>) for his contribution to the first version of PG Format.</p>
 </section>
 </section>
 

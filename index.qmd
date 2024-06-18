@@ -471,16 +471,6 @@ specification of PG-JSON and/or PG-JSONL to a valid form, for instance by:
 - mapping of numeric node identifiers and edge identifiers to strings
 - removal of additional fields not defined in this specification
 
-## JSON Schemas
-
-The [PG-JSON format](#pg-json) can be validated with a non-normative JSON Schema file [`pg-json.json`](schema/pg-json.json) in this repository. Rules not covered by the JSON schema include:
-
-- nodes referenced in edges must be defined (no implicit nodes)
-- node identifiers must be unique per graph
-- edge identifiers must be unique per graph
-
-The [PG-JSONL format](#pg-jsonl) can be validated with a non-normative JSON Schema file [`pg-jsonl.json`](schema/pg-jsonl.json) in this repository. Validation is limited in the same way as validation of PG-JSON with its JSON Schema.
-
 ## References
 
 ### Normative References
@@ -520,18 +510,36 @@ The [PG-JSONL format](#pg-jsonl) can be validated with a non-normative JSON Sche
 - Chiba, H., Yamanaka, R., Matsumoto, S.:
   [Property Graph Exchange Format](http://arxiv.org/abs/1907.03936). 2019
 
-## Changes
+## Appendices
+
+### JSON Schemas
+
+The [PG-JSON format](#pg-json) can be validated with a non-normative JSON Schema file [`pg-json.json`](schema/pg-json.json) in this repository. Rules not covered by the JSON schema include:
+
+- nodes referenced in edges must be defined (no implicit nodes)
+- node identifiers must be unique per graph
+- edge identifiers must be unique per graph
+
+The [PG-JSONL format](#pg-jsonl) can be validated with a non-normative JSON Schema file [`pg-jsonl.json`](schema/pg-jsonl.json) in this repository. Validation is limited in the same way as validation of PG-JSON with its JSON Schema.
+
+### Changes
 
 This document is managed in a revision control system at <https://github.com/pg-format/specification>.
 
-### Version 1.0.0 
+#### Version 1.0.0 
 
 *not published yet*
 
 Introduced comments, line folding, edge identifiers. Aligned property values with JSON syntax. Added more formal rules for quoted strings and unquoted identifiers. Added PG-JSONL. Changed node identifiers to be strings.
 
-### Version 0.3
+#### Version 0.3
 
 Less formal specification published in 2019. See
 [latest version from 2020](https://pg-format.readthedocs.io/en/0.3/contents/pg-format.html).
+
+### Acknowledgements
+
+Many thanks to Shota Matsumoto ([ORCID](https://orcid.org/0000-0002-8243-7163)) for his contribution to the first version of PG Format.
+
+
 
