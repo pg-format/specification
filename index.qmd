@@ -6,17 +6,15 @@ authors:
   affiliations:
   - name: Database Center for Life Science (DBCLS)
 - name: Ryota Yamanaka
-#  orcid: ???
   affiliations:
   - name: Meer Consulting Group
 - name: Jakob Voß
   orcid: 0000-0002-7613-4123
   affiliations:
    - name: Verbundzentrale des GBV (VZG)
-#- name: Shota Matsumoto
-#  orcid: 0000-0002-8243-7163
-#  affiliations:
-#  - name: Showa Pharmaceutical University
+- name: Shota Matsumoto
+  affiliations:
+  - name: Lifematics Inc.
 ---
 
 ::: {.callout-note}
@@ -568,10 +566,4 @@ Introduced comments, line folding, edge identifiers. Aligned property values wit
 
 Less formal specification published in 2019. See
 [latest version from 2020](https://pg-format.readthedocs.io/en/0.3/contents/pg-format.html).
-
-### Acknowledgements
-
-Many thanks to Shota Matsumoto ([ORCID](https://orcid.org/0000-0002-8243-7163)) for his contribution to the first version of PG Format.
-
-
 
