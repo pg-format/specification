@@ -9,6 +9,7 @@ authors:
   orcid: 0000-0002-7613-4123
   affiliations:
    - name: Verbundzentrale des GBV (VZG)
+---
 
 ::: {.callout-note}
 
@@ -400,9 +401,61 @@ a :x :y
 
 ### Grammar
 
-::: {.callout-note}
+The formal grammar of PG Format is specified in [EBNF Notation] used in the
+specification of XML, with the addition of negative lookahead operator (`!A
+B` matches any expression `B` that does not start with expression `A`) and the
+terminal symbol `END` denoting the end of a document.
 
-*A formal grammar of PG Format will be provided*
+:::{.column-screen-inset-right}
+
+~~~ebnf
+/* 3.1 Basic Structure */
+PG             ::= ( Empty LineBreak | Statement ( LineBreak | END ) )* Empty 
+Statement      ::= ( Edge | Node ) ( DW Label )* ( DW Property )* Empty
+Empty          ::= Spaces? Comment?
+Identifier     ::= QuotedNonEmpty | UnquotedStart UnquotedChar*
+
+/* 3.2 Identifiers */
+UnquotedChar   ::= [^#x00-#x20<>"{}|^`\]
+UnquotedStart  ::= ![:#,-] UnquotedChar
+Node           ::= Identifier
+
+/* 3.3 Nodes & 3.4 Edges */
+Edge           ::= ( EdgeIdentifier )? Identifier DW Direction DW Identifier
+EdgeIdentifier ::= QuotedKey DW | UnquotedKey !"#" DW
+Direction      ::= "--" | "->"
+Label          ::= ":" Spaces? Identifier
+
+/* 3.5 Labels */
+Property       ::= Key ValueList
+
+/* 3.6 Properties */
+Key            ::= QuotedKey | UnquotedKey DW | UnquotedStart (!":" UnquotedChar)* ":"
+QuotedKey      ::= QuotedNonEmpty ":"
+UnquotedKey    ::= UnquotedStart ( ( !":" UnquotedChar )* ":" )+
+ValueList      ::= DW? Value ( DW? "," DW? Value )*
+Value          ::= Number | Boolean | QuotedString | UnquotedValue
+
+/* 3.6.1 Property Values */
+Number         ::= "-"? ("0" | [1-9] [0-9]*) ( "." [0-9]+ )? ([eE] [+-]? [0-9]+)?
+Boolean        ::= "true" | "false"
+UnquotedValue  ::= UnquotedStart (!"," UnquotedChar)*
+QuotedString   ::= "'" SingleQuoted* "'" | '"' DoubleQuoted* '"'
+
+/* 3.7 Quoted Strings */
+QuotedNonEmpty ::= "'" SingleQuoted+ "'" | '"' DoubleQuoted+ '"'
+SingleQuoted   ::= Unescaped | '"' | Escaped
+DoubleQuoted   ::= Unescaped | "'" | Escaped
+Unescaped      ::= [^#x00-#x08#x0B#x0C#x0E-#x1F"'\]
+Escaped        ::= "\" ( '"' | "'" | "\" | "/" | "b"  | "f"  | "n"  | "r"  | "t"  | "u" Codepoint )
+Codepoint      ::= [0-9a-fA-Z] [0-9a-fA-Z] [0-9a-fA-Z] [0-9a-fA-Z]
+LineBreak      ::= [#x0A] | [#x0D] [#x0A]?
+
+/* 3.8 Whitespace */
+Spaces         ::= [#x20#x09]+
+Comment        ::= "#" [^#x0D#x0A]* 
+DW             ::= (Empty LineBreak)* Spaces
+~~~
 
 :::
 
@@ -502,22 +555,28 @@ specification of PG-JSON and/or PG-JSONL to a valid form, for instance by:
 [RFC 3629]: https://tools.ietf.org/html/rfc3629
 [RFC 8174]: https://tools.ietf.org/html/rfc8174
 [RFC 8259]: https://tools.ietf.org/html/rfc8259
+[EBNF Notation]: https://www.w3.org/TR/REC-xml/#sec-notation
 
-- Bradner, S.: Key words for use in RFCs to Indicate Requirement Levels.
+- Bradner, S.: _Key words for use in RFCs to Indicate Requirement Levels_.
   BCP 14, RFC 2119, March 1997,
   <http://www.rfc-editor.org/info/rfc2119>.
               
-- Bray, T.: The JavaScript Object Notation (JSON) Data Interchange Format.
+- Bray, T.: _The JavaScript Object Notation (JSON) Data Interchange Format_.
   RFC 8259, December 2017. <https://tools.ietf.org/html/rfc8259>
 
-- Leiba, B.:  Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words.
+- Bray, T. et al: _Section 6 (Simple Extended Backus-Naur Form (EBNF) notation)_. 
+  In: _W3C Extensible Markup Language (XML) 1.0 (Fifth Edition)_.
+  November 2008.
+  <https://www.w3.org/TR/REC-xml/#sec-notation>
+
+- Leiba, B.:  _Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words_.
   BCP 14, RFC 8174, May 2017,
   <http://www.rfc-editor.org/info/rfc8174>.
   
-- The Unicode Consortium: The Unicode Standard.
+- The Unicode Consortium: _The Unicode Standard_.
   <http://www.unicode.org/versions/latest/>
 
-- Yergeau, F.: UTF-8, a transformation format of ISO 10646.
+- Yergeau, F.: _UTF-8, a transformation format of ISO 10646._
   RFC 3629, November 2003. <https://tools.ietf.org/html/rfc3629>
 
 ### Informative references

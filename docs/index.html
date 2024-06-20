@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.44">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -72,9 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="style.css">
 <meta name="citation_title" content="Property Graph Exchange Format (PG)">
 <meta name="citation_author" content="Hirokazu Chiba">
-<meta name="citation_author" content="Ryota Yamanaka">
 <meta name="citation_author" content="Jakob Voß">
-<meta name="citation_author" content="Shota Matsumoto">
 <meta name="citation_language" content="en">
 </head>
 
@@ -102,27 +100,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
                       </p>
                   </div>
                       <div class="quarto-title-meta-contents">
-            <p class="author">Ryota Yamanaka </p>
-          </div>
-                <div class="quarto-title-meta-contents">
-                    <p class="affiliation">
-                        Meer Consulting Group
-                      </p>
-                  </div>
-                      <div class="quarto-title-meta-contents">
             <p class="author">Jakob Voß <a href="https://orcid.org/0000-0002-7613-4123" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
           </div>
                 <div class="quarto-title-meta-contents">
                     <p class="affiliation">
                         Verbundzentrale des GBV (VZG)
-                      </p>
-                  </div>
-                      <div class="quarto-title-meta-contents">
-            <p class="author">Shota Matsumoto </p>
-          </div>
-                <div class="quarto-title-meta-contents">
-                    <p class="affiliation">
-                        Lifematics Inc.
                       </p>
                   </div>
                     </div>
@@ -178,11 +160,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#json-schemas" id="toc-json-schemas" class="nav-link" data-scroll-target="#json-schemas"><span class="header-section-number">8.1</span> JSON Schemas</a></li>
   <li><a href="#changes" id="toc-changes" class="nav-link" data-scroll-target="#changes"><span class="header-section-number">8.2</span> Changes</a></li>
+  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements"><span class="header-section-number">8.3</span> Acknowledgements</a></li>
   </ul></li>
   </ul>
 </nav>
 </div>
-<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
 </div>
 <main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
@@ -223,7 +206,7 @@ Note
 <p>A <strong>property graph</strong> consists of <strong>nodes</strong> and <strong>edges</strong> between these nodes. Each node has a unique <strong>node identifier</strong>. Each edge is either directed or undirected and can have an optional <strong>edge identifier</strong>. Each of the nodes and edges can have <strong>properties</strong> and <strong>labels</strong>. Properties are mappings from <strong>keys</strong> to non-empty lists of <strong>values</strong>. Node identifiers, labels, and keys are non-empty Unicode strings. A value is a Unicode string, a boolean value, or a number as defined by <a href="https://tools.ietf.org/html/rfc8259">RFC 8259</a>.</p>
 <p>Extended graph features not being part of this data model include graph attributes, hierarchies, hyper-edges and semantics of individual labels and property keys.</p>
 </section>
-<section id="pg-format" class="level2" data-number="3">
+<section id="pg-format" class="level2 page-columns page-full" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="pg-format"><span class="header-section-number">3</span> PG Format</h2>
 <p>A <strong>PG Format</strong> document allows writing down a property graph in a compact textual form. A PG Format document is a Unicode string that conforms to <a href="#grammar">grammar</a> and rules defined in this specification.</p>
 <section id="basic-structure" class="level3" data-number="3.1">
@@ -235,7 +218,7 @@ Note
 <h3 data-number="3.2" class="anchored" data-anchor-id="identifiers"><span class="header-section-number">3.2</span> Identifiers</h3>
 <p>An <strong>identifier</strong> is a string used to uniquely identify a <a href="#nodes">node</a>, an <a href="#edges">edge</a>, a <a href="#labels">label</a>, or the name of a <a href="#properties">property</a>. An identifier can be given as a <a href="#quoted-strings">quoted string</a> or as an unquoted identifier.</p>
 <p>An <strong>unquoted identifier</strong> is a non-empty string not including control codes <code>U+0000</code> to <code>U+0020</code> (tabulator, line breaks, space…), nor any of the characters “<code>&lt;</code>” (<code>U+003C</code>), “<code>&gt;</code>” (<code>U+003E</code>), ‘<code>"</code>’ (<code>U+0022</code>), “<code>{</code>” (<code>U+007B</code>), “<code>}</code>” (<code>U+007D</code>), “<code>|</code>” (<code>U+007C</code>), “<code>\</code>” (<code>U+005C</code>), “<code>^</code>” (<code>U+005E</code>), and “<code>`</code>” (<code>U+0060</code>).<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<div id="lst-identifiers" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-identifiers" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-identifiers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;1: Several unquoted identifiers
@@ -251,7 +234,7 @@ Example&nbsp;1: Several unquoted identifiers
 </figure>
 </div>
 <p>An unquoted identifier MUST NOT start with a colon (<code>U+003A</code>), comma (<code>U+002C</code>), or minus (<code>U+002D</code>).</p>
-<div id="lst-invalid-id" class="pg invalid listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-invalid-id" class="pg invalid listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-invalid-id-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;2: Invalid unquoted identifiers
@@ -273,7 +256,7 @@ Example&nbsp;2: Invalid unquoted identifiers
 <li>an OPTIONAL list of <a href="#labels">labels</a></li>
 <li>an OPTIONAL list of <a href="#properties">properties</a></li>
 </ul>
-<div id="lst-nodes" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-nodes" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-nodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;3: Some node statements
@@ -288,7 +271,7 @@ Example&nbsp;3: Some node statements
 <section id="node-merging" class="level4" data-number="3.3.1">
 <h4 data-number="3.3.1" class="anchored" data-anchor-id="node-merging"><span class="header-section-number">3.3.1</span> Node merging</h4>
 <p>A node can be defined with multiple statements having the same node identifier: a node is <strong>merged</strong> with an existing node by appending labels and property values.</p>
-<div id="lst-node-merging-1" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-node-merging-1" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-node-merging-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;4: One node defined by multiple statements
@@ -299,7 +282,7 @@ Example&nbsp;4: One node defined by multiple statements
 </div>
 </figure>
 </div>
-<div id="lst-node-merging-2" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-node-merging-2" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-node-merging-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;5: Same node defined by one statement
@@ -313,7 +296,7 @@ Example&nbsp;5: Same node defined by one statement
 <section id="implicit-nodes" class="level4" data-number="3.3.2">
 <h4 data-number="3.3.2" class="anchored" data-anchor-id="implicit-nodes"><span class="header-section-number">3.3.2</span> Implicit nodes</h4>
 <p>Nodes can also be defined implicitly as part of an <a href="#edges">edge</a>: node identifiers referenced in edges imply the existence of nodes with these identifiers.</p>
-<div id="lst-implicit-nodes" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-implicit-nodes" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-implicit-nodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;6: Simple graph with two nodes and one edge
@@ -323,7 +306,7 @@ Example&nbsp;6: Simple graph with two nodes and one edge
 </div>
 </figure>
 </div>
-<div id="lst-explicit-nodes" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-explicit-nodes" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-explicit-nodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;7: Same graph with explicit node statements
@@ -348,7 +331,7 @@ Example&nbsp;7: Same graph with explicit node statements
 <li>an OPTIONAL list of <a href="#labels">labels</a></li>
 <li>an OPTIONAL list of <a href="#properties">properties</a></li>
 </ul>
-<div id="lst-edges" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-edges" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-edges-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;8: Some edge statements
@@ -361,7 +344,7 @@ Example&nbsp;8: Some edge statements
 </figure>
 </div>
 <p>The following statement does not define an edge but a <a href="#nodes">node</a> with the identifier “<code>a--b</code>”:</p>
-<div id="lst-no-edge-but-node" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-no-edge-but-node" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-no-edge-but-node-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;9: Not an edge statement
@@ -372,7 +355,7 @@ Example&nbsp;9: Not an edge statement
 </figure>
 </div>
 <p>The following is not valid:</p>
-<div id="lst-invalid-edge" class="pg invalid listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-invalid-edge" class="pg invalid listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-invalid-edge-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;10: Invalid edge statement
@@ -385,7 +368,7 @@ Example&nbsp;10: Invalid edge statement
 <section id="edge-identifiers" class="level4" data-number="3.4.1">
 <h4 data-number="3.4.1" class="anchored" data-anchor-id="edge-identifiers"><span class="header-section-number">3.4.1</span> Edge identifiers</h4>
 <p>An edge identifier is an <a href="#identifiers">identifier</a> as the first element of an edge statement, directly followed by a colon (<code>U+003A</code>).</p>
-<div id="lst-multi-edges-with-id" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-multi-edges-with-id" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-multi-edges-with-id-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;11: Graph with two equivalent edges, differentiated by edge identifiers
@@ -397,7 +380,7 @@ Example&nbsp;11: Graph with two equivalent edges, differentiated by edge identif
 </figure>
 </div>
 <p>Colons are not forbidden in edge identifiers:</p>
-<div id="lst-colon-in-edge-id" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-colon-in-edge-id" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-colon-in-edge-id-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;12: Edge identifiers with colon
@@ -409,7 +392,7 @@ Example&nbsp;12: Edge identifiers with colon
 </figure>
 </div>
 <p>Edge identifiers MUST NOT be repeated.</p>
-<div id="lst-invalid-edge-ids" class="pg invalid listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-invalid-edge-ids" class="pg invalid listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-invalid-edge-ids-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;13: The second statement is invalid because of repeated edge identifier
@@ -421,7 +404,7 @@ Example&nbsp;13: The second statement is invalid because of repeated edge identi
 </figure>
 </div>
 <p>No space is allowed between the edge identifier and its colon:</p>
-<div id="lst-invalid-edge-id" class="pg invalid listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-invalid-edge-id" class="pg invalid listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-invalid-edge-id-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;14: Invalid statement
@@ -439,7 +422,7 @@ Example&nbsp;14: Invalid statement
 <section id="loops" class="level4" data-number="3.4.3">
 <h4 data-number="3.4.3" class="anchored" data-anchor-id="loops"><span class="header-section-number">3.4.3</span> Loops</h4>
 <p>Edges can connect a node to itself.</p>
-<div id="lst-lops" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-lops" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-lops-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;15: Directed and undirected loop
@@ -454,7 +437,7 @@ Example&nbsp;15: Directed and undirected loop
 <section id="multi-edges" class="level4" data-number="3.4.4">
 <h4 data-number="3.4.4" class="anchored" data-anchor-id="multi-edges"><span class="header-section-number">3.4.4</span> Multi-edges</h4>
 <p>The Property Graph Data Model allows for multiple edges between the same node.</p>
-<div id="lst-multi-edges" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-multi-edges" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-multi-edges-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;16: Graph with two indistinguishable edges
@@ -472,7 +455,7 @@ Example&nbsp;16: Graph with two indistinguishable edges
 <h3 data-number="3.5" class="anchored" data-anchor-id="labels"><span class="header-section-number">3.5</span> Labels</h3>
 <p>A label is an <a href="#identifiers">identifier</a> following a colon (<code>U+003A</code>). <a href="#whitespace">Spaces</a> between colon and label identifier are OPTIONAL but NOT RECOMMENDED.</p>
 <p>Labels of a node or an edge are unique: repeated labels are ignored. Applications SHOULD preserve the order of labels of a node or an edge.</p>
-<div id="lst-labels" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-labels" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-labels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;17: Repeated labels on same node or edge are ignored
@@ -485,7 +468,7 @@ Example&nbsp;17: Repeated labels on same node or edge are ignored
 </figure>
 </div>
 <p>Colons are not forbidden in labels:</p>
-<div id="lst-colon-in-labels" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-colon-in-labels" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-colon-in-labels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;18: Labels with colons
@@ -506,7 +489,7 @@ Example&nbsp;18: Labels with colons
 <li>a non-empty list of <strong><a href="#property-values">property values</a></strong>, separated by comma (<code>U+002C</code>)</li>
 </ul>
 <p>Each property value MAY be preceded and followed by <a href="#whitespace">delimiting whitespace</a>. If the property key is an unquoted identifier and no delimiting whitespace is given before the first value, then the property key MUST NOT contain a colon.</p>
-<div id="lst-properties" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-properties" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-properties-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;19: Property with optional spaces and/or whitespace
@@ -528,7 +511,7 @@ Example&nbsp;19: Property with optional spaces and/or whitespace
 </div>
 </figure>
 </div>
-<div id="lst-invalid-properties" class="pg invalid listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-invalid-properties" class="pg invalid listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-invalid-properties-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;20: Invalid property
@@ -552,7 +535,7 @@ Example&nbsp;20: Invalid property
 </ul></li>
 </ul>
 <p>The data type of a property value in PG Format is either string, or number, or boolean.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Applications MAY internally map these types to other type systems. Values of the same property are allowed to have different data types.</p>
-<div id="lst-property-values" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-property-values" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-property-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;21: Property values
@@ -568,7 +551,7 @@ Example&nbsp;21: Property values
 <section id="property-merging" class="level4" data-number="3.6.2">
 <h4 data-number="3.6.2" class="anchored" data-anchor-id="property-merging"><span class="header-section-number">3.6.2</span> Property merging</h4>
 <p>Value lists of properties of the same property key are concatenated. Value lists are no sets: the same value can be included multiple times.</p>
-<div id="lst-property-values" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-property-values" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-property-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;22: Three nodes with same properties
@@ -593,7 +576,7 @@ Example&nbsp;22: Three nodes with same properties
 <li>control characters <code>U+0000</code> through <code>U+001F</code> except line feed (<code>U+000A</code>), carriage return (<code>U+000D</code>), and tabular (<code>U+0009</code>)</li>
 </ul>
 <p>All characters can be escaped as defined by JSON specification (<a href="https://tools.ietf.org/html/rfc8259">RFC 8259</a>, section 7) with the addition of the two-character escape sequence <code>\'</code> to escape an apostrophe. Quoted strings in PG Format further differ from JSON by string quoting with apostrophe in addition to quotation mark and by allowing unquoted line feed, carriage return, and tabular.</p>
-<div id="lst-strings" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-strings" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-strings-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;23: The same string given in multiple quoted forms
@@ -606,7 +589,7 @@ Example&nbsp;23: The same string given in multiple quoted forms
 </div>
 </figure>
 </div>
-<div id="lst-invalid-string-escapes" class="pg invalid listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-invalid-string-escapes" class="pg invalid listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-invalid-string-escapes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;24: Invalid string escape sequences
@@ -623,7 +606,7 @@ Example&nbsp;24: Invalid string escape sequences
 <p><strong>Spaces</strong> are a non-empty sequence of space (<code>U+0020</code>) and/or tabular (<code>U+0009</code>).</p>
 <p>A <strong>comment</strong> begins with a hash (<code>#</code> = <code>U+0023</code>) and it ends before the next <a href="#whitespace">line break</a> or at the end of the document.</p>
 <p><strong>Delimiting whitespace</strong> separates elements of a statement. Delimiting whitespace consists of an optional sequence of <a href="#whitespace">spaces</a>, <a href="#whitespace">comment</a>, and/or <a href="#whitespace">line breaks</a> and it ends with <a href="#whitespace">spaces</a>. The inclusion of line breaks in delimiting whitespace is also called <em>line folding</em>.</p>
-<div id="lst-line-folding" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-line-folding" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-line-folding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;25: Line folding
@@ -636,7 +619,7 @@ Example&nbsp;25: Line folding
 </div>
 </figure>
 </div>
-<div id="lst-line-folding" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-line-folding" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-line-folding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;26: Same graph as above
@@ -647,20 +630,56 @@ Example&nbsp;26: Same graph as above
 </figure>
 </div>
 </section>
-<section id="grammar" class="level3" data-number="3.9">
+<section id="grammar" class="level3 page-columns page-full" data-number="3.9">
 <h3 data-number="3.9" class="anchored" data-anchor-id="grammar"><span class="header-section-number">3.9</span> Grammar</h3>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><em>A formal grammar of PG Format will be provided</em></p>
-</div>
+<p>The formal grammar of PG Format is specified in <a href="https://www.w3.org/TR/REC-xml/#sec-notation">EBNF Notation</a> used in the specification of XML, with the addition of negative lookahead operator (<code>!A B</code> matches any expression <code>B</code> that does not start with expression <code>A</code>) and the terminal symbol <code>END</code> denoting the end of a document.</p>
+<div class="column-screen-inset-right">
+<div class="sourceCode" id="cb1"><pre class="sourceCode ebnf"><code class="sourceCode ebnf"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* 3.1 Basic Structure */</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">PG</span>             <span class="cf">::=</span> <span class="cf">(</span> <span class="fu">Empty</span> <span class="fu">LineBreak</span> <span class="cf">|</span> <span class="fu">Statement</span> <span class="cf">(</span> <span class="fu">LineBreak</span> <span class="cf">|</span> <span class="fu">END</span> <span class="cf">)</span> <span class="cf">)*</span> <span class="fu">Empty</span> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">Statement</span>      <span class="cf">::=</span> <span class="cf">(</span> <span class="fu">Edge</span> <span class="cf">|</span> <span class="fu">Node</span> <span class="cf">)</span> <span class="cf">(</span> <span class="fu">DW</span> <span class="fu">Label</span> <span class="cf">)*</span> <span class="cf">(</span> <span class="fu">DW</span> <span class="fu">Property</span> <span class="cf">)*</span> <span class="fu">Empty</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dt">Empty</span>          <span class="cf">::=</span> <span class="fu">Spaces</span><span class="cf">?</span> <span class="fu">Comment</span><span class="cf">?</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="dt">Identifier</span>     <span class="cf">::=</span> <span class="fu">QuotedNonEmpty</span> <span class="cf">|</span> <span class="fu">UnquotedStart</span> <span class="fu">UnquotedChar</span><span class="cf">*</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">/* 3.2 Identifiers */</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="dt">UnquotedChar</span>   <span class="cf">::=</span> <span class="st">[^#x00-#x20&lt;&gt;"{}|^`\]</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="dt">UnquotedStart</span>  <span class="cf">::=</span> <span class="cf">!</span><span class="st">[:#,-]</span> <span class="fu">UnquotedChar</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="dt">Node</span>           <span class="cf">::=</span> <span class="fu">Identifier</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">/* 3.3 Nodes &amp; 3.4 Edges */</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="dt">Edge</span>           <span class="cf">::=</span> <span class="cf">(</span> <span class="fu">EdgeIdentifier</span> <span class="cf">)?</span> <span class="fu">Identifier</span> <span class="fu">DW</span> <span class="fu">Direction</span> <span class="fu">DW</span> <span class="fu">Identifier</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="dt">EdgeIdentifier</span> <span class="cf">::=</span> <span class="fu">QuotedKey</span> <span class="fu">DW</span> <span class="cf">|</span> <span class="fu">UnquotedKey</span> <span class="cf">!</span><span class="st">"#"</span> <span class="fu">DW</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="dt">Direction</span>      <span class="cf">::=</span> <span class="st">"--"</span> <span class="cf">|</span> <span class="st">"-&gt;"</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="dt">Label</span>          <span class="cf">::=</span> <span class="st">":"</span> <span class="fu">Spaces</span><span class="cf">?</span> <span class="fu">Identifier</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">/* 3.5 Labels */</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="dt">Property</span>       <span class="cf">::=</span> <span class="fu">Key</span> <span class="fu">ValueList</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">/* 3.6 Properties */</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="dt">Key</span>            <span class="cf">::=</span> <span class="fu">QuotedKey</span> <span class="cf">|</span> <span class="fu">UnquotedKey</span> <span class="fu">DW</span> <span class="cf">|</span> <span class="fu">UnquotedStart</span> <span class="cf">(!</span><span class="st">":"</span> <span class="fu">UnquotedChar</span><span class="cf">)*</span> <span class="st">":"</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="dt">QuotedKey</span>      <span class="cf">::=</span> <span class="fu">QuotedNonEmpty</span> <span class="st">":"</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="dt">UnquotedKey</span>    <span class="cf">::=</span> <span class="fu">UnquotedStart</span> <span class="cf">(</span> <span class="cf">(</span> <span class="cf">!</span><span class="st">":"</span> <span class="fu">UnquotedChar</span> <span class="cf">)*</span> <span class="st">":"</span> <span class="cf">)+</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="dt">ValueList</span>      <span class="cf">::=</span> <span class="fu">DW</span><span class="cf">?</span> <span class="fu">Value</span> <span class="cf">(</span> <span class="fu">DW</span><span class="cf">?</span> <span class="st">","</span> <span class="fu">DW</span><span class="cf">?</span> <span class="fu">Value</span> <span class="cf">)*</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="dt">Value</span>          <span class="cf">::=</span> <span class="fu">Number</span> <span class="cf">|</span> <span class="fu">Boolean</span> <span class="cf">|</span> <span class="fu">QuotedString</span> <span class="cf">|</span> <span class="fu">UnquotedValue</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">/* 3.6.1 Property Values */</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="dt">Number</span>         <span class="cf">::=</span> <span class="st">"-"</span><span class="cf">?</span> <span class="cf">(</span><span class="st">"0"</span> <span class="cf">|</span> <span class="st">[1-9]</span> <span class="st">[0-9]</span><span class="cf">*)</span> <span class="cf">(</span> <span class="st">"."</span> <span class="st">[0-9]</span><span class="cf">+</span> <span class="cf">)?</span> <span class="cf">(</span><span class="st">[eE]</span> <span class="st">[+-]</span><span class="cf">?</span> <span class="st">[0-9]</span><span class="cf">+)?</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="dt">Boolean</span>        <span class="cf">::=</span> <span class="st">"true"</span> <span class="cf">|</span> <span class="st">"false"</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="dt">UnquotedValue</span>  <span class="cf">::=</span> <span class="fu">UnquotedStart</span> <span class="cf">(!</span><span class="st">","</span> <span class="fu">UnquotedChar</span><span class="cf">)*</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="dt">QuotedString</span>   <span class="cf">::=</span> <span class="st">"'"</span> <span class="fu">SingleQuoted</span><span class="cf">*</span> <span class="st">"'"</span> <span class="cf">|</span> <span class="st">'"'</span> <span class="fu">DoubleQuoted</span><span class="cf">*</span> <span class="st">'"'</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co">/* 3.7 Quoted Strings */</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="dt">QuotedNonEmpty</span> <span class="cf">::=</span> <span class="st">"'"</span> <span class="fu">SingleQuoted</span><span class="cf">+</span> <span class="st">"'"</span> <span class="cf">|</span> <span class="st">'"'</span> <span class="fu">DoubleQuoted</span><span class="cf">+</span> <span class="st">'"'</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="dt">SingleQuoted</span>   <span class="cf">::=</span> <span class="fu">Unescaped</span> <span class="cf">|</span> <span class="st">'"'</span> <span class="cf">|</span> <span class="fu">Escaped</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="dt">DoubleQuoted</span>   <span class="cf">::=</span> <span class="fu">Unescaped</span> <span class="cf">|</span> <span class="st">"'"</span> <span class="cf">|</span> <span class="fu">Escaped</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="dt">Unescaped</span>      <span class="cf">::=</span> <span class="st">[^#x00-#x08#x0B#x0C#x0E-#x1F"'\]</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="dt">Escaped</span>        <span class="cf">::=</span> <span class="st">"\"</span> <span class="cf">(</span> <span class="st">'"'</span> <span class="cf">|</span> <span class="st">"'"</span> <span class="cf">|</span> <span class="st">"\"</span> <span class="cf">|</span> <span class="st">"/"</span> <span class="cf">|</span> <span class="st">"b"</span>  <span class="cf">|</span> <span class="st">"f"</span>  <span class="cf">|</span> <span class="st">"n"</span>  <span class="cf">|</span> <span class="st">"r"</span>  <span class="cf">|</span> <span class="st">"t"</span>  <span class="cf">|</span> <span class="st">"u"</span> <span class="fu">Codepoint</span> <span class="cf">)</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="dt">Codepoint</span>      <span class="cf">::=</span> <span class="st">[0-9a-fA-Z]</span> <span class="st">[0-9a-fA-Z]</span> <span class="st">[0-9a-fA-Z]</span> <span class="st">[0-9a-fA-Z]</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="dt">LineBreak</span>      <span class="cf">::=</span> <span class="st">[#x0A]</span> <span class="cf">|</span> <span class="st">[#x0D]</span> <span class="st">[#x0A]</span><span class="cf">?</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="co">/* 3.8 Whitespace */</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="dt">Spaces</span>         <span class="cf">::=</span> <span class="st">[#x20#x09]</span><span class="cf">+</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="dt">Comment</span>        <span class="cf">::=</span> <span class="st">"#"</span> <span class="st">[^#x0D#x0A]</span><span class="cf">*</span> </span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="dt">DW</span>             <span class="cf">::=</span> <span class="cf">(</span><span class="fu">Empty</span> <span class="fu">LineBreak</span><span class="cf">)*</span> <span class="fu">Spaces</span></span></code></pre></div>
 </div>
 </section>
 </section>
@@ -685,7 +704,7 @@ Note
 <li><code>to</code> an identifier of the target node from <code>nodes</code> array</li>
 <li><code>labels</code> and <code>properties</code> as defined above at nodes</li>
 </ul>
-<div id="lst-json-example" class="json listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-json-example" class="json listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-json-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;27: Example graph in PG-JSON
@@ -722,7 +741,7 @@ Example&nbsp;27: Example graph in PG-JSON
 </ul>
 <p>Node objects SHOULD be given before their node identifiers are referenced in an edge object, but applications MAY also create implicit node objects for these cases. Applications MAY allow multiple node objects with identical node identifier in PG-JSONL but they MUST make clear whether nodes with repeated identifiers are ignored, merged into existing nodes, or replace existing nodes.</p>
 <div class="column-screen-inset-right">
-<div id="lst-json-example" class="json listing quarto-float quarto-figure quarto-figure-left anchored">
+<div id="lst-json-example" class="json listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-json-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;28: Example graph in PG-JSONL
@@ -753,11 +772,12 @@ Example&nbsp;28: Example graph in PG-JSONL
 <section id="normative-references" class="level3" data-number="7.1">
 <h3 data-number="7.1" class="anchored" data-anchor-id="normative-references"><span class="header-section-number">7.1</span> Normative References</h3>
 <ul>
-<li><p>Bradner, S.: Key words for use in RFCs to Indicate Requirement Levels. BCP 14, RFC 2119, March 1997, <a href="http://www.rfc-editor.org/info/rfc2119" class="uri">http://www.rfc-editor.org/info/rfc2119</a>.</p></li>
-<li><p>Bray, T.: The JavaScript Object Notation (JSON) Data Interchange Format. RFC 8259, December 2017. <a href="https://tools.ietf.org/html/rfc8259" class="uri">https://tools.ietf.org/html/rfc8259</a></p></li>
-<li><p>Leiba, B.: Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words. BCP 14, RFC 8174, May 2017, <a href="http://www.rfc-editor.org/info/rfc8174" class="uri">http://www.rfc-editor.org/info/rfc8174</a>.</p></li>
-<li><p>The Unicode Consortium: The Unicode Standard. <a href="http://www.unicode.org/versions/latest/" class="uri">http://www.unicode.org/versions/latest/</a></p></li>
-<li><p>Yergeau, F.: UTF-8, a transformation format of ISO 10646. RFC 3629, November 2003. <a href="https://tools.ietf.org/html/rfc3629" class="uri">https://tools.ietf.org/html/rfc3629</a></p></li>
+<li><p>Bradner, S.: <em>Key words for use in RFCs to Indicate Requirement Levels</em>. BCP 14, RFC 2119, March 1997, <a href="http://www.rfc-editor.org/info/rfc2119" class="uri">http://www.rfc-editor.org/info/rfc2119</a>.</p></li>
+<li><p>Bray, T.: <em>The JavaScript Object Notation (JSON) Data Interchange Format</em>. RFC 8259, December 2017. <a href="https://tools.ietf.org/html/rfc8259" class="uri">https://tools.ietf.org/html/rfc8259</a></p></li>
+<li><p>Bray, T. et al: <em>Section 6 (Simple Extended Backus-Naur Form (EBNF) notation)</em>. In: <em>W3C Extensible Markup Language (XML) 1.0 (Fifth Edition)</em>. November 2008. <a href="https://www.w3.org/TR/REC-xml/#sec-notation" class="uri">https://www.w3.org/TR/REC-xml/#sec-notation</a></p></li>
+<li><p>Leiba, B.: <em>Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</em>. BCP 14, RFC 8174, May 2017, <a href="http://www.rfc-editor.org/info/rfc8174" class="uri">http://www.rfc-editor.org/info/rfc8174</a>.</p></li>
+<li><p>The Unicode Consortium: <em>The Unicode Standard</em>. <a href="http://www.unicode.org/versions/latest/" class="uri">http://www.unicode.org/versions/latest/</a></p></li>
+<li><p>Yergeau, F.: <em>UTF-8, a transformation format of ISO 10646.</em> RFC 3629, November 2003. <a href="https://tools.ietf.org/html/rfc3629" class="uri">https://tools.ietf.org/html/rfc3629</a></p></li>
 </ul>
 </section>
 <section id="informative-references" class="level3" data-number="7.2">
@@ -795,6 +815,10 @@ Example&nbsp;28: Example graph in PG-JSONL
 <h4 data-number="8.2.2" class="anchored" data-anchor-id="version-0.3"><span class="header-section-number">8.2.2</span> Version 0.3</h4>
 <p>Less formal specification published in 2019. See <a href="https://pg-format.readthedocs.io/en/0.3/contents/pg-format.html">latest version from 2020</a>.</p>
 </section>
+</section>
+<section id="acknowledgements" class="level3" data-number="8.3">
+<h3 data-number="8.3" class="anchored" data-anchor-id="acknowledgements"><span class="header-section-number">8.3</span> Acknowledgements</h3>
+<p>Many thanks to Ryota Yamanaka (Meer Consulting Group) and Shota Matsumoto (Lifematics Inc.) for their contribution to the first versions of PG Format.</p>
 </section>
 </section>
 
@@ -841,7 +865,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

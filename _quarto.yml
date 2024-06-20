@@ -9,13 +9,14 @@ manuscript:
   article: index.qmd
 format:
   html:
-    code-line-numbers: true
+    code-line-numbers: false
     number-sections: true
     css: style.css
     highlight-style: kate
     code-copy: false  # there is try-out button instead
     syntax-definitions:
      - pg.xml
+     - ebnf.xml
     include-in-header:
       text: '<script type="text/javascript" src="script.js"></script>'
     crossref:

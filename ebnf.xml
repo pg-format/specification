@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "language.dtd" []>
+<language name="EBNF" version="0" kateversion="5.0" section="Sources" extensions="*.ebnf" author="Jakob Voß (voss@gbv.de>" license="CC0">
+  <!-- Supports a subset of EBNF as defined in XML Specification Section 6 -->
+  <!-- Addition of ! as negated lookahead operator -->
+  <highlighting>
+    <contexts>
+      <context name="Symbol" lineEndContext="Symbol" attribute="Error">
+        <RegExpr String="^/\*.*"   attribute="Comment"/>
+        <RegExpr String="^[^\s+]+" attribute="Symbol" context="Rule"/>
+      </context>
+      <context name="Rule" lineEndContext="Symbol" attribute="Error">
+        <DetectSpaces attribute="Space"/>
+        <StringDetect String="::=" attribute="Rule" context="Expression"/>
+      </context>
+      <context name="Expression" lineEndContext="Symbol" attribute="Error">
+        <DetectSpaces attribute="Space"/>
+        <RegExpr String="&quot;[^&quot;]*&quot;" attribute="String"/>
+        <RegExpr String="&apos;[^&apos;]*&apos;" attribute="String"/>
+        <RegExpr String="[()]" attribute="Rule"/>
+        <RegExpr String="[\|\*\+\?\!]" attribute="Operator"/>
+        <RegExpr String="[a-zA-Z]+" attribute="Name"/>
+        <RegExpr String="\[[^\]]+\]" attribute="String"/>
+      </context>
+    </contexts>
+    <itemDatas>
+      <itemData name="Space"    defStyleNum="dsNormal"/>
+      <itemData name="String"   defStyleNum="dsString"/>
+      <itemData name="Symbol"   defStyleNum="dsDataType"/>
+      <itemData name="Name"     defStyleNum="dsFunction"/>
+      <itemData name="Rule"     defStyleNum="dsControlFlow"/>
+      <itemData name="Operator" defStyleNum="dsControlFlow"/>
+      <itemData name="Comment"  defStyleNum="dsComment"/>
+      <itemData name="Error"    defStyleNum="dsError"/>
+    </itemDatas>
+  </highlighting>
+  <general>
+    <comments>
+      <comment name="multiLine" start="/*" end="*/"/>
+    </comments>
+    <keywords casesensitive="true"/>
+  </general>
+</language>
