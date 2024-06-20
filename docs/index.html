@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
               </div>
       </div>
       <div class="quarto-title-meta-column-end quarto-other-formats-target">
-      </div>
+      <div class="quarto-alternate-formats"><div class="quarto-title-meta-heading">Other Formats</div><div class="quarto-title-meta-contents"><p><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></p></div></div></div>
     </div>
 
 
@@ -140,10 +140,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#basic-structure" id="toc-basic-structure" class="nav-link" data-scroll-target="#basic-structure"><span class="header-section-number">3.1</span> Basic structure</a></li>
   <li><a href="#identifiers" id="toc-identifiers" class="nav-link" data-scroll-target="#identifiers"><span class="header-section-number">3.2</span> Identifiers</a></li>
-  <li><a href="#nodes" id="toc-nodes" class="nav-link" data-scroll-target="#nodes"><span class="header-section-number">3.3</span> Nodes</a></li>
-  <li><a href="#edges" id="toc-edges" class="nav-link" data-scroll-target="#edges"><span class="header-section-number">3.4</span> Edges</a></li>
+  <li><a href="#nodes" id="toc-nodes" class="nav-link" data-scroll-target="#nodes"><span class="header-section-number">3.3</span> Nodes</a>
+  <ul class="collapse">
+  <li><a href="#node-merging" id="toc-node-merging" class="nav-link" data-scroll-target="#node-merging"><span class="header-section-number">3.3.1</span> Node merging</a></li>
+  <li><a href="#implicit-nodes" id="toc-implicit-nodes" class="nav-link" data-scroll-target="#implicit-nodes"><span class="header-section-number">3.3.2</span> Implicit nodes</a></li>
+  </ul></li>
+  <li><a href="#edges" id="toc-edges" class="nav-link" data-scroll-target="#edges"><span class="header-section-number">3.4</span> Edges</a>
+  <ul class="collapse">
+  <li><a href="#edge-identifiers" id="toc-edge-identifiers" class="nav-link" data-scroll-target="#edge-identifiers"><span class="header-section-number">3.4.1</span> Edge identifiers</a></li>
+  <li><a href="#edge-directions" id="toc-edge-directions" class="nav-link" data-scroll-target="#edge-directions"><span class="header-section-number">3.4.2</span> Edge directions</a></li>
+  <li><a href="#loops" id="toc-loops" class="nav-link" data-scroll-target="#loops"><span class="header-section-number">3.4.3</span> Loops</a></li>
+  <li><a href="#multi-edges" id="toc-multi-edges" class="nav-link" data-scroll-target="#multi-edges"><span class="header-section-number">3.4.4</span> Multi-edges</a></li>
+  </ul></li>
   <li><a href="#labels" id="toc-labels" class="nav-link" data-scroll-target="#labels"><span class="header-section-number">3.5</span> Labels</a></li>
-  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties"><span class="header-section-number">3.6</span> Properties</a></li>
+  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties"><span class="header-section-number">3.6</span> Properties</a>
+  <ul class="collapse">
+  <li><a href="#property-values" id="toc-property-values" class="nav-link" data-scroll-target="#property-values"><span class="header-section-number">3.6.1</span> Property values</a></li>
+  <li><a href="#property-merging" id="toc-property-merging" class="nav-link" data-scroll-target="#property-merging"><span class="header-section-number">3.6.2</span> Property merging</a></li>
+  </ul></li>
   <li><a href="#quoted-strings" id="toc-quoted-strings" class="nav-link" data-scroll-target="#quoted-strings"><span class="header-section-number">3.7</span> Quoted Strings</a></li>
   <li><a href="#whitespace" id="toc-whitespace" class="nav-link" data-scroll-target="#whitespace"><span class="header-section-number">3.8</span> Whitespace</a></li>
   <li><a href="#grammar" id="toc-grammar" class="nav-link" data-scroll-target="#grammar"><span class="header-section-number">3.9</span> Grammar</a></li>
@@ -159,7 +173,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#appendices" id="toc-appendices" class="nav-link" data-scroll-target="#appendices"><span class="header-section-number">8</span> Appendices</a>
   <ul class="collapse">
   <li><a href="#json-schemas" id="toc-json-schemas" class="nav-link" data-scroll-target="#json-schemas"><span class="header-section-number">8.1</span> JSON Schemas</a></li>
-  <li><a href="#changes" id="toc-changes" class="nav-link" data-scroll-target="#changes"><span class="header-section-number">8.2</span> Changes</a></li>
+  <li><a href="#changes" id="toc-changes" class="nav-link" data-scroll-target="#changes"><span class="header-section-number">8.2</span> Changes</a>
+  <ul class="collapse">
+  <li><a href="#version-1.0.0" id="toc-version-1.0.0" class="nav-link" data-scroll-target="#version-1.0.0"><span class="header-section-number">8.2.1</span> Version 1.0.0</a></li>
+  <li><a href="#version-0.3" id="toc-version-0.3" class="nav-link" data-scroll-target="#version-0.3"><span class="header-section-number">8.2.2</span> Version 0.3</a></li>
+  </ul></li>
   <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements"><span class="header-section-number">8.3</span> Acknowledgements</a></li>
   </ul></li>
   </ul>
@@ -187,35 +205,35 @@ Note
 <p><em>THIS IS WORK IN PROGRESS</em>. See also <a href="https://github.com/orgs/pg-format/discussions">discussion forum</a> and <a href="https://github.com/pg-format/specification/issues">issue tracker</a> for updates!</p>
 </div>
 </div>
-<section id="introduction" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
-<section id="why-property-graphs" class="level3" data-number="1.1">
-<h3 data-number="1.1" class="anchored" data-anchor-id="why-property-graphs"><span class="header-section-number">1.1</span> Why property graphs?</h3>
+<section id="introduction" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
+<section id="why-property-graphs" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="why-property-graphs"><span class="header-section-number">1.1</span> Why property graphs?</h2>
 <p><strong>Property Graphs</strong> (also known as <strong>Labeled Property Graphs</strong>) are used as an abstract data structure in graph databases and related applications.</p>
 <p>Implementations of property graphs slightly differ in support of data types, restrictions on labels etc. The <a href="#data-model">definition of property graphs</a> used in this specification is aimed to be a superset of property graph models of common graph databases and formats. The model and its serializations have first been proposed by Hirokazu Chiba, Ryota Yamanaka, and Shota Matsumoto (<a href="https://arxiv.org/abs/1907.03936">2019</a>, <a href="https://arxiv.org/abs/2203.06393">2022</a>) and revised into this specification together with Jakob Voß.</p>
 </section>
-<section id="about-this-document" class="level3" data-number="1.2">
-<h3 data-number="1.2" class="anchored" data-anchor-id="about-this-document"><span class="header-section-number">1.2</span> About this document</h3>
+<section id="about-this-document" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="about-this-document"><span class="header-section-number">1.2</span> About this document</h2>
 <p>The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in BCP 14 (<a href="https://tools.ietf.org/html/rfc2119">RFC 2119</a> and <a href="https://tools.ietf.org/html/rfc8174">RFC 8174</a>) when, and only when, they appear in all capitals, as shown here.</p>
 <p>Normative parts of this specification are limited to sections <a href="#data-model">2</a> to <a href="#rubustness-priniciple">6</a> and <a href="#normative-references">the normative references</a>.</p>
 <p>More information about Property Graph Exchange Format is summarized <strong><a href="https://pg-format.github.io/">at its homepage</a></strong>.</p>
 </section>
 </section>
-<section id="data-model" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="data-model"><span class="header-section-number">2</span> Data Model</h2>
+<section id="data-model" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Data Model</h1>
 <p>A <strong>property graph</strong> consists of <strong>nodes</strong> and <strong>edges</strong> between these nodes. Each node has a unique <strong>node identifier</strong>. Each edge is either directed or undirected and can have an optional <strong>edge identifier</strong>. Each of the nodes and edges can have <strong>properties</strong> and <strong>labels</strong>. Properties are mappings from <strong>keys</strong> to non-empty lists of <strong>values</strong>. Node identifiers, labels, and keys are non-empty Unicode strings. A value is a Unicode string, a boolean value, or a number as defined by <a href="https://tools.ietf.org/html/rfc8259">RFC 8259</a>.</p>
 <p>Extended graph features not being part of this data model include graph attributes, hierarchies, hyper-edges and semantics of individual labels and property keys.</p>
 </section>
-<section id="pg-format" class="level2 page-columns page-full" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="pg-format"><span class="header-section-number">3</span> PG Format</h2>
+<section id="pg-format" class="level1 page-columns page-full" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> PG Format</h1>
 <p>A <strong>PG Format</strong> document allows writing down a property graph in a compact textual form. A PG Format document is a Unicode string that conforms to <a href="#grammar">grammar</a> and rules defined in this specification.</p>
-<section id="basic-structure" class="level3" data-number="3.1">
-<h3 data-number="3.1" class="anchored" data-anchor-id="basic-structure"><span class="header-section-number">3.1</span> Basic structure</h3>
+<section id="basic-structure" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="basic-structure"><span class="header-section-number">3.1</span> Basic structure</h2>
 <p>A PG Format document encodes a property graph as Unicode string. The document MUST be encoded in UTF-8 (RFC 3629). Unicode codepoints can also be given by escape sequences in <a href="#quoted-strings">quoted strings</a>.</p>
 <p>The document consists of a sequence of <strong>statements</strong>, each defining a <a href="#nodes">node</a> or an <a href="#edges">edge</a>, or being empty. Statements are separated from each other by a <a href="#whitespace">line break</a>. Optional <a href="#whitespace">spaces</a> and/or a <a href="#whitespace">comment</a> at the end of a statement are ignored.</p>
 </section>
-<section id="identifiers" class="level3" data-number="3.2">
-<h3 data-number="3.2" class="anchored" data-anchor-id="identifiers"><span class="header-section-number">3.2</span> Identifiers</h3>
+<section id="identifiers" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="identifiers"><span class="header-section-number">3.2</span> Identifiers</h2>
 <p>An <strong>identifier</strong> is a string used to uniquely identify a <a href="#nodes">node</a>, an <a href="#edges">edge</a>, a <a href="#labels">label</a>, or the name of a <a href="#properties">property</a>. An identifier can be given as a <a href="#quoted-strings">quoted string</a> or as an unquoted identifier.</p>
 <p>An <strong>unquoted identifier</strong> is a non-empty string not including control codes <code>U+0000</code> to <code>U+0020</code> (tabulator, line breaks, space…), nor any of the characters “<code>&lt;</code>” (<code>U+003C</code>), “<code>&gt;</code>” (<code>U+003E</code>), ‘<code>"</code>’ (<code>U+0022</code>), “<code>{</code>” (<code>U+007B</code>), “<code>}</code>” (<code>U+007D</code>), “<code>|</code>” (<code>U+007C</code>), “<code>\</code>” (<code>U+005C</code>), “<code>^</code>” (<code>U+005E</code>), and “<code>`</code>” (<code>U+0060</code>).<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <div id="lst-identifiers" class="pg listing quarto-float">
@@ -248,8 +266,8 @@ Example&nbsp;2: Invalid unquoted identifiers
 </div>
 <p>An unquoted identifier MUST NOT start with hash (“<code>#</code>”) because this starts a <a href="#whitespace">comment</a> nor with apostrophe (“<code>'</code>”) or quotation mark (“<code>"</code>”) because these start a <a href="#quoted-strings">quoted string</a>. Colon, hash, comma, and apostrophe are allowed in an unquoted identifier after its first character.</p>
 </section>
-<section id="nodes" class="level3" data-number="3.3">
-<h3 data-number="3.3" class="anchored" data-anchor-id="nodes"><span class="header-section-number">3.3</span> Nodes</h3>
+<section id="nodes" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="nodes"><span class="header-section-number">3.3</span> Nodes</h2>
 <p>A <strong>node</strong> consists of the following elements, given in this order and separated by <a href="#whitespace">delimiting whitespace</a>:</p>
 <ul>
 <li>a REQUIRED <a href="#identifiers">identifier</a></li>
@@ -268,8 +286,8 @@ Example&nbsp;3: Some node statements
 </div>
 </figure>
 </div>
-<section id="node-merging" class="level4" data-number="3.3.1">
-<h4 data-number="3.3.1" class="anchored" data-anchor-id="node-merging"><span class="header-section-number">3.3.1</span> Node merging</h4>
+<section id="node-merging" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="node-merging"><span class="header-section-number">3.3.1</span> Node merging</h3>
 <p>A node can be defined with multiple statements having the same node identifier: a node is <strong>merged</strong> with an existing node by appending labels and property values.</p>
 <div id="lst-node-merging-1" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
@@ -293,8 +311,8 @@ Example&nbsp;5: Same node defined by one statement
 </figure>
 </div>
 </section>
-<section id="implicit-nodes" class="level4" data-number="3.3.2">
-<h4 data-number="3.3.2" class="anchored" data-anchor-id="implicit-nodes"><span class="header-section-number">3.3.2</span> Implicit nodes</h4>
+<section id="implicit-nodes" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="implicit-nodes"><span class="header-section-number">3.3.2</span> Implicit nodes</h3>
 <p>Nodes can also be defined implicitly as part of an <a href="#edges">edge</a>: node identifiers referenced in edges imply the existence of nodes with these identifiers.</p>
 <div id="lst-implicit-nodes" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
@@ -320,8 +338,8 @@ Example&nbsp;7: Same graph with explicit node statements
 </div>
 </section>
 </section>
-<section id="edges" class="level3" data-number="3.4">
-<h3 data-number="3.4" class="anchored" data-anchor-id="edges"><span class="header-section-number">3.4</span> Edges</h3>
+<section id="edges" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="edges"><span class="header-section-number">3.4</span> Edges</h2>
 <p>An <strong>edge</strong> consists of the following elements, given in this order and separated by <a href="#whitespace">delimiting whitespace</a>:</p>
 <ul>
 <li>an OPTIONAL <strong><a href="#edge-identifiers">edge identifier</a></strong></li>
@@ -365,8 +383,8 @@ Example&nbsp;10: Invalid edge statement
 </div>
 </figure>
 </div>
-<section id="edge-identifiers" class="level4" data-number="3.4.1">
-<h4 data-number="3.4.1" class="anchored" data-anchor-id="edge-identifiers"><span class="header-section-number">3.4.1</span> Edge identifiers</h4>
+<section id="edge-identifiers" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="edge-identifiers"><span class="header-section-number">3.4.1</span> Edge identifiers</h3>
 <p>An edge identifier is an <a href="#identifiers">identifier</a> as the first element of an edge statement, directly followed by a colon (<code>U+003A</code>).</p>
 <div id="lst-multi-edges-with-id" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
@@ -415,12 +433,12 @@ Example&nbsp;14: Invalid statement
 </figure>
 </div>
 </section>
-<section id="edge-directions" class="level4" data-number="3.4.2">
-<h4 data-number="3.4.2" class="anchored" data-anchor-id="edge-directions"><span class="header-section-number">3.4.2</span> Edge directions</h4>
+<section id="edge-directions" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="edge-directions"><span class="header-section-number">3.4.2</span> Edge directions</h3>
 <p>The direction element of an edge is either the character sequence <code>-&gt;</code> for a directed edge or the character sequence <code>--</code> for an undirected edge.</p>
 </section>
-<section id="loops" class="level4" data-number="3.4.3">
-<h4 data-number="3.4.3" class="anchored" data-anchor-id="loops"><span class="header-section-number">3.4.3</span> Loops</h4>
+<section id="loops" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="loops"><span class="header-section-number">3.4.3</span> Loops</h3>
 <p>Edges can connect a node to itself.</p>
 <div id="lst-lops" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
@@ -434,8 +452,8 @@ Example&nbsp;15: Directed and undirected loop
 </figure>
 </div>
 </section>
-<section id="multi-edges" class="level4" data-number="3.4.4">
-<h4 data-number="3.4.4" class="anchored" data-anchor-id="multi-edges"><span class="header-section-number">3.4.4</span> Multi-edges</h4>
+<section id="multi-edges" class="level3" data-number="3.4.4">
+<h3 data-number="3.4.4" class="anchored" data-anchor-id="multi-edges"><span class="header-section-number">3.4.4</span> Multi-edges</h3>
 <p>The Property Graph Data Model allows for multiple edges between the same node.</p>
 <div id="lst-multi-edges" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
@@ -451,8 +469,8 @@ Example&nbsp;16: Graph with two indistinguishable edges
 <p><a href="#edge-identifiers">Edge identifiers</a> can be used to identify and reference individual multi-edges.</p>
 </section>
 </section>
-<section id="labels" class="level3" data-number="3.5">
-<h3 data-number="3.5" class="anchored" data-anchor-id="labels"><span class="header-section-number">3.5</span> Labels</h3>
+<section id="labels" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="labels"><span class="header-section-number">3.5</span> Labels</h2>
 <p>A label is an <a href="#identifiers">identifier</a> following a colon (<code>U+003A</code>). <a href="#whitespace">Spaces</a> between colon and label identifier are OPTIONAL but NOT RECOMMENDED.</p>
 <p>Labels of a node or an edge are unique: repeated labels are ignored. Applications SHOULD preserve the order of labels of a node or an edge.</p>
 <div id="lst-labels" class="pg listing quarto-float">
@@ -480,8 +498,8 @@ Example&nbsp;18: Labels with colons
 </figure>
 </div>
 </section>
-<section id="properties" class="level3" data-number="3.6">
-<h3 data-number="3.6" class="anchored" data-anchor-id="properties"><span class="header-section-number">3.6</span> Properties</h3>
+<section id="properties" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="properties"><span class="header-section-number">3.6</span> Properties</h2>
 <p>A <strong>property</strong> consists of the following elements, given in this order:</p>
 <ul>
 <li>a REQUIRED <strong>property key</strong>, being an <a href="#identifiers">identifier</a></li>
@@ -522,8 +540,8 @@ Example&nbsp;20: Invalid property
 </div>
 </figure>
 </div>
-<section id="property-values" class="level4" data-number="3.6.1">
-<h4 data-number="3.6.1" class="anchored" data-anchor-id="property-values"><span class="header-section-number">3.6.1</span> Property values</h4>
+<section id="property-values" class="level3" data-number="3.6.1">
+<h3 data-number="3.6.1" class="anchored" data-anchor-id="property-values"><span class="header-section-number">3.6.1</span> Property values</h3>
 <p>A <strong>property value</strong> is one of</p>
 <ul>
 <li>a <strong>number value</strong>, given as defined in section 6 of <a href="https://tools.ietf.org/html/rfc8259">RFC 8259</a>. As mentioned there, implementations MAY set limits on the range and precision of numbers and double precision (IEEE754) is the most likely common limit.</li>
@@ -548,8 +566,8 @@ Example&nbsp;21: Property values
 </figure>
 </div>
 </section>
-<section id="property-merging" class="level4" data-number="3.6.2">
-<h4 data-number="3.6.2" class="anchored" data-anchor-id="property-merging"><span class="header-section-number">3.6.2</span> Property merging</h4>
+<section id="property-merging" class="level3" data-number="3.6.2">
+<h3 data-number="3.6.2" class="anchored" data-anchor-id="property-merging"><span class="header-section-number">3.6.2</span> Property merging</h3>
 <p>Value lists of properties of the same property key are concatenated. Value lists are no sets: the same value can be included multiple times.</p>
 <div id="lst-property-values" class="pg listing quarto-float">
 <figure class="quarto-float quarto-float-lst figure">
@@ -566,8 +584,8 @@ Example&nbsp;22: Three nodes with same properties
 </div>
 </section>
 </section>
-<section id="quoted-strings" class="level3" data-number="3.7">
-<h3 data-number="3.7" class="anchored" data-anchor-id="quoted-strings"><span class="header-section-number">3.7</span> Quoted Strings</h3>
+<section id="quoted-strings" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="quoted-strings"><span class="header-section-number">3.7</span> Quoted Strings</h2>
 <p>A quoted string starts with an apostrophe (“<code>'</code>”) or quotation mark (“<code>"</code>”) and ends with the same character. In between, all Unicode characters are allowed, except for the characters that MUST be escaped:</p>
 <ul>
 <li>apostrophe, when the string is quoted with apostrophe</li>
@@ -600,8 +618,8 @@ Example&nbsp;24: Invalid string escape sequences
 </figure>
 </div>
 </section>
-<section id="whitespace" class="level3" data-number="3.8">
-<h3 data-number="3.8" class="anchored" data-anchor-id="whitespace"><span class="header-section-number">3.8</span> Whitespace</h3>
+<section id="whitespace" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="whitespace"><span class="header-section-number">3.8</span> Whitespace</h2>
 <p>A <strong>line break</strong> is either a line feed (<code>U+000A</code>) or a carriage return (<code>U+000D</code>) optionally followed by a line feed.</p>
 <p><strong>Spaces</strong> are a non-empty sequence of space (<code>U+0020</code>) and/or tabular (<code>U+0009</code>).</p>
 <p>A <strong>comment</strong> begins with a hash (<code>#</code> = <code>U+0023</code>) and it ends before the next <a href="#whitespace">line break</a> or at the end of the document.</p>
@@ -630,8 +648,8 @@ Example&nbsp;26: Same graph as above
 </figure>
 </div>
 </section>
-<section id="grammar" class="level3 page-columns page-full" data-number="3.9">
-<h3 data-number="3.9" class="anchored" data-anchor-id="grammar"><span class="header-section-number">3.9</span> Grammar</h3>
+<section id="grammar" class="level2 page-columns page-full" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="grammar"><span class="header-section-number">3.9</span> Grammar</h2>
 <p>The formal grammar of PG Format is specified in <a href="https://www.w3.org/TR/REC-xml/#sec-notation">EBNF Notation</a> used in the specification of XML, with the addition of negative lookahead operator (<code>!A B</code> matches any expression <code>B</code> that does not start with expression <code>A</code>) and the terminal symbol <code>END</code> denoting the end of a document.</p>
 <div class="column-screen-inset-right">
 <div class="sourceCode" id="cb1"><pre class="sourceCode ebnf"><code class="sourceCode ebnf"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* 3.1 Basic Structure */</span></span>
@@ -683,8 +701,8 @@ Example&nbsp;26: Same graph as above
 </div>
 </section>
 </section>
-<section id="pg-json" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="pg-json"><span class="header-section-number">4</span> PG-JSON</h2>
+<section id="pg-json" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> PG-JSON</h1>
 <p>A <strong>PG-JSON</strong> document serializes a property graph in JSON. A PG-JSON document is a JSON document (<a href="https://tools.ietf.org/html/rfc8259">RFC 8259</a>) with a JSON object with exactely two fields:</p>
 <ul>
 <li><code>nodes</code> an array of nodes</li>
@@ -732,8 +750,8 @@ Example&nbsp;27: Example graph in PG-JSON
 </figure>
 </div>
 </section>
-<section id="pg-jsonl" class="level2 page-columns page-full" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="pg-jsonl"><span class="header-section-number">5</span> PG-JSONL</h2>
+<section id="pg-jsonl" class="level1 page-columns page-full" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> PG-JSONL</h1>
 <p>A <strong>PG-JSONL</strong> document or stream serializes a property graph in JSON Lines format, also known as newline-delimited JSON. A PG-JSONL document is a sequence of JSON objects, separated by line separator (<code>U+000A</code>) and optional whitespace (<code>U+0020</code>, <code>U+0009</code>, and <code>U+000D</code>) around JSON objects, and an optional line separator at the end. Each object is</p>
 <ul>
 <li>either a node with field <code>type</code> having the string value <code>"node"</code> and the same mandatory node fields from PG-JSON format,</li>
@@ -756,8 +774,8 @@ Example&nbsp;28: Example graph in PG-JSONL
 </div>
 </div>
 </section>
-<section id="robustness-principle" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="robustness-principle"><span class="header-section-number">6</span> Robustness principle</h2>
+<section id="robustness-principle" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Robustness principle</h1>
 <p>Applications MAY automatically convert documents not fully conforming to the specification of PG-JSON and/or PG-JSONL to a valid form, for instance by:</p>
 <ul>
 <li>creation of implicit nodes for node identifiers referenced in edges</li>
@@ -767,10 +785,10 @@ Example&nbsp;28: Example graph in PG-JSONL
 <li>removal of additional fields not defined in this specification</li>
 </ul>
 </section>
-<section id="references" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="references"><span class="header-section-number">7</span> References</h2>
-<section id="normative-references" class="level3" data-number="7.1">
-<h3 data-number="7.1" class="anchored" data-anchor-id="normative-references"><span class="header-section-number">7.1</span> Normative References</h3>
+<section id="references" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> References</h1>
+<section id="normative-references" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="normative-references"><span class="header-section-number">7.1</span> Normative References</h2>
 <ul>
 <li><p>Bradner, S.: <em>Key words for use in RFCs to Indicate Requirement Levels</em>. BCP 14, RFC 2119, March 1997, <a href="http://www.rfc-editor.org/info/rfc2119" class="uri">http://www.rfc-editor.org/info/rfc2119</a>.</p></li>
 <li><p>Bray, T.: <em>The JavaScript Object Notation (JSON) Data Interchange Format</em>. RFC 8259, December 2017. <a href="https://tools.ietf.org/html/rfc8259" class="uri">https://tools.ietf.org/html/rfc8259</a></p></li>
@@ -780,8 +798,8 @@ Example&nbsp;28: Example graph in PG-JSONL
 <li><p>Yergeau, F.: <em>UTF-8, a transformation format of ISO 10646.</em> RFC 3629, November 2003. <a href="https://tools.ietf.org/html/rfc3629" class="uri">https://tools.ietf.org/html/rfc3629</a></p></li>
 </ul>
 </section>
-<section id="informative-references" class="level3" data-number="7.2">
-<h3 data-number="7.2" class="anchored" data-anchor-id="informative-references"><span class="header-section-number">7.2</span> Informative references</h3>
+<section id="informative-references" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="informative-references"><span class="header-section-number">7.2</span> Informative references</h2>
 <ul>
 <li><p><a href="https://pg-format.github.io/">Property Graph Exchange Format Homepage</a></p></li>
 <li><p><a href="https://github.com/pg-format/pg-test-suite">PG Test Suite</a></p></li>
@@ -791,10 +809,10 @@ Example&nbsp;28: Example graph in PG-JSONL
 </ul>
 </section>
 </section>
-<section id="appendices" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="appendices"><span class="header-section-number">8</span> Appendices</h2>
-<section id="json-schemas" class="level3" data-number="8.1">
-<h3 data-number="8.1" class="anchored" data-anchor-id="json-schemas"><span class="header-section-number">8.1</span> JSON Schemas</h3>
+<section id="appendices" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Appendices</h1>
+<section id="json-schemas" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="json-schemas"><span class="header-section-number">8.1</span> JSON Schemas</h2>
 <p>The <a href="#pg-json">PG-JSON format</a> can be validated with a non-normative JSON Schema file <a href="schema/pg-json.json"><code>pg-json.json</code></a> in this repository. Rules not covered by the JSON schema include:</p>
 <ul>
 <li>nodes referenced in edges must be defined (no implicit nodes)</li>
@@ -803,21 +821,21 @@ Example&nbsp;28: Example graph in PG-JSONL
 </ul>
 <p>The <a href="#pg-jsonl">PG-JSONL format</a> can be validated with a non-normative JSON Schema file <a href="schema/pg-jsonl.json"><code>pg-jsonl.json</code></a> in this repository. Validation is limited in the same way as validation of PG-JSON with its JSON Schema.</p>
 </section>
-<section id="changes" class="level3" data-number="8.2">
-<h3 data-number="8.2" class="anchored" data-anchor-id="changes"><span class="header-section-number">8.2</span> Changes</h3>
+<section id="changes" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="changes"><span class="header-section-number">8.2</span> Changes</h2>
 <p>This document is managed in a revision control system at <a href="https://github.com/pg-format/specification" class="uri">https://github.com/pg-format/specification</a>.</p>
-<section id="version-1.0.0" class="level4" data-number="8.2.1">
-<h4 data-number="8.2.1" class="anchored" data-anchor-id="version-1.0.0"><span class="header-section-number">8.2.1</span> Version 1.0.0</h4>
+<section id="version-1.0.0" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="version-1.0.0"><span class="header-section-number">8.2.1</span> Version 1.0.0</h3>
 <p><em>not published yet</em></p>
 <p>Introduced comments, line folding, edge identifiers. Aligned property values with JSON syntax. Added more formal rules for quoted strings and unquoted identifiers. Added PG-JSONL. Changed node identifiers to be strings.</p>
 </section>
-<section id="version-0.3" class="level4" data-number="8.2.2">
-<h4 data-number="8.2.2" class="anchored" data-anchor-id="version-0.3"><span class="header-section-number">8.2.2</span> Version 0.3</h4>
+<section id="version-0.3" class="level3" data-number="8.2.2">
+<h3 data-number="8.2.2" class="anchored" data-anchor-id="version-0.3"><span class="header-section-number">8.2.2</span> Version 0.3</h3>
 <p>Less formal specification published in 2019. See <a href="https://pg-format.readthedocs.io/en/0.3/contents/pg-format.html">latest version from 2020</a>.</p>
 </section>
 </section>
-<section id="acknowledgements" class="level3" data-number="8.3">
-<h3 data-number="8.3" class="anchored" data-anchor-id="acknowledgements"><span class="header-section-number">8.3</span> Acknowledgements</h3>
+<section id="acknowledgements" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="acknowledgements"><span class="header-section-number">8.3</span> Acknowledgements</h2>
 <p>Many thanks to Ryota Yamanaka (Meer Consulting Group) and Shota Matsumoto (Lifematics Inc.) for their contribution to the first versions of PG Format.</p>
 </section>
 </section>

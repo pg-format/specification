@@ -18,9 +18,9 @@ authors:
 
 :::
 
-## Introduction
+# Introduction
 
-### Why property graphs?
+## Why property graphs?
 
 **Property Graphs** (also known as **Labeled Property Graphs**) are used as
 an abstract data structure in graph databases and related applications. 
@@ -34,7 +34,7 @@ first been proposed by Hirokazu Chiba, Ryota Yamanaka, and Shota Matsumoto
 [2022](https://arxiv.org/abs/2203.06393)) and revised into this specification
 together with Jakob Voß.
 
-### About this document
+## About this document
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHOULD", "SHOULD NOT",
 "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to
@@ -48,7 +48,7 @@ references](#normative-references).
 More information about Property Graph Exchange Format is summarized
 **[at its homepage](https://pg-format.github.io/)**. 
 
-## Data Model
+# Data Model
 
 A **property graph** consists of **nodes** and **edges** between these nodes.
 Each node has a unique **node identifier**. Each edge is either directed or
@@ -62,13 +62,13 @@ Extended graph features not being part of this data model include graph
 attributes, hierarchies, hyper-edges and semantics of individual labels
 and property keys.
 
-## PG Format
+# PG Format
 
 A **PG Format** document allows writing down a property graph in a compact textual
 form. A PG Format document is a Unicode string that conforms to [grammar] and rules
 defined in this specification.
 
-### Basic structure
+## Basic structure
 
 A PG Format document encodes a property graph as Unicode string. The document
 MUST be encoded in UTF-8 (RFC 3629). Unicode codepoints can also be given by
@@ -80,7 +80,7 @@ from each other by a [line break](#whitespace). Optional
 [spaces](#whitespace) and/or a [comment](#whitespace) at the end of a statement
 are ignored.
 
-### Identifiers
+## Identifiers
 
 [identifier]: #identifiers
 
@@ -120,7 +120,7 @@ a [comment](#whitespace) nor with apostrophe ("`'`") or quotation mark ("`"`")
 because these start a [quoted string](#quoted-strings). Colon, hash, comma,
 and apostrophe are allowed in an unquoted identifier after its first character.
 
-### Nodes
+## Nodes
 
 A **node** consists of the following elements, given in this order and
 separated by [delimiting whitespace](#whitespace):
@@ -135,7 +135,7 @@ id :label key:value
 "node id with spaces"
 ~~~
 
-#### Node merging
+### Node merging
 
 A node can be defined with multiple statements having the same node identifier:
 a node is **merged** with an existing node by appending labels and property
@@ -150,7 +150,7 @@ a :y k:2
 a :x :y k:1,2 m:true
 ~~~
 
-#### Implicit nodes
+### Implicit nodes
 
 Nodes can also be defined implicitly as part of an [edge](#edges): node
 identifiers referenced in edges imply the existence of nodes with these
@@ -166,7 +166,7 @@ b
 a -> b
 ~~~
 
-### Edges
+## Edges
 
 An **edge** consists of the following elements, given in this order and separated by [delimiting whitespace](#whitespace):
 
@@ -195,7 +195,7 @@ The following is not valid:
 a->b
 ~~~
 
-#### Edge identifiers
+### Edge identifiers
 
 An edge identifier is an [identifier] as the first element of an edge statement,
 directly followed by a colon (`U+003A`).
@@ -225,12 +225,12 @@ No space is allowed between the edge identifier and its colon:
 1 : a -> b
 ~~~
 
-#### Edge directions
+### Edge directions
 
 The direction element of an edge is either the character sequence `->` for
 a directed edge or the character sequence `--` for an undirected edge.
 
-#### Loops
+### Loops
 
 Edges can connect a node to itself.
 
@@ -239,7 +239,7 @@ a -> a
 a -- a
 ~~~
 
-#### Multi-edges
+### Multi-edges
 
 The Property Graph Data Model allows for multiple edges between the same node.
 
@@ -251,7 +251,7 @@ a -> b :follows since:2024
 [Edge identifiers](#edge-identifiers) can be used to identify and reference
 individual multi-edges.
 
-### Labels
+## Labels
 
 A label is an [identifier] following a colon (`U+003A`).
 [Spaces](#whitespace) between colon and label identifier are OPTIONAL but NOT
@@ -273,7 +273,7 @@ a :b:c                      # label "b:c"
 a :http://example.org/      # label "http://example.org/"
 ~~~
 
-### Properties
+## Properties
 
 A **property** consists of the following elements, given in this order:
 
@@ -307,7 +307,7 @@ node key            # delimiting whitespace not allowed before colon
   : value
 ~~~
 
-#### Property values
+### Property values
 
 A **property value** is one of
 
@@ -331,7 +331,7 @@ node n: 1,-1,2e+3          # numbers
      s: hello,"true",""    # strings
 ~~~
 
-#### Property merging
+### Property merging
 
 Value lists of properties of the same property key are concatenated. Value
 lists are no sets: the same value can be included multiple times.
@@ -343,7 +343,7 @@ c x:1           # property values given...
 c x:2 x:3       # ...in two node statements
 ~~~
 
-### Quoted Strings
+## Quoted Strings
 
 A quoted string starts with an apostrophe ("`'`") or quotation mark ("`"`") and
 ends with the same character. In between, all Unicode characters are allowed,
@@ -372,7 +372,7 @@ world"
 "h\ello\u21"
 ~~~
 
-### Whitespace
+## Whitespace
 
 A **line break** is either a line feed (`U+000A`) or a carriage return
 (`U+000D`) optionally followed by a line feed.
@@ -399,7 +399,7 @@ a :x  # node id and label
 a :x :y
 ~~~
 
-### Grammar
+## Grammar
 
 The formal grammar of PG Format is specified in [EBNF Notation] used in the
 specification of XML, with the addition of negative lookahead operator (`!A
@@ -459,7 +459,7 @@ DW             ::= (Empty LineBreak)* Spaces
 
 :::
 
-## PG-JSON
+# PG-JSON
 
 A **PG-JSON** document serializes a property graph in JSON. A PG-JSON document
 is a JSON document ([RFC 8259]) with a JSON object with exactely two fields:
@@ -506,7 +506,7 @@ Each edge is a JSON object with one optional and four mandatory fields:
 }
 ~~~
 
-## PG-JSONL
+# PG-JSONL
 
 A **PG-JSONL** document or stream serializes a property graph in JSON Lines
 format, also known as newline-delimited JSON. A PG-JSONL document is a sequence
@@ -536,7 +536,7 @@ ignored, merged into existing nodes, or replace existing nodes.
 
 :::
 
-## Robustness principle
+# Robustness principle
 
 Applications MAY automatically convert documents not fully conforming to the
 specification of PG-JSON and/or PG-JSONL to a valid form, for instance by:
@@ -547,9 +547,9 @@ specification of PG-JSON and/or PG-JSONL to a valid form, for instance by:
 - mapping of numeric node identifiers and edge identifiers to strings
 - removal of additional fields not defined in this specification
 
-## References
+# References
 
-### Normative References
+## Normative References
 
 [RFC 2119]: https://tools.ietf.org/html/rfc2119
 [RFC 3629]: https://tools.ietf.org/html/rfc3629
@@ -579,7 +579,7 @@ specification of PG-JSON and/or PG-JSONL to a valid form, for instance by:
 - Yergeau, F.: _UTF-8, a transformation format of ISO 10646._
   RFC 3629, November 2003. <https://tools.ietf.org/html/rfc3629>
 
-### Informative references
+## Informative references
 
 - [Property Graph Exchange Format Homepage](https://pg-format.github.io/)
 
@@ -592,9 +592,9 @@ specification of PG-JSON and/or PG-JSONL to a valid form, for instance by:
 - Chiba, H., Yamanaka, R., Matsumoto, S.:
   [Property Graph Exchange Format](http://arxiv.org/abs/1907.03936). 2019
 
-## Appendices
+# Appendices
 
-### JSON Schemas
+## JSON Schemas
 
 The [PG-JSON format](#pg-json) can be validated with a non-normative JSON Schema file [`pg-json.json`](schema/pg-json.json) in this repository. Rules not covered by the JSON schema include:
 
@@ -604,22 +604,22 @@ The [PG-JSON format](#pg-json) can be validated with a non-normative JSON Schema
 
 The [PG-JSONL format](#pg-jsonl) can be validated with a non-normative JSON Schema file [`pg-jsonl.json`](schema/pg-jsonl.json) in this repository. Validation is limited in the same way as validation of PG-JSON with its JSON Schema.
 
-### Changes
+## Changes
 
 This document is managed in a revision control system at <https://github.com/pg-format/specification>.
 
-#### Version 1.0.0 
+### Version 1.0.0 
 
 *not published yet*
 
 Introduced comments, line folding, edge identifiers. Aligned property values with JSON syntax. Added more formal rules for quoted strings and unquoted identifiers. Added PG-JSONL. Changed node identifiers to be strings.
 
-#### Version 0.3
+### Version 0.3
 
 Less formal specification published in 2019. See
 [latest version from 2020](https://pg-format.readthedocs.io/en/0.3/contents/pg-format.html).
 
-### Acknowledgements
+## Acknowledgements
 
 Many thanks to Ryota Yamanaka (Meer Consulting Group) and Shota Matsumoto (Lifematics Inc.) for their contribution to the first versions of PG Format.
 

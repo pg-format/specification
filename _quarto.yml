@@ -22,3 +22,11 @@ format:
     crossref:
       lst-prefix: "Example"
       lst-title: "Example"
+  # requires install  texlive-fonts-extra
+  #pdf:
+  #  documentclass: scrreprt
+  #  papersize: a4paper
+  #  toc: true
+  #  toc-depth: 2      
+  #  keep-tex: true
+  #  classoption: [DIV=14,BCOR=10mm]
