@@ -19,7 +19,7 @@
         <RegExpr String="&apos;[^&apos;]*&apos;" attribute="String"/>
         <RegExpr String="[()]" attribute="Rule"/>
         <RegExpr String="[\|\*\+\?\!]" attribute="Operator"/>
-        <RegExpr String="[a-zA-Z]+" attribute="Name"/>
+        <RegExpr String="[a-zA-Z][a-zA-Z0-9]*" attribute="Name"/>
         <RegExpr String="\[[^\]]+\]" attribute="String"/>
       </context>
     </contexts>

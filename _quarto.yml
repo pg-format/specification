@@ -9,8 +9,8 @@ manuscript:
   article: index.qmd
 format:
   html:
-    code-line-numbers: false
     number-sections: true
+    code-line-numbers: false
     css: style.css
     highlight-style: kate
     code-copy: false  # there is try-out button instead
@@ -24,18 +24,27 @@ format:
       lst-title: "Example"
   # requires install  texlive-fonts-extra
   pdf:
-    documentclass: scrreprt
+    number-sections: true
+    highlight-style: kate
+    syntax-definitions:
+     - pg.xml
+     - ebnf.xml
+    documentclass: scrartcl
     papersize: a4paper
     toc: true
     toc-depth: 2    
     keep-tex: true
-    number-sections: true
     fontsize: 11pt
     classoption:
-      - DIV=14
-      - BCOR=10mm
+     - DIV=14
+     - BCOR=0mm
+     - headings=standardclasses
+    fig-pos: "H"
+    crossref:
+      lst-prefix: "Example"
+      lst-title: "Example"
     template-partials:
-      - title.tex
+     - title.tex
     include-in-header:
       text: |
         \usepackage[noblocks]{authblk}
@@ -43,4 +52,10 @@ format:
         \renewcommand*{\Authand}{, }
         \renewcommand*{\Authands}{, }
         \renewcommand\Affilfont{\small}
-
+        \AtBeginDocument{
+          % TODO: try plaintop and change caption layout
+          \floatstyle{boxed}
+          \restylefloat{codelisting}
+          \floatplacement{codelisting}{H}
+        }
+  

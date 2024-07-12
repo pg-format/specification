@@ -1,5 +1,7 @@
 ---
 title: Property Graph Exchange Format (PG)
+subtitle: Version 1.0.0 (pre-release draft)
+#date: 2024-09-01
 authors:
 - name: Hirokazu Chiba
   orcid: 0000-0003-4062-8903
@@ -430,9 +432,10 @@ Label          ::= ":" Spaces? Identifier
 Property       ::= Key ValueList
 
 /* 3.6 Properties */
-Key            ::= QuotedKey | UnquotedKey DW | UnquotedStart (!":" UnquotedChar)* ":"
+Key            ::= QuotedKey | UnquotedKey DW | UnquotedKey2
 QuotedKey      ::= QuotedNonEmpty ":"
 UnquotedKey    ::= UnquotedStart ( ( !":" UnquotedChar )* ":" )+
+UnquotedKey2   ::= UnquotedStart ( !":" UnquotedChar )* ":"
 ValueList      ::= DW? Value ( DW? "," DW? Value )*
 Value          ::= Number | Boolean | QuotedString | UnquotedValue
 
@@ -447,7 +450,7 @@ QuotedNonEmpty ::= "'" SingleQuoted+ "'" | '"' DoubleQuoted+ '"'
 SingleQuoted   ::= Unescaped | '"' | Escaped
 DoubleQuoted   ::= Unescaped | "'" | Escaped
 Unescaped      ::= [^#x00-#x08#x0B#x0C#x0E-#x1F"'\]
-Escaped        ::= "\" ( '"' | "'" | "\" | "/" | "b"  | "f"  | "n"  | "r"  | "t"  | "u" Codepoint )
+Escaped        ::= "\" ( '"' | "'" | "\" | "/" | "b"  | "f"  | "n"  | "r" | "t" | "u" Codepoint )
 Codepoint      ::= [0-9a-fA-Z] [0-9a-fA-Z] [0-9a-fA-Z] [0-9a-fA-Z]
 LineBreak      ::= [#x0A] | [#x0D] [#x0A]?
 
@@ -489,7 +492,10 @@ Each edge is a JSON object with one optional and four mandatory fields:
 {
   "nodes": [{
     "id": "101", "labels": [ "person" ],
-    "properties": { "name": [ "Alice", "Carol" ], "country": [ "United States" ] }
+    "properties": {
+      "name": [ "Alice", "Carol" ], 
+      "country": [ "United States" ] 
+    }
    },{
     "id": "102", "labels": [ "person", "student" ],
     "properties": { "name": [ "Bob" ], "country": [ "Japan" ] }
