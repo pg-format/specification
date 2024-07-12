@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.53">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -170,20 +170,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#normative-references" id="toc-normative-references" class="nav-link" data-scroll-target="#normative-references"><span class="header-section-number">7.1</span> Normative References</a></li>
   <li><a href="#informative-references" id="toc-informative-references" class="nav-link" data-scroll-target="#informative-references"><span class="header-section-number">7.2</span> Informative references</a></li>
   </ul></li>
-  <li><a href="#appendices" id="toc-appendices" class="nav-link" data-scroll-target="#appendices"><span class="header-section-number">8</span> Appendices</a>
+  <li><a href="#appendices" id="toc-appendices" class="nav-link" data-scroll-target="#appendices">Appendices</a>
   <ul class="collapse">
-  <li><a href="#json-schemas" id="toc-json-schemas" class="nav-link" data-scroll-target="#json-schemas"><span class="header-section-number">8.1</span> JSON Schemas</a></li>
-  <li><a href="#changes" id="toc-changes" class="nav-link" data-scroll-target="#changes"><span class="header-section-number">8.2</span> Changes</a>
-  <ul class="collapse">
-  <li><a href="#version-1.0.0" id="toc-version-1.0.0" class="nav-link" data-scroll-target="#version-1.0.0"><span class="header-section-number">8.2.1</span> Version 1.0.0</a></li>
-  <li><a href="#version-0.3" id="toc-version-0.3" class="nav-link" data-scroll-target="#version-0.3"><span class="header-section-number">8.2.2</span> Version 0.3</a></li>
-  </ul></li>
-  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements"><span class="header-section-number">8.3</span> Acknowledgements</a></li>
+  <li><a href="#json-schemas" id="toc-json-schemas" class="nav-link" data-scroll-target="#json-schemas">JSON Schemas</a></li>
+  <li><a href="#changes" id="toc-changes" class="nav-link" data-scroll-target="#changes">Changes</a></li>
+  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements">Acknowledgements</a></li>
   </ul></li>
   </ul>
 </nav>
 </div>
-<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
 </div>
 <main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
@@ -236,7 +232,7 @@ Note
 <h2 data-number="3.2" class="anchored" data-anchor-id="identifiers"><span class="header-section-number">3.2</span> Identifiers</h2>
 <p>An <strong>identifier</strong> is a string used to uniquely identify a <a href="#nodes">node</a>, an <a href="#edges">edge</a>, a <a href="#labels">label</a>, or the name of a <a href="#properties">property</a>. An identifier can be given as a <a href="#quoted-strings">quoted string</a> or as an unquoted identifier.</p>
 <p>An <strong>unquoted identifier</strong> is a non-empty string not including control codes <code>U+0000</code> to <code>U+0020</code> (tabulator, line breaks, space…), nor any of the characters “<code>&lt;</code>” (<code>U+003C</code>), “<code>&gt;</code>” (<code>U+003E</code>), ‘<code>"</code>’ (<code>U+0022</code>), “<code>{</code>” (<code>U+007B</code>), “<code>}</code>” (<code>U+007D</code>), “<code>|</code>” (<code>U+007C</code>), “<code>\</code>” (<code>U+005C</code>), “<code>^</code>” (<code>U+005E</code>), and “<code>`</code>” (<code>U+0060</code>).<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<div id="lst-identifiers" class="pg listing quarto-float">
+<div id="lst-identifiers" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-identifiers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;1: Several unquoted identifiers
@@ -252,7 +248,7 @@ Example&nbsp;1: Several unquoted identifiers
 </figure>
 </div>
 <p>An unquoted identifier MUST NOT start with a colon (<code>U+003A</code>), comma (<code>U+002C</code>), or minus (<code>U+002D</code>).</p>
-<div id="lst-invalid-id" class="pg invalid listing quarto-float">
+<div id="lst-invalid-id" class="pg invalid listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-invalid-id-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;2: Invalid unquoted identifiers
@@ -274,7 +270,7 @@ Example&nbsp;2: Invalid unquoted identifiers
 <li>an OPTIONAL list of <a href="#labels">labels</a></li>
 <li>an OPTIONAL list of <a href="#properties">properties</a></li>
 </ul>
-<div id="lst-nodes" class="pg listing quarto-float">
+<div id="lst-nodes" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-nodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;3: Some node statements
@@ -289,7 +285,7 @@ Example&nbsp;3: Some node statements
 <section id="node-merging" class="level3" data-number="3.3.1">
 <h3 data-number="3.3.1" class="anchored" data-anchor-id="node-merging"><span class="header-section-number">3.3.1</span> Node merging</h3>
 <p>A node can be defined with multiple statements having the same node identifier: a node is <strong>merged</strong> with an existing node by appending labels and property values.</p>
-<div id="lst-node-merging-1" class="pg listing quarto-float">
+<div id="lst-node-merging-1" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-node-merging-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;4: One node defined by multiple statements
@@ -300,7 +296,7 @@ Example&nbsp;4: One node defined by multiple statements
 </div>
 </figure>
 </div>
-<div id="lst-node-merging-2" class="pg listing quarto-float">
+<div id="lst-node-merging-2" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-node-merging-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;5: Same node defined by one statement
@@ -314,7 +310,7 @@ Example&nbsp;5: Same node defined by one statement
 <section id="implicit-nodes" class="level3" data-number="3.3.2">
 <h3 data-number="3.3.2" class="anchored" data-anchor-id="implicit-nodes"><span class="header-section-number">3.3.2</span> Implicit nodes</h3>
 <p>Nodes can also be defined implicitly as part of an <a href="#edges">edge</a>: node identifiers referenced in edges imply the existence of nodes with these identifiers.</p>
-<div id="lst-implicit-nodes" class="pg listing quarto-float">
+<div id="lst-implicit-nodes" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-implicit-nodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;6: Simple graph with two nodes and one edge
@@ -324,7 +320,7 @@ Example&nbsp;6: Simple graph with two nodes and one edge
 </div>
 </figure>
 </div>
-<div id="lst-explicit-nodes" class="pg listing quarto-float">
+<div id="lst-explicit-nodes" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-explicit-nodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;7: Same graph with explicit node statements
@@ -349,7 +345,7 @@ Example&nbsp;7: Same graph with explicit node statements
 <li>an OPTIONAL list of <a href="#labels">labels</a></li>
 <li>an OPTIONAL list of <a href="#properties">properties</a></li>
 </ul>
-<div id="lst-edges" class="pg listing quarto-float">
+<div id="lst-edges" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-edges-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;8: Some edge statements
@@ -362,7 +358,7 @@ Example&nbsp;8: Some edge statements
 </figure>
 </div>
 <p>The following statement does not define an edge but a <a href="#nodes">node</a> with the identifier “<code>a--b</code>”:</p>
-<div id="lst-no-edge-but-node" class="pg listing quarto-float">
+<div id="lst-no-edge-but-node" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-no-edge-but-node-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;9: Not an edge statement
@@ -373,7 +369,7 @@ Example&nbsp;9: Not an edge statement
 </figure>
 </div>
 <p>The following is not valid:</p>
-<div id="lst-invalid-edge" class="pg invalid listing quarto-float">
+<div id="lst-invalid-edge" class="pg invalid listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-invalid-edge-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;10: Invalid edge statement
@@ -386,7 +382,7 @@ Example&nbsp;10: Invalid edge statement
 <section id="edge-identifiers" class="level3" data-number="3.4.1">
 <h3 data-number="3.4.1" class="anchored" data-anchor-id="edge-identifiers"><span class="header-section-number">3.4.1</span> Edge identifiers</h3>
 <p>An edge identifier is an <a href="#identifiers">identifier</a> as the first element of an edge statement, directly followed by a colon (<code>U+003A</code>).</p>
-<div id="lst-multi-edges-with-id" class="pg listing quarto-float">
+<div id="lst-multi-edges-with-id" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-multi-edges-with-id-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;11: Graph with two equivalent edges, differentiated by edge identifiers
@@ -398,7 +394,7 @@ Example&nbsp;11: Graph with two equivalent edges, differentiated by edge identif
 </figure>
 </div>
 <p>Colons are not forbidden in edge identifiers:</p>
-<div id="lst-colon-in-edge-id" class="pg listing quarto-float">
+<div id="lst-colon-in-edge-id" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-colon-in-edge-id-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;12: Edge identifiers with colon
@@ -410,7 +406,7 @@ Example&nbsp;12: Edge identifiers with colon
 </figure>
 </div>
 <p>Edge identifiers MUST NOT be repeated.</p>
-<div id="lst-invalid-edge-ids" class="pg invalid listing quarto-float">
+<div id="lst-invalid-edge-ids" class="pg invalid listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-invalid-edge-ids-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;13: The second statement is invalid because of repeated edge identifier
@@ -422,7 +418,7 @@ Example&nbsp;13: The second statement is invalid because of repeated edge identi
 </figure>
 </div>
 <p>No space is allowed between the edge identifier and its colon:</p>
-<div id="lst-invalid-edge-id" class="pg invalid listing quarto-float">
+<div id="lst-invalid-edge-id" class="pg invalid listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-invalid-edge-id-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;14: Invalid statement
@@ -440,7 +436,7 @@ Example&nbsp;14: Invalid statement
 <section id="loops" class="level3" data-number="3.4.3">
 <h3 data-number="3.4.3" class="anchored" data-anchor-id="loops"><span class="header-section-number">3.4.3</span> Loops</h3>
 <p>Edges can connect a node to itself.</p>
-<div id="lst-lops" class="pg listing quarto-float">
+<div id="lst-lops" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-lops-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;15: Directed and undirected loop
@@ -455,7 +451,7 @@ Example&nbsp;15: Directed and undirected loop
 <section id="multi-edges" class="level3" data-number="3.4.4">
 <h3 data-number="3.4.4" class="anchored" data-anchor-id="multi-edges"><span class="header-section-number">3.4.4</span> Multi-edges</h3>
 <p>The Property Graph Data Model allows for multiple edges between the same node.</p>
-<div id="lst-multi-edges" class="pg listing quarto-float">
+<div id="lst-multi-edges" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-multi-edges-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;16: Graph with two indistinguishable edges
@@ -473,7 +469,7 @@ Example&nbsp;16: Graph with two indistinguishable edges
 <h2 data-number="3.5" class="anchored" data-anchor-id="labels"><span class="header-section-number">3.5</span> Labels</h2>
 <p>A label is an <a href="#identifiers">identifier</a> following a colon (<code>U+003A</code>). <a href="#whitespace">Spaces</a> between colon and label identifier are OPTIONAL but NOT RECOMMENDED.</p>
 <p>Labels of a node or an edge are unique: repeated labels are ignored. Applications SHOULD preserve the order of labels of a node or an edge.</p>
-<div id="lst-labels" class="pg listing quarto-float">
+<div id="lst-labels" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-labels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;17: Repeated labels on same node or edge are ignored
@@ -486,7 +482,7 @@ Example&nbsp;17: Repeated labels on same node or edge are ignored
 </figure>
 </div>
 <p>Colons are not forbidden in labels:</p>
-<div id="lst-colon-in-labels" class="pg listing quarto-float">
+<div id="lst-colon-in-labels" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-colon-in-labels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;18: Labels with colons
@@ -507,7 +503,7 @@ Example&nbsp;18: Labels with colons
 <li>a non-empty list of <strong><a href="#property-values">property values</a></strong>, separated by comma (<code>U+002C</code>)</li>
 </ul>
 <p>Each property value MAY be preceded and followed by <a href="#whitespace">delimiting whitespace</a>. If the property key is an unquoted identifier and no delimiting whitespace is given before the first value, then the property key MUST NOT contain a colon.</p>
-<div id="lst-properties" class="pg listing quarto-float">
+<div id="lst-properties" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-properties-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;19: Property with optional spaces and/or whitespace
@@ -529,7 +525,7 @@ Example&nbsp;19: Property with optional spaces and/or whitespace
 </div>
 </figure>
 </div>
-<div id="lst-invalid-properties" class="pg invalid listing quarto-float">
+<div id="lst-invalid-properties" class="pg invalid listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-invalid-properties-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;20: Invalid property
@@ -553,7 +549,7 @@ Example&nbsp;20: Invalid property
 </ul></li>
 </ul>
 <p>The data type of a property value in PG Format is either string, or number, or boolean.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> Applications MAY internally map these types to other type systems. Values of the same property are allowed to have different data types.</p>
-<div id="lst-property-values" class="pg listing quarto-float">
+<div id="lst-property-values" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-property-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;21: Property values
@@ -569,7 +565,7 @@ Example&nbsp;21: Property values
 <section id="property-merging" class="level3" data-number="3.6.2">
 <h3 data-number="3.6.2" class="anchored" data-anchor-id="property-merging"><span class="header-section-number">3.6.2</span> Property merging</h3>
 <p>Value lists of properties of the same property key are concatenated. Value lists are no sets: the same value can be included multiple times.</p>
-<div id="lst-property-values" class="pg listing quarto-float">
+<div id="lst-property-values" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-property-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;22: Three nodes with same properties
@@ -594,7 +590,7 @@ Example&nbsp;22: Three nodes with same properties
 <li>control characters <code>U+0000</code> through <code>U+001F</code> except line feed (<code>U+000A</code>), carriage return (<code>U+000D</code>), and tabular (<code>U+0009</code>)</li>
 </ul>
 <p>All characters can be escaped as defined by JSON specification (<a href="https://tools.ietf.org/html/rfc8259">RFC 8259</a>, section 7) with the addition of the two-character escape sequence <code>\'</code> to escape an apostrophe. Quoted strings in PG Format further differ from JSON by string quoting with apostrophe in addition to quotation mark and by allowing unquoted line feed, carriage return, and tabular.</p>
-<div id="lst-strings" class="pg listing quarto-float">
+<div id="lst-strings" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-strings-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;23: The same string given in multiple quoted forms
@@ -607,7 +603,7 @@ Example&nbsp;23: The same string given in multiple quoted forms
 </div>
 </figure>
 </div>
-<div id="lst-invalid-string-escapes" class="pg invalid listing quarto-float">
+<div id="lst-invalid-string-escapes" class="pg invalid listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-invalid-string-escapes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;24: Invalid string escape sequences
@@ -624,7 +620,7 @@ Example&nbsp;24: Invalid string escape sequences
 <p><strong>Spaces</strong> are a non-empty sequence of space (<code>U+0020</code>) and/or tabular (<code>U+0009</code>).</p>
 <p>A <strong>comment</strong> begins with a hash (<code>#</code> = <code>U+0023</code>) and it ends before the next <a href="#whitespace">line break</a> or at the end of the document.</p>
 <p><strong>Delimiting whitespace</strong> separates elements of a statement. Delimiting whitespace consists of an optional sequence of <a href="#whitespace">spaces</a>, <a href="#whitespace">comment</a>, and/or <a href="#whitespace">line breaks</a> and it ends with <a href="#whitespace">spaces</a>. The inclusion of line breaks in delimiting whitespace is also called <em>line folding</em>.</p>
-<div id="lst-line-folding" class="pg listing quarto-float">
+<div id="lst-line-folding" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-line-folding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;25: Line folding
@@ -637,7 +633,7 @@ Example&nbsp;25: Line folding
 </div>
 </figure>
 </div>
-<div id="lst-line-folding" class="pg listing quarto-float">
+<div id="lst-line-folding" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-line-folding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;26: Same graph as above
@@ -722,7 +718,7 @@ Example&nbsp;26: Same graph as above
 <li><code>to</code> an identifier of the target node from <code>nodes</code> array</li>
 <li><code>labels</code> and <code>properties</code> as defined above at nodes</li>
 </ul>
-<div id="lst-json-example" class="json listing quarto-float">
+<div id="lst-json-example" class="json listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-json-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;27: Example graph in PG-JSON
@@ -759,7 +755,7 @@ Example&nbsp;27: Example graph in PG-JSON
 </ul>
 <p>Node objects SHOULD be given before their node identifiers are referenced in an edge object, but applications MAY also create implicit node objects for these cases. Applications MAY allow multiple node objects with identical node identifier in PG-JSONL but they MUST make clear whether nodes with repeated identifiers are ignored, merged into existing nodes, or replace existing nodes.</p>
 <div class="column-screen-inset-right">
-<div id="lst-json-example" class="json listing quarto-float">
+<div id="lst-json-example" class="json listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-json-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Example&nbsp;28: Example graph in PG-JSONL
@@ -809,10 +805,10 @@ Example&nbsp;28: Example graph in PG-JSONL
 </ul>
 </section>
 </section>
-<section id="appendices" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Appendices</h1>
-<section id="json-schemas" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="json-schemas"><span class="header-section-number">8.1</span> JSON Schemas</h2>
+<section id="appendices" class="level1 unnumbered">
+<h1 class="unnumbered">Appendices</h1>
+<section id="json-schemas" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="json-schemas">JSON Schemas</h2>
 <p>The <a href="#pg-json">PG-JSON format</a> can be validated with a non-normative JSON Schema file <a href="schema/pg-json.json"><code>pg-json.json</code></a> in this repository. Rules not covered by the JSON schema include:</p>
 <ul>
 <li>nodes referenced in edges must be defined (no implicit nodes)</li>
@@ -821,21 +817,18 @@ Example&nbsp;28: Example graph in PG-JSONL
 </ul>
 <p>The <a href="#pg-jsonl">PG-JSONL format</a> can be validated with a non-normative JSON Schema file <a href="schema/pg-jsonl.json"><code>pg-jsonl.json</code></a> in this repository. Validation is limited in the same way as validation of PG-JSON with its JSON Schema.</p>
 </section>
-<section id="changes" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="changes"><span class="header-section-number">8.2</span> Changes</h2>
+<section id="changes" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="changes">Changes</h2>
 <p>This document is managed in a revision control system at <a href="https://github.com/pg-format/specification" class="uri">https://github.com/pg-format/specification</a>.</p>
-<section id="version-1.0.0" class="level3" data-number="8.2.1">
-<h3 data-number="8.2.1" class="anchored" data-anchor-id="version-1.0.0"><span class="header-section-number">8.2.1</span> Version 1.0.0</h3>
-<p><em>not published yet</em></p>
-<p>Introduced comments, line folding, edge identifiers. Aligned property values with JSON syntax. Added more formal rules for quoted strings and unquoted identifiers. Added PG-JSONL. Changed node identifiers to be strings.</p>
+<ul>
+<li><p><strong>Version 1.0.0</strong> (<em>not published yet</em>)</p>
+<p>Introduced comments, line folding, edge identifiers. Aligned property values with JSON syntax. Added more formal rules for quoted strings and unquoted identifiers. Added PG-JSONL. Changed node identifiers to be strings.</p></li>
+<li><p><strong>Version 0.3</strong></p>
+<p>Less formal specification published in 2019. See <a href="https://pg-format.readthedocs.io/en/0.3/contents/pg-format.html">latest version from 2020</a>.</p></li>
+</ul>
 </section>
-<section id="version-0.3" class="level3" data-number="8.2.2">
-<h3 data-number="8.2.2" class="anchored" data-anchor-id="version-0.3"><span class="header-section-number">8.2.2</span> Version 0.3</h3>
-<p>Less formal specification published in 2019. See <a href="https://pg-format.readthedocs.io/en/0.3/contents/pg-format.html">latest version from 2020</a>.</p>
-</section>
-</section>
-<section id="acknowledgements" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="acknowledgements"><span class="header-section-number">8.3</span> Acknowledgements</h2>
+<section id="acknowledgements" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
 <p>Many thanks to Ryota Yamanaka (Meer Consulting Group) and Shota Matsumoto (Lifematics Inc.) for their contribution to the first versions of PG Format.</p>
 </section>
 </section>
@@ -883,7 +876,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

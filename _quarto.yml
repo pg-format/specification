@@ -23,10 +23,24 @@ format:
       lst-prefix: "Example"
       lst-title: "Example"
   # requires install  texlive-fonts-extra
-  #pdf:
-  #  documentclass: scrreprt
-  #  papersize: a4paper
-  #  toc: true
-  #  toc-depth: 2      
-  #  keep-tex: true
-  #  classoption: [DIV=14,BCOR=10mm]
+  pdf:
+    documentclass: scrreprt
+    papersize: a4paper
+    toc: true
+    toc-depth: 2    
+    keep-tex: true
+    number-sections: true
+    fontsize: 11pt
+    classoption:
+      - DIV=14
+      - BCOR=10mm
+    template-partials:
+      - title.tex
+    include-in-header:
+      text: |
+        \usepackage[noblocks]{authblk}
+        \renewcommand*{\Authsep}{, }
+        \renewcommand*{\Authand}{, }
+        \renewcommand*{\Authands}{, }
+        \renewcommand\Affilfont{\small}
+
