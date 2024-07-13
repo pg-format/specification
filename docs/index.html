@@ -249,18 +249,6 @@ Example&nbsp;1: Several unquoted identifiers
 </figure>
 </div>
 <p>An unquoted identifier MUST NOT start with a colon (<code>U+003A</code>), comma (<code>U+002C</code>), or minus (<code>U+002D</code>).</p>
-<div id="lst-invalid-id" class="pg invalid listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-invalid-id-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;2: Invalid unquoted identifiers
-</figcaption>
-<div aria-describedby="lst-invalid-id-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="lst-invalid-id"><pre class="sourceCode pg invalid"><code class="sourceCode pg"><span id="lst-invalid-id-1"><a href="#lst-invalid-id-1" aria-hidden="true" tabindex="-1"></a><span class="er">:</span>1</span>
-<span id="lst-invalid-id-2"><a href="#lst-invalid-id-2" aria-hidden="true" tabindex="-1"></a><span class="er">,</span>2</span>
-<span id="lst-invalid-id-3"><a href="#lst-invalid-id-3" aria-hidden="true" tabindex="-1"></a><span class="er">-</span>3</span></code></pre></div>
-</div>
-</figure>
-</div>
 <p>An unquoted identifier MUST NOT start with hash (“<code>#</code>”) because this starts a <a href="#whitespace">comment</a> nor with apostrophe (“<code>'</code>”) or quotation mark (“<code>"</code>”) because these start a <a href="#quoted-strings">quoted string</a>. Colon, hash, comma, and apostrophe are allowed in an unquoted identifier after its first character.</p>
 </section>
 <section id="nodes" class="level2" data-number="3.3">
@@ -274,7 +262,7 @@ Example&nbsp;2: Invalid unquoted identifiers
 <div id="lst-nodes" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-nodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;3: Some node statements
+Example&nbsp;2: Some node statements
 </figcaption>
 <div aria-describedby="lst-nodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-nodes"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-nodes-1"><a href="#lst-nodes-1" aria-hidden="true" tabindex="-1"></a>id <span class="dt">:label</span> <span class="fu">key:</span><span class="st">value</span></span>
@@ -289,7 +277,7 @@ Example&nbsp;3: Some node statements
 <div id="lst-node-merging-1" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-node-merging-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;4: One node defined by multiple statements
+Example&nbsp;3: One node defined by multiple statements
 </figcaption>
 <div aria-describedby="lst-node-merging-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-node-merging-1"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-node-merging-1-1"><a href="#lst-node-merging-1-1" aria-hidden="true" tabindex="-1"></a>a <span class="dt">:x</span> <span class="fu">k:</span><span class="dv">1</span> <span class="fu">m:</span><span class="kw">true</span></span>
@@ -300,7 +288,7 @@ Example&nbsp;4: One node defined by multiple statements
 <div id="lst-node-merging-2" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-node-merging-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;5: Same node defined by one statement
+Example&nbsp;4: Same node defined by one statement
 </figcaption>
 <div aria-describedby="lst-node-merging-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-node-merging-2"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-node-merging-2-1"><a href="#lst-node-merging-2-1" aria-hidden="true" tabindex="-1"></a>a <span class="dt">:x</span> <span class="dt">:y</span> <span class="fu">k:</span><span class="dv">1</span><span class="cf">,</span><span class="dv">2</span> <span class="fu">m:</span><span class="kw">true</span></span></code></pre></div>
@@ -314,7 +302,7 @@ Example&nbsp;5: Same node defined by one statement
 <div id="lst-implicit-nodes" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-implicit-nodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;6: Simple graph with two nodes and one edge
+Example&nbsp;5: Simple graph with two nodes and one edge
 </figcaption>
 <div aria-describedby="lst-implicit-nodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-implicit-nodes"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-implicit-nodes-1"><a href="#lst-implicit-nodes-1" aria-hidden="true" tabindex="-1"></a>a <span class="cf">-&gt;</span> b</span></code></pre></div>
@@ -324,7 +312,7 @@ Example&nbsp;6: Simple graph with two nodes and one edge
 <div id="lst-explicit-nodes" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-explicit-nodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;7: Same graph with explicit node statements
+Example&nbsp;6: Same graph with explicit node statements
 </figcaption>
 <div aria-describedby="lst-explicit-nodes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-explicit-nodes"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-explicit-nodes-1"><a href="#lst-explicit-nodes-1" aria-hidden="true" tabindex="-1"></a>a</span>
@@ -349,7 +337,7 @@ Example&nbsp;7: Same graph with explicit node statements
 <div id="lst-edges" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-edges-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;8: Some edge statements
+Example&nbsp;7: Some edge statements
 </figcaption>
 <div aria-describedby="lst-edges-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-edges"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-edges-1"><a href="#lst-edges-1" aria-hidden="true" tabindex="-1"></a>a <span class="cf">-&gt;</span> b</span>
@@ -362,7 +350,7 @@ Example&nbsp;8: Some edge statements
 <div id="lst-no-edge-but-node" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-no-edge-but-node-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;9: Not an edge statement
+Example&nbsp;8: Not an edge statement
 </figcaption>
 <div aria-describedby="lst-no-edge-but-node-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-no-edge-but-node"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-no-edge-but-node-1"><a href="#lst-no-edge-but-node-1" aria-hidden="true" tabindex="-1"></a>a--b</span></code></pre></div>
@@ -373,7 +361,7 @@ Example&nbsp;9: Not an edge statement
 <div id="lst-invalid-edge" class="pg invalid listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-invalid-edge-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;10: Invalid edge statement
+Example&nbsp;9: Invalid edge statement
 </figcaption>
 <div aria-describedby="lst-invalid-edge-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-invalid-edge"><pre class="sourceCode pg invalid"><code class="sourceCode pg"><span id="lst-invalid-edge-1"><a href="#lst-invalid-edge-1" aria-hidden="true" tabindex="-1"></a>a-<span class="er">&gt;b</span></span></code></pre></div>
@@ -386,7 +374,7 @@ Example&nbsp;10: Invalid edge statement
 <div id="lst-multi-edges-with-id" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-multi-edges-with-id-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;11: Graph with two equivalent edges, differentiated by edge identifiers
+Example&nbsp;10: Graph with two equivalent edges, differentiated by edge identifiers
 </figcaption>
 <div aria-describedby="lst-multi-edges-with-id-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-multi-edges-with-id"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-multi-edges-with-id-1"><a href="#lst-multi-edges-with-id-1" aria-hidden="true" tabindex="-1"></a>1: a <span class="cf">-&gt;</span> b <span class="dt">:follows</span> <span class="fu">since:</span><span class="dv">2024</span></span>
@@ -398,7 +386,7 @@ Example&nbsp;11: Graph with two equivalent edges, differentiated by edge identif
 <div id="lst-colon-in-edge-id" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-colon-in-edge-id-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;12: Edge identifiers with colon
+Example&nbsp;11: Edge identifiers with colon
 </figcaption>
 <div aria-describedby="lst-colon-in-edge-id-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-colon-in-edge-id"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-colon-in-edge-id-1"><a href="#lst-colon-in-edge-id-1" aria-hidden="true" tabindex="-1"></a>x::  a <span class="cf">-&gt;</span> b  <span class="co"># edge identifier "x:"</span></span>
@@ -410,7 +398,7 @@ Example&nbsp;12: Edge identifiers with colon
 <div id="lst-invalid-edge-ids" class="pg invalid listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-invalid-edge-ids-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;13: The second statement is invalid because of repeated edge identifier
+Example&nbsp;12: The second statement is invalid because of repeated edge identifier
 </figcaption>
 <div aria-describedby="lst-invalid-edge-ids-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-invalid-edge-ids"><pre class="sourceCode pg invalid"><code class="sourceCode pg"><span id="lst-invalid-edge-ids-1"><a href="#lst-invalid-edge-ids-1" aria-hidden="true" tabindex="-1"></a>1: a <span class="cf">-&gt;</span> b <span class="dt">:follows</span></span>
@@ -422,7 +410,7 @@ Example&nbsp;13: The second statement is invalid because of repeated edge identi
 <div id="lst-invalid-edge-id" class="pg invalid listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-invalid-edge-id-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;14: Invalid statement
+Example&nbsp;13: Invalid statement
 </figcaption>
 <div aria-describedby="lst-invalid-edge-id-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-invalid-edge-id"><pre class="sourceCode pg invalid"><code class="sourceCode pg"><span id="lst-invalid-edge-id-1"><a href="#lst-invalid-edge-id-1" aria-hidden="true" tabindex="-1"></a>1 <span class="dt">: a</span> <span class="er">-&gt;</span> <span class="er">b</span></span></code></pre></div>
@@ -440,7 +428,7 @@ Example&nbsp;14: Invalid statement
 <div id="lst-lops" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-lops-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;15: Directed and undirected loop
+Example&nbsp;14: Directed and undirected loop
 </figcaption>
 <div aria-describedby="lst-lops-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-lops"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-lops-1"><a href="#lst-lops-1" aria-hidden="true" tabindex="-1"></a>a <span class="cf">-&gt;</span> a</span>
@@ -455,7 +443,7 @@ Example&nbsp;15: Directed and undirected loop
 <div id="lst-multi-edges" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-multi-edges-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;16: Graph with two indistinguishable edges
+Example&nbsp;15: Graph with two indistinguishable edges
 </figcaption>
 <div aria-describedby="lst-multi-edges-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-multi-edges"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-multi-edges-1"><a href="#lst-multi-edges-1" aria-hidden="true" tabindex="-1"></a>a <span class="cf">-&gt;</span> b <span class="dt">:follows</span> <span class="fu">since:</span><span class="dv">2024</span></span>
@@ -473,7 +461,7 @@ Example&nbsp;16: Graph with two indistinguishable edges
 <div id="lst-labels" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-labels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;17: Repeated labels on same node or edge are ignored
+Example&nbsp;16: Repeated labels on same node or edge are ignored
 </figcaption>
 <div aria-describedby="lst-labels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-labels"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-labels-1"><a href="#lst-labels-1" aria-hidden="true" tabindex="-1"></a>a <span class="dt">:label1</span> <span class="dt">:label2</span> <span class="dt">:label1</span>   <span class="co"># label1 is repeated</span></span>
@@ -486,7 +474,7 @@ Example&nbsp;17: Repeated labels on same node or edge are ignored
 <div id="lst-colon-in-labels" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-colon-in-labels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;18: Labels with colons
+Example&nbsp;17: Labels with colons
 </figcaption>
 <div aria-describedby="lst-colon-in-labels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-colon-in-labels"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-colon-in-labels-1"><a href="#lst-colon-in-labels-1" aria-hidden="true" tabindex="-1"></a>a <span class="dt">:b:c</span>                      <span class="co"># label "b:c"</span></span>
@@ -507,7 +495,7 @@ Example&nbsp;18: Labels with colons
 <div id="lst-properties" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-properties-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;19: Property with optional spaces and/or whitespace
+Example&nbsp;18: Property with optional spaces and/or whitespace
 </figcaption>
 <div aria-describedby="lst-properties-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-properties"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-properties-1"><a href="#lst-properties-1" aria-hidden="true" tabindex="-1"></a>node <span class="fu">key:</span> <span class="st">value</span>     <span class="co"># spaces before value</span></span>
@@ -529,7 +517,7 @@ Example&nbsp;19: Property with optional spaces and/or whitespace
 <div id="lst-invalid-properties" class="pg invalid listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-invalid-properties-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;20: Invalid property
+Example&nbsp;19: Invalid property
 </figcaption>
 <div aria-describedby="lst-invalid-properties-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-invalid-properties"><pre class="sourceCode pg invalid"><code class="sourceCode pg"><span id="lst-invalid-properties-1"><a href="#lst-invalid-properties-1" aria-hidden="true" tabindex="-1"></a>node <span class="er">key</span>            <span class="co"># delimiting whitespace not allowed before colon</span></span>
@@ -553,7 +541,7 @@ Example&nbsp;20: Invalid property
 <div id="lst-property-values" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-property-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;21: Property values
+Example&nbsp;20: Property values
 </figcaption>
 <div aria-describedby="lst-property-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-property-values"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-property-values-1"><a href="#lst-property-values-1" aria-hidden="true" tabindex="-1"></a>node <span class="fu">n:</span> <span class="dv">1</span><span class="cf">,</span><span class="dv">-1</span><span class="cf">,</span><span class="dv">2e+3</span>          <span class="co"># numbers </span></span>
@@ -569,7 +557,7 @@ Example&nbsp;21: Property values
 <div id="lst-property-values" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-property-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;22: Three nodes with same properties
+Example&nbsp;21: Three nodes with same properties
 </figcaption>
 <div aria-describedby="lst-property-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-property-values"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-property-values-1"><a href="#lst-property-values-1" aria-hidden="true" tabindex="-1"></a>a <span class="fu">x:</span><span class="dv">1</span><span class="cf">,</span><span class="dv">2</span><span class="cf">,</span><span class="dv">3</span>       <span class="co"># property values given as list</span></span>
@@ -594,7 +582,7 @@ Example&nbsp;22: Three nodes with same properties
 <div id="lst-strings" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-strings-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;23: The same string given in multiple quoted forms
+Example&nbsp;22: The same string given in multiple quoted forms
 </figcaption>
 <div aria-describedby="lst-strings-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-strings"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-strings-1"><a href="#lst-strings-1" aria-hidden="true" tabindex="-1"></a>"hello,<span class="sc">\n</span>world"</span>
@@ -607,7 +595,7 @@ Example&nbsp;23: The same string given in multiple quoted forms
 <div id="lst-invalid-string-escapes" class="pg invalid listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-invalid-string-escapes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;24: Invalid string escape sequences
+Example&nbsp;23: Invalid string escape sequences
 </figcaption>
 <div aria-describedby="lst-invalid-string-escapes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-invalid-string-escapes"><pre class="sourceCode pg invalid"><code class="sourceCode pg"><span id="lst-invalid-string-escapes-1"><a href="#lst-invalid-string-escapes-1" aria-hidden="true" tabindex="-1"></a>"h<span class="er">\e</span>llo<span class="er">\u21</span>"</span></code></pre></div>
@@ -624,7 +612,7 @@ Example&nbsp;24: Invalid string escape sequences
 <div id="lst-line-folding" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-line-folding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;25: Line folding
+Example&nbsp;24: Line folding
 </figcaption>
 <div aria-describedby="lst-line-folding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-line-folding"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-line-folding-1"><a href="#lst-line-folding-1" aria-hidden="true" tabindex="-1"></a>a <span class="dt">:x</span>  <span class="co"># node id and label</span></span>
@@ -637,7 +625,7 @@ Example&nbsp;25: Line folding
 <div id="lst-line-folding" class="pg listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-line-folding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;26: Same graph as above
+Example&nbsp;25: Same graph as above
 </figcaption>
 <div aria-describedby="lst-line-folding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-line-folding"><pre class="sourceCode pg"><code class="sourceCode pg"><span id="lst-line-folding-1"><a href="#lst-line-folding-1" aria-hidden="true" tabindex="-1"></a>a <span class="dt">:x</span> <span class="dt">:y</span></span></code></pre></div>
@@ -723,7 +711,7 @@ Example&nbsp;26: Same graph as above
 <div id="lst-json-example" class="json listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-json-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;27: Example graph in PG-JSON
+Example&nbsp;26: Example graph in PG-JSON
 </figcaption>
 <div aria-describedby="lst-json-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-json-example"><pre class="sourceCode json"><code class="sourceCode json"><span id="lst-json-example-1"><a href="#lst-json-example-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
@@ -763,7 +751,7 @@ Example&nbsp;27: Example graph in PG-JSON
 <div id="lst-json-example" class="json listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-json-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Example&nbsp;28: Example graph in PG-JSONL
+Example&nbsp;27: Example graph in PG-JSONL
 </figcaption>
 <div aria-describedby="lst-json-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode" id="lst-json-example"><pre class="sourceCode json"><code class="sourceCode json"><span id="lst-json-example-1"><a href="#lst-json-example-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span><span class="dt">"type"</span><span class="fu">:</span><span class="st">"node"</span><span class="fu">,</span><span class="dt">"id"</span><span class="fu">:</span><span class="st">"101"</span><span class="fu">,</span><span class="dt">"labels"</span><span class="fu">:</span><span class="ot">[</span><span class="st">"person"</span><span class="ot">]</span><span class="fu">,</span><span class="dt">"properties"</span><span class="fu">:{</span><span class="dt">"country"</span><span class="fu">:</span><span class="ot">[</span><span class="st">"United States"</span><span class="ot">]</span><span class="fu">,</span><span class="dt">"name"</span><span class="fu">:</span><span class="ot">[</span><span class="st">"Alice"</span><span class="ot">,</span><span class="st">"Carol"</span><span class="ot">]</span><span class="fu">}}</span></span>

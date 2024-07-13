@@ -53,9 +53,12 @@ format:
         \renewcommand*{\Authands}{, }
         \renewcommand\Affilfont{\small}
         \AtBeginDocument{
-          % TODO: try plaintop and change caption layout
-          \floatstyle{boxed}
+          \floatstyle{plaintop}
+          \DeclareCaptionFormat{underline}{\underline{#1#2#3}}
+          \captionsetup[codelisting]{font=small,labelfont=bf,singlelinecheck=false,justification=justified,format=underline}
+          \setlength{\abovecaptionskip}{-2mm}
           \restylefloat{codelisting}
           \floatplacement{codelisting}{H}
+          \AtEndEnvironment{codelisting}{\vspace*{-6mm}}
         }
   
