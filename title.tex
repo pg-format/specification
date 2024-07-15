@@ -7,8 +7,8 @@ $if(subtitle)$
 $endif$
 
 $for(by-author)$
-  \author{$by-author.name.literal$}
-  % TODO: ORCID:$by-author.orcid$
+  \author{$by-author.name.literal$
+  $if(by-author.orcid)$\orcidlink{$by-author.orcid$}$endif$}
   $if(by-author.affiliations)$
     $for(by-author.affiliations)$
       \affil{%

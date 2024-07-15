@@ -47,6 +47,7 @@ format:
      - title.tex
     include-in-header:
       text: |
+        \usepackage{orcidlink}
         \usepackage[noblocks]{authblk}
         \renewcommand*{\Authsep}{, }
         \renewcommand*{\Authand}{, }

@@ -13,13 +13,6 @@ authors:
    - name: Verbundzentrale des GBV (VZG)
 ---
 
-::: {.callout-note}
-
-*THIS IS WORK IN PROGRESS*. See also [discussion forum](https://github.com/orgs/pg-format/discussions) and 
-[issue tracker](https://github.com/pg-format/specification/issues) for updates!
-
-:::
-
 # Introduction
 
 ## Why property graphs?
@@ -581,9 +574,13 @@ specification of PG-JSON and/or PG-JSONL to a valid form, for instance by:
 
 ## Informative references
 
-- [Property Graph Exchange Format Homepage](https://pg-format.github.io/)
+- Property Graph Exchange Format Homepage <https://pg-format.github.io/>
 
-- [PG Test Suite](https://github.com/pg-format/pg-test-suite)
+  - [PG Test Suite](https://github.com/pg-format/pg-test-suite)
+
+  - [PG Syntax Highlighting](https://github.com/pg-format/pg-highlight)
+
+  - [PG Format discussion forum](https://github.com/orgs/pg-format/discussions)
 
 - [JSON Schema](https://json-schema.org/) schema language
 
@@ -606,7 +603,8 @@ The [PG-JSONL format](#pg-jsonl) can be validated with a non-normative JSON Sche
 
 ## Changes {.unnumbered}
 
-This document is managed in a revision control system at <https://github.com/pg-format/specification>.
+This document is managed in a revision control system at <https://github.com/pg-format/specification>,
+including an [issue tracker](https://github.com/pg-format/specification/issues).
 
 - **Version 1.0.0** (*not published yet*)
 
@@ -614,7 +612,8 @@ This document is managed in a revision control system at <https://github.com/pg-
 
 - **Version 0.3**
 
-  Less formal specification published in 2019. See [latest version from 2020](https://pg-format.readthedocs.io/en/0.3/contents/pg-format.html).
+  Less formal specification first published in 2019.
+  See [latest draft from 2020](https://pg-format.readthedocs.io/en/0.3/contents/pg-format.html).
 
 ## Acknowledgements {.unnumbered}
 
