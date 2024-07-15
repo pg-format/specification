@@ -71,6 +71,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <link rel="stylesheet" href="style.css">
 <meta name="citation_title" content="Property Graph Exchange Format (PG)">
+<meta name="citation_abstract" content="This document specifies a common data model of labeled property graphs,
+a syntax to write property graphs in a compact textual form, and serialization
+formats of property graphs in JSON and in newline-delimited JSON.
+">
 <meta name="citation_author" content="Hirokazu Chiba">
 <meta name="citation_author" content="Jakob Voß">
 <meta name="citation_language" content="en">
@@ -121,6 +125,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="quarto-alternate-formats"><div class="quarto-title-meta-heading">Other Formats</div><div class="quarto-title-meta-contents"><p><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></p></div></div></div>
     </div>
 
+    <div>
+      <div class="abstract">
+        <div class="block-title">Abstract</div>
+        <p>This document specifies a common data model of labeled property graphs, a syntax to write property graphs in a compact textual form, and serialization formats of property graphs in JSON and in newline-delimited JSON.</p>
+      </div>
+    </div>
 
 
     <div class="quarto-other-links-text-target">
@@ -135,6 +145,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#why-property-graphs" id="toc-why-property-graphs" class="nav-link" data-scroll-target="#why-property-graphs"><span class="header-section-number">1.1</span> Why property graphs?</a></li>
   <li><a href="#about-this-document" id="toc-about-this-document" class="nav-link" data-scroll-target="#about-this-document"><span class="header-section-number">1.2</span> About this document</a></li>
+  <li><a href="#robustness-principle" id="toc-robustness-principle" class="nav-link" data-scroll-target="#robustness-principle"><span class="header-section-number">1.3</span> Robustness principle</a></li>
   </ul></li>
   <li><a href="#data-model" id="toc-data-model" class="nav-link" data-scroll-target="#data-model"><span class="header-section-number">2</span> Data Model</a></li>
   <li><a href="#pg-format" id="toc-pg-format" class="nav-link" data-scroll-target="#pg-format"><span class="header-section-number">3</span> PG Format</a>
@@ -165,11 +176,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#pg-json" id="toc-pg-json" class="nav-link" data-scroll-target="#pg-json"><span class="header-section-number">4</span> PG-JSON</a></li>
   <li><a href="#pg-jsonl" id="toc-pg-jsonl" class="nav-link" data-scroll-target="#pg-jsonl"><span class="header-section-number">5</span> PG-JSONL</a></li>
-  <li><a href="#robustness-principle" id="toc-robustness-principle" class="nav-link" data-scroll-target="#robustness-principle"><span class="header-section-number">6</span> Robustness principle</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">7</span> References</a>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">6</span> References</a>
   <ul class="collapse">
-  <li><a href="#normative-references" id="toc-normative-references" class="nav-link" data-scroll-target="#normative-references"><span class="header-section-number">7.1</span> Normative References</a></li>
-  <li><a href="#informative-references" id="toc-informative-references" class="nav-link" data-scroll-target="#informative-references"><span class="header-section-number">7.2</span> Informative references</a></li>
+  <li><a href="#normative-references" id="toc-normative-references" class="nav-link" data-scroll-target="#normative-references"><span class="header-section-number">6.1</span> Normative References</a></li>
+  <li><a href="#informative-references" id="toc-informative-references" class="nav-link" data-scroll-target="#informative-references"><span class="header-section-number">6.2</span> Informative references</a></li>
   </ul></li>
   <li><a href="#appendices" id="toc-appendices" class="nav-link" data-scroll-target="#appendices">Appendices</a>
   <ul class="collapse">
@@ -199,8 +209,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="about-this-document" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="about-this-document"><span class="header-section-number">1.2</span> About this document</h2>
 <p>The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in BCP 14 (<a href="https://tools.ietf.org/html/rfc2119">RFC 2119</a> and <a href="https://tools.ietf.org/html/rfc8174">RFC 8174</a>) when, and only when, they appear in all capitals, as shown here.</p>
-<p>Normative parts of this specification are limited to sections <a href="#data-model">2</a> to <a href="#rubustness-priniciple">6</a> and <a href="#normative-references">the normative references</a>.</p>
-<p>More information about Property Graph Exchange Format is summarized <strong><a href="https://pg-format.github.io/">at its homepage</a></strong>.</p>
+</section>
+<section id="robustness-principle" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="robustness-principle"><span class="header-section-number">1.3</span> Robustness principle</h2>
+<p>Applications MAY automatically convert documents not fully conforming to the specification of <a href="#pg-json">PG-JSON</a> and/or <a href="#pg-jsonl">PG-JSONL</a> to a valid form, for instance by:</p>
+<ul>
+<li>creation of implicit nodes for node identifiers referenced in edges</li>
+<li>addition of missing empty fields <code>labels</code> and/or <code>properties</code></li>
+<li>removal or mapping of invalid property values such as <code>null</code> and JSON objects</li>
+<li>mapping of numeric node identifiers and edge identifiers to strings</li>
+<li>removal of additional fields not defined in this specification</li>
+</ul>
 </section>
 </section>
 <section id="data-model" class="level1" data-number="2">
@@ -663,7 +682,7 @@ Example&nbsp;25: Same graph as above
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="dt">SingleQuoted</span>   <span class="cf">::=</span> <span class="fu">Unescaped</span> <span class="cf">|</span> <span class="st">'"'</span> <span class="cf">|</span> <span class="fu">Escaped</span></span>
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="dt">DoubleQuoted</span>   <span class="cf">::=</span> <span class="fu">Unescaped</span> <span class="cf">|</span> <span class="st">"'"</span> <span class="cf">|</span> <span class="fu">Escaped</span></span>
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="dt">Unescaped</span>      <span class="cf">::=</span> <span class="st">[^#x00-#x08#x0B#x0C#x0E-#x1F"'\]</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="dt">Escaped</span>        <span class="cf">::=</span> <span class="st">"\"</span> <span class="cf">(</span> <span class="st">'"'</span> <span class="cf">|</span> <span class="st">"'"</span> <span class="cf">|</span> <span class="st">"\"</span> <span class="cf">|</span> <span class="st">"/"</span> <span class="cf">|</span> <span class="st">"b"</span>  <span class="cf">|</span> <span class="st">"f"</span>  <span class="cf">|</span> <span class="st">"n"</span>  <span class="cf">|</span> <span class="st">"r"</span> <span class="cf">|</span> <span class="st">"t"</span> <span class="cf">|</span> <span class="st">"u"</span> <span class="fu">Codepoint</span> <span class="cf">)</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="dt">Escaped</span>        <span class="cf">::=</span> <span class="st">"\"</span> <span class="cf">(</span> <span class="st">'"'</span> <span class="cf">|</span> <span class="st">"'"</span> <span class="cf">|</span> <span class="st">"\"</span> <span class="cf">|</span> <span class="st">"/"</span> <span class="cf">|</span> <span class="st">[bfnrt]</span> <span class="cf">|</span> <span class="st">"u"</span> <span class="fu">Codepoint</span> <span class="cf">)</span></span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="dt">Codepoint</span>      <span class="cf">::=</span> <span class="st">[0-9a-fA-Z]</span> <span class="st">[0-9a-fA-Z]</span> <span class="st">[0-9a-fA-Z]</span> <span class="st">[0-9a-fA-Z]</span></span>
 <span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="dt">LineBreak</span>      <span class="cf">::=</span> <span class="st">[#x0A]</span> <span class="cf">|</span> <span class="st">[#x0D]</span> <span class="st">[#x0A]</span><span class="cf">?</span></span>
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
@@ -750,21 +769,10 @@ Example&nbsp;27: Example graph in PG-JSONL
 </div>
 </div>
 </section>
-<section id="robustness-principle" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Robustness principle</h1>
-<p>Applications MAY automatically convert documents not fully conforming to the specification of PG-JSON and/or PG-JSONL to a valid form, for instance by:</p>
-<ul>
-<li>creation of implicit nodes for node identifiers referenced in edges</li>
-<li>addition of missing empty fields <code>labels</code> and/or <code>properties</code></li>
-<li>removal or mapping of invalid property values such as <code>null</code> and JSON objects</li>
-<li>mapping of numeric node identifiers and edge identifiers to strings</li>
-<li>removal of additional fields not defined in this specification</li>
-</ul>
-</section>
-<section id="references" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> References</h1>
-<section id="normative-references" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="normative-references"><span class="header-section-number">7.1</span> Normative References</h2>
+<section id="references" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> References</h1>
+<section id="normative-references" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="normative-references"><span class="header-section-number">6.1</span> Normative References</h2>
 <ul>
 <li><p>Bradner, S.: <em>Key words for use in RFCs to Indicate Requirement Levels</em>. BCP 14, RFC 2119, March 1997, <a href="http://www.rfc-editor.org/info/rfc2119" class="uri">http://www.rfc-editor.org/info/rfc2119</a>.</p></li>
 <li><p>Bray, T.: <em>The JavaScript Object Notation (JSON) Data Interchange Format</em>. RFC 8259, December 2017. <a href="https://tools.ietf.org/html/rfc8259" class="uri">https://tools.ietf.org/html/rfc8259</a></p></li>
@@ -774,15 +782,10 @@ Example&nbsp;27: Example graph in PG-JSONL
 <li><p>Yergeau, F.: <em>UTF-8, a transformation format of ISO 10646.</em> RFC 3629, November 2003. <a href="https://tools.ietf.org/html/rfc3629" class="uri">https://tools.ietf.org/html/rfc3629</a></p></li>
 </ul>
 </section>
-<section id="informative-references" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="informative-references"><span class="header-section-number">7.2</span> Informative references</h2>
+<section id="informative-references" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="informative-references"><span class="header-section-number">6.2</span> Informative references</h2>
 <ul>
-<li><p><a href="https://pg-format.github.io/">Property Graph Exchange Format Homepage</a></p>
-<ul>
-<li><p><a href="https://github.com/pg-format/pg-test-suite">PG Test Suite</a></p></li>
-<li><p><a href="https://github.com/pg-format/pg-highlight">PG Syntax Highlighting</a></p></li>
-<li><p><a href="https://github.com/orgs/pg-format/discussions">PG Format discussion forum</a></p></li>
-</ul></li>
+<li><p>Property Graph Exchange Format Homepage <a href="https://pg-format.github.io/" class="uri">https://pg-format.github.io/</a> including <a href="https://github.com/pg-format/pg-test-suite">PG Test Suite</a>, <a href="https://github.com/pg-format/pg-highlight">PG Syntax Highlighting</a>, and <a href="https://github.com/orgs/pg-format/discussions">PG Format discussion forum</a>.</p></li>
 <li><p><a href="https://json-schema.org/">JSON Schema</a> schema language</p></li>
 <li><p><a href="https://doi.org/10.1109/IEEESTD.2019.8766229">IEEE Standard for Floating-Point Arithmetic</a></p></li>
 <li><p>Chiba, H., Yamanaka, R., Matsumoto, S.: <a href="http://arxiv.org/abs/1907.03936">Property Graph Exchange Format</a>. 2019</p></li>
@@ -791,15 +794,16 @@ Example&nbsp;27: Example graph in PG-JSONL
 </section>
 <section id="appendices" class="level1 unnumbered">
 <h1 class="unnumbered">Appendices</h1>
+<p>The following is non-normative.</p>
 <section id="json-schemas" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="json-schemas">JSON Schemas</h2>
-<p>The <a href="#pg-json">PG-JSON format</a> can be validated with a non-normative JSON Schema file <a href="schema/pg-json.json"><code>pg-json.json</code></a> in this repository. Rules not covered by the JSON schema include:</p>
+<p>The <a href="#pg-json">PG-JSON format</a> can be validated with a non-normative JSON Schema file <a href="https://pg-format.github.io/specification/schema/pg-json.json"><code>pg-json.json</code></a> in the specification repository. Rules not covered by the JSON schema include:</p>
 <ul>
 <li>nodes referenced in edges must be defined (no implicit nodes)</li>
 <li>node identifiers must be unique per graph</li>
 <li>edge identifiers must be unique per graph</li>
 </ul>
-<p>The <a href="#pg-jsonl">PG-JSONL format</a> can be validated with a non-normative JSON Schema file <a href="schema/pg-jsonl.json"><code>pg-jsonl.json</code></a> in this repository. Validation is limited in the same way as validation of PG-JSON with its JSON Schema.</p>
+<p>The <a href="#pg-jsonl">PG-JSONL format</a> can be validated with a non-normative JSON Schema file <a href="https://pg-format.github.io/specification/schema/pg-jsonl.json"><code>pg-jsonl.json</code></a> in the specification repository. Validation is limited in the same way as validation of PG-JSON with its JSON Schema.</p>
 </section>
 <section id="changes" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="changes">Changes</h2>
@@ -808,7 +812,7 @@ Example&nbsp;27: Example graph in PG-JSONL
 <li><p><strong>Version 1.0.0</strong> (<em>not published yet</em>)</p>
 <p>Introduced comments, line folding, edge identifiers. Aligned property values with JSON syntax. Added more formal rules for quoted strings and unquoted identifiers. Added PG-JSONL. Changed node identifiers to be strings.</p></li>
 <li><p><strong>Version 0.3</strong></p>
-<p>Less formal specification published in 2019. See <a href="https://pg-format.readthedocs.io/en/0.3/contents/pg-format.html">latest version from 2020</a>.</p></li>
+<p>Less formal specification first published in 2019. See <a href="https://pg-format.readthedocs.io/en/0.3/contents/pg-format.html">latest draft from 2020</a>.</p></li>
 </ul>
 </section>
 <section id="acknowledgements" class="level2 unnumbered">

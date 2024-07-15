@@ -11,6 +11,10 @@ authors:
   orcid: 0000-0002-7613-4123
   affiliations:
    - name: Verbundzentrale des GBV (VZG)
+abstract: |
+ This document specifies a common data model of labeled property graphs,
+ a syntax to write property graphs in a compact textual form, and serialization
+ formats of property graphs in JSON and in newline-delimited JSON.
 ---
 
 # Introduction
@@ -36,12 +40,17 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHOULD", "SHOULD NOT",
 be interpreted as described in BCP 14 ([RFC 2119] and [RFC 8174]) when, and
 only when, they appear in all capitals, as shown here.
 
-Normative parts of this specification are limited to sections [2](#data-model)
-to [6](#rubustness-priniciple) and [the normative
-references](#normative-references).
+## Robustness principle
 
-More information about Property Graph Exchange Format is summarized
-**[at its homepage](https://pg-format.github.io/)**. 
+Applications MAY automatically convert documents not fully conforming to the
+specification of [PG-JSON](#pg-json) and/or [PG-JSONL](#pg-jsonl) to a valid
+form, for instance by:
+
+- creation of implicit nodes for node identifiers referenced in edges
+- addition of missing empty fields `labels` and/or `properties`
+- removal or mapping of invalid property values such as `null` and JSON objects
+- mapping of numeric node identifiers and edge identifiers to strings
+- removal of additional fields not defined in this specification
 
 # Data Model
 
@@ -56,6 +65,10 @@ a number as defined by [RFC 8259].
 Extended graph features not being part of this data model include graph
 attributes, hierarchies, hyper-edges and semantics of individual labels
 and property keys.
+
+```{=latex}
+\pagebreak
+```
 
 # PG Format
 
@@ -437,7 +450,7 @@ QuotedNonEmpty ::= "'" SingleQuoted+ "'" | '"' DoubleQuoted+ '"'
 SingleQuoted   ::= Unescaped | '"' | Escaped
 DoubleQuoted   ::= Unescaped | "'" | Escaped
 Unescaped      ::= [^#x00-#x08#x0B#x0C#x0E-#x1F"'\]
-Escaped        ::= "\" ( '"' | "'" | "\" | "/" | "b"  | "f"  | "n"  | "r" | "t" | "u" Codepoint )
+Escaped        ::= "\" ( '"' | "'" | "\" | "/" | [bfnrt] | "u" Codepoint )
 Codepoint      ::= [0-9a-fA-Z] [0-9a-fA-Z] [0-9a-fA-Z] [0-9a-fA-Z]
 LineBreak      ::= [#x0A] | [#x0D] [#x0A]?
 
@@ -448,6 +461,10 @@ DW             ::= (Empty LineBreak)* Spaces
 ~~~
 
 :::
+
+```{=latex}
+\pagebreak
+```
 
 # PG-JSON
 
@@ -529,17 +546,6 @@ ignored, merged into existing nodes, or replace existing nodes.
 
 :::
 
-# Robustness principle
-
-Applications MAY automatically convert documents not fully conforming to the
-specification of PG-JSON and/or PG-JSONL to a valid form, for instance by:
-
-- creation of implicit nodes for node identifiers referenced in edges
-- addition of missing empty fields `labels` and/or `properties`
-- removal or mapping of invalid property values such as `null` and JSON objects
-- mapping of numeric node identifiers and edge identifiers to strings
-- removal of additional fields not defined in this specification
-
 # References
 
 ## Normative References
@@ -575,12 +581,9 @@ specification of PG-JSON and/or PG-JSONL to a valid form, for instance by:
 ## Informative references
 
 - Property Graph Exchange Format Homepage <https://pg-format.github.io/>
-
-  - [PG Test Suite](https://github.com/pg-format/pg-test-suite)
-
-  - [PG Syntax Highlighting](https://github.com/pg-format/pg-highlight)
-
-  - [PG Format discussion forum](https://github.com/orgs/pg-format/discussions)
+  including [PG Test Suite](https://github.com/pg-format/pg-test-suite),
+  [PG Syntax Highlighting](https://github.com/pg-format/pg-highlight),
+  and [PG Format discussion forum](https://github.com/orgs/pg-format/discussions).
 
 - [JSON Schema](https://json-schema.org/) schema language
 
@@ -591,15 +594,17 @@ specification of PG-JSON and/or PG-JSONL to a valid form, for instance by:
 
 # Appendices {.unnumbered}
 
+The following is non-normative.
+
 ## JSON Schemas {.unnumbered}
 
-The [PG-JSON format](#pg-json) can be validated with a non-normative JSON Schema file [`pg-json.json`](schema/pg-json.json) in this repository. Rules not covered by the JSON schema include:
+The [PG-JSON format](#pg-json) can be validated with a non-normative JSON Schema file [`pg-json.json`](https://pg-format.github.io/specification/schema/pg-json.json) in the specification repository. Rules not covered by the JSON schema include:
 
 - nodes referenced in edges must be defined (no implicit nodes)
 - node identifiers must be unique per graph
 - edge identifiers must be unique per graph
 
-The [PG-JSONL format](#pg-jsonl) can be validated with a non-normative JSON Schema file [`pg-jsonl.json`](schema/pg-jsonl.json) in this repository. Validation is limited in the same way as validation of PG-JSON with its JSON Schema.
+The [PG-JSONL format](#pg-jsonl) can be validated with a non-normative JSON Schema file [`pg-jsonl.json`](https://pg-format.github.io/specification/schema/pg-jsonl.json) in the specification repository. Validation is limited in the same way as validation of PG-JSON with its JSON Schema.
 
 ## Changes {.unnumbered}
 
