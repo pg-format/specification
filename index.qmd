@@ -415,9 +415,9 @@ terminal symbol `END` denoting the end of a document.
 PG             ::= ( Empty LineBreak | Statement ( LineBreak | END ) )* Empty 
 Statement      ::= ( Edge | Node ) ( DW Label )* ( DW Property )* Empty
 Empty          ::= Spaces? Comment?
-Identifier     ::= QuotedNonEmpty | UnquotedStart UnquotedChar*
 
 /* 3.2 Identifiers */
+Identifier     ::= QuotedNonEmpty | UnquotedStart UnquotedChar*
 UnquotedChar   ::= [^#x00-#x20<>"{}|^`\]
 UnquotedStart  ::= ![:#,-] UnquotedChar
 Node           ::= Identifier
@@ -426,20 +426,20 @@ Node           ::= Identifier
 Edge           ::= ( EdgeIdentifier )? Identifier DW Direction DW Identifier
 EdgeIdentifier ::= QuotedKey DW | UnquotedKey !"#" DW
 Direction      ::= "--" | "->"
-Label          ::= ":" Spaces? Identifier
 
 /* 3.5 Labels */
-Property       ::= Key ValueList
+Label          ::= ":" Spaces? Identifier
 
 /* 3.6 Properties */
-Key            ::= QuotedKey | UnquotedKey DW | UnquotedKey2
+Property       ::= Key ValueList
+Key            ::= QuotedKey | UnquotedKey DW | UnquotedKeyCol
 QuotedKey      ::= QuotedNonEmpty ":"
 UnquotedKey    ::= UnquotedStart ( ( !":" UnquotedChar )* ":" )+
-UnquotedKey2   ::= UnquotedStart ( !":" UnquotedChar )* ":"
+UnquotedKeyCol ::= UnquotedStart ( !":" UnquotedChar )* ":"
 ValueList      ::= DW? Value ( DW? "," DW? Value )*
-Value          ::= Number | Boolean | QuotedString | UnquotedValue
 
 /* 3.6.1 Property Values */
+Value          ::= Number | Boolean | QuotedString | UnquotedValue
 Number         ::= "-"? ("0" | [1-9] [0-9]*) ( "." [0-9]+ )? ([eE] [+-]? [0-9]+)?
 Boolean        ::= "true" | "false"
 UnquotedValue  ::= UnquotedStart (!"," UnquotedChar)*
