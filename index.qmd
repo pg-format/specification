@@ -185,16 +185,9 @@ a -- b key:value
 1: a -> b :label key:value
 ~~~
 
-The following statement does not define an edge but a [node](#nodes) with the identifier "`a--b`":
-
-~~~{.pg #lst-no-edge-but-node lst-cap="Not an edge statement"}
-a--b
-~~~
-
-The following is not valid:
-
-~~~{.pg .invalid #lst-invalid-edge lst-cap="Invalid edge statement"}
-a->b
+~~~{.pg .invalid #lst-invalid-edge lst-cap="No edge statements"}
+a--b    # a node with node identifier "a--b"
+a->b    # syntax error
 ~~~
 
 ### Edge identifiers
@@ -288,6 +281,11 @@ whitespace](#whitespace). If the property key is an unquoted identifier and no
 delimiting whitespace is given before the first value, then the property key
 MUST NOT contain a colon.
 
+~~~{.pg .invalid #lst-invalid-properties lst-cap="Invalid property"}
+node key            # delimiting whitespace not allowed before colon
+  : value
+~~~
+
 ~~~{.pg #lst-properties lst-cap="Property with optional spaces and/or whitespace"}
 node key: value     # spaces before value
 node key:value      # short form
@@ -302,11 +300,6 @@ node key: 1         # delimiting whitespace...
 
 node a:b:c          # property key "a" with value "b:c"
 node a:b: c         # property key "a:b" with value "c"
-~~~
-
-~~~{.pg .invalid #lst-invalid-properties lst-cap="Invalid property"}
-node key            # delimiting whitespace not allowed before colon
-  : value
 ~~~
 
 ### Property values
@@ -395,10 +388,6 @@ a :x  # node id and label
   # this and the following line are empty 
 
   :y  # another label of the same node at continuation line
-~~~
-
-~~~{.pg #lst-line-folding lst-cap="Same graph as above"}
-a :x :y
 ~~~
 
 ## Grammar
