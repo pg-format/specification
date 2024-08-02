@@ -19,7 +19,7 @@ abstract: |
 
 # Introduction
 
-## Why property graphs?
+## Motivation
 
 **Property Graphs** (also known as **Labeled Property Graphs**) are used as
 an abstract data structure in graph databases and related applications. 
@@ -33,7 +33,7 @@ first been proposed by Hirokazu Chiba, Ryota Yamanaka, and Shota Matsumoto
 [2022](https://arxiv.org/abs/2203.06393)) and revised into this specification
 together with Jakob Voß.
 
-## About this document
+## Terminology
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHOULD", "SHOULD NOT",
 "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to
