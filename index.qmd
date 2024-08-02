@@ -468,7 +468,7 @@ Each node is a JSON object with exactely three fields:
 - `id` the node identifier, being a non-empty string.
   Node identifiers MUST be unique per PG-JSON document.
 - `labels` an array of labels, each being a non-empty string.
-  Labels MUST be unique per node.
+  Labels MUST be unique per node. The array SHOULD be sorted by unicode codepoints.
 - `properties` a JSON object mapping non-empty strings as property keys to
   non-empty arrays of scalar JSON values (string, number, boolean) as property values.
 
@@ -583,7 +583,7 @@ ignored, merged into existing nodes, or replace existing nodes.
 
 # Appendices {.unnumbered}
 
-The following is non-normative.
+The following information is non-normative.
 
 ## JSON Schemas {.unnumbered}
 
