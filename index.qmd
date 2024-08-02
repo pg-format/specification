@@ -572,7 +572,8 @@ ignored, merged into existing nodes, or replace existing nodes.
 - Property Graph Exchange Format Homepage <https://pg-format.github.io/>
   including [PG Test Suite](https://github.com/pg-format/pg-test-suite),
   [PG Syntax Highlighting](https://github.com/pg-format/pg-highlight),
-  and [PG Format discussion forum](https://github.com/orgs/pg-format/discussions).
+  [PG Format discussion forum](https://github.com/orgs/pg-format/discussions),
+  and links to implementations.
 
 - [JSON Schema](https://json-schema.org/) schema language
 
