@@ -688,7 +688,7 @@ Example&nbsp;23: Line folding
 </ul>
 <p>Each edge is a JSON object with one optional and four mandatory fields:</p>
 <ul>
-<li><code>id</code> (optional) the edge identifier, being a non-empty string. Edge identifiers MUST be unique per PG-JSON document.</li>
+<li><code>id</code> (optional) the edge identifier, being a non-empty string, or the value <code>null</code> equivalent to no edge identifier. Edge identifiers MUST be unique per PG-JSON document.</li>
 <li><code>undirected</code> (optional) a boolean value whether the edge is undirected</li>
 <li><code>from</code> an identifier of the source node from <code>nodes</code> array</li>
 <li><code>to</code> an identifier of the target node from <code>nodes</code> array</li>
@@ -765,7 +765,7 @@ Example&nbsp;25: Example graph in PG-JSONL
 <section id="informative-references" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="informative-references"><span class="header-section-number">6.2</span> Informative references</h2>
 <ul>
-<li><p>Property Graph Exchange Format Homepage <a href="https://pg-format.github.io/" class="uri">https://pg-format.github.io/</a> including <a href="https://github.com/pg-format/pg-test-suite">PG Test Suite</a>, <a href="https://github.com/pg-format/pg-highlight">PG Syntax Highlighting</a>, and <a href="https://github.com/orgs/pg-format/discussions">PG Format discussion forum</a>.</p></li>
+<li><p>Property Graph Exchange Format Homepage <a href="https://pg-format.github.io/" class="uri">https://pg-format.github.io/</a> including <a href="https://github.com/pg-format/pg-test-suite">PG Test Suite</a>, <a href="https://github.com/pg-format/pg-highlight">PG Syntax Highlighting</a>, <a href="https://github.com/orgs/pg-format/discussions">PG Format discussion forum</a>, and links to implementations.</p></li>
 <li><p><a href="https://json-schema.org/">JSON Schema</a> schema language</p></li>
 <li><p><a href="https://doi.org/10.1109/IEEESTD.2019.8766229">IEEE Standard for Floating-Point Arithmetic</a></p></li>
 <li><p>Chiba, H., Yamanaka, R., Matsumoto, S.: <a href="http://arxiv.org/abs/1907.03936">Property Graph Exchange Format</a>. 2019</p></li>

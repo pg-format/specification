@@ -474,7 +474,7 @@ Each node is a JSON object with exactely three fields:
 
 Each edge is a JSON object with one optional and four mandatory fields:
 
-- `id` (optional) the edge identifier, being a non-empty string.
+- `id` (optional) the edge identifier, being a non-empty string, or the value `null` equivalent to no edge identifier.
   Edge identifiers MUST be unique per PG-JSON document.
 - `undirected` (optional) a boolean value whether the edge is undirected
 - `from` an identifier of the source node from `nodes` array
