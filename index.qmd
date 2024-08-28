@@ -405,9 +405,9 @@ Statement      ::= Edge | Node
 Identifier     ::= QuotedId | UnquotedStart UnquotedChar*
 UnquotedChar   ::= [^#x00-#x20<>"{}|^`\]
 UnquotedStart  ::= !['":#,-] UnquotedChar
-Node           ::= Identifier Labels Properties
 
 /* 3.3 Nodes & 3.4 Edges */
+Node           ::= Identifier Labels Properties
 Edge           ::= ( EdgeIdentifier )? EdgeNodes Labels Properties
 EdgeIdentifier ::= QuotedKey DWS | UnquotedKey DWS
 EdgeNodes      ::= Identifier DWS Direction DWS Identifier
@@ -424,16 +424,16 @@ Key            ::= QuotedKey | UnquotedKey DWS | UnquotedKeyCol
 QuotedKey      ::= QuotedId ":"
 UnquotedKey    ::= UnquotedStart ( ( !":" UnquotedChar )* ":" )+
 UnquotedKeyCol ::= UnquotedStart ( !":" UnquotedChar )* ":"
-ValueList      ::= DWS? Value ( DWS? "," DWS? Value )*
 
 /* 3.6.1 Property Values */
+ValueList      ::= DWS? Value ( DWS? "," DWS? Value )*
 Value          ::= Number | Boolean | QuotedString | UnquotedValue
 Number         ::= "-"? ("0" | [1-9] [0-9]*) ( "." [0-9]+ )? ([eE] [+-]? [0-9]+)?
 Boolean        ::= "true" | "false"
 UnquotedValue  ::= UnquotedStart (!"," UnquotedChar)*
-QuotedString   ::= "'" SingleQuoted* "'" | '"' DoubleQuoted* '"'
 
 /* 3.7 Quoted Strings */
+QuotedString   ::= "'" SingleQuoted* "'" | '"' DoubleQuoted* '"'
 QuotedId       ::= "'" SingleQuoted+ "'" | '"' DoubleQuoted+ '"'
 SingleQuoted   ::= Unescaped | '"' | Escaped
 DoubleQuoted   ::= Unescaped | "'" | Escaped
