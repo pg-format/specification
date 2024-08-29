@@ -21,8 +21,8 @@ abstract: |
 
 ## Motivation
 
-**Property Graphs** (also known as **Labeled Property Graphs**) are used as
-an abstract data structure in graph databases and related applications. 
+**Property Graphs** (also known as **Labeled Property Graphs**) are used to
+structure data in graph databases and related applications. 
 
 Implementations of property graphs slightly differ in support of data types,
 restrictions on labels etc. The [definition of property graphs](#data-model)
@@ -420,10 +420,10 @@ Label          ::= ":" Spaces? Identifier
 /* 3.6 Properties */
 Properties     ::= ( DWS Property )*
 Property       ::= Key ValueList
-Key            ::= QuotedKey | UnquotedKey DWS | UnquotedKeyCol
+Key            ::= QuotedKey | UnquotedKey DWS | PlainKey
 QuotedKey      ::= QuotedId ":"
 UnquotedKey    ::= UnquotedStart ( ( !":" UnquotedChar )* ":" )+
-UnquotedKeyCol ::= UnquotedStart ( !":" UnquotedChar )* ":"
+PlainKey       ::= UnquotedStart ( !":" UnquotedChar )* ":"
 
 /* 3.6.1 Property Values */
 ValueList      ::= DWS? Value ( DWS? "," DWS? Value )*
@@ -438,8 +438,8 @@ QuotedId       ::= "'" SingleQuoted+ "'" | '"' DoubleQuoted+ '"'
 SingleQuoted   ::= Unescaped | '"' | Escaped
 DoubleQuoted   ::= Unescaped | "'" | Escaped
 Unescaped      ::= [^#x00-#x08#x0B#x0C#x0E-#x1F"'\]+
-Escaped        ::= "\" ( '"' | "'" | "\" | "/" | [bfnrt] | "u" Codepoint )
-Codepoint      ::= [0-9a-fA-Z] [0-9a-fA-Z] [0-9a-fA-Z] [0-9a-fA-Z]
+Escaped        ::= "\" ( '"' | "'" | "\" | "/" | [bfnrt] | "u" Hex Hex Hex Hex )
+Hex            ::= [0-9a-fA-Z]
 
 /* 3.8 Whitespace */
 Spaces         ::= [#x20#x09]+
