@@ -2,9 +2,12 @@ $if(title)$
 \title{$title$$if(thanks)$\thanks{$thanks$}$endif$}
 $endif$
 
-$if(subtitle)$
-\subtitle{$subtitle$}
-$endif$
+\subtitle{
+\href{https://doi.org/$doi$}{https://doi.org/$doi$}\\
+$subtitle$
+}
+
+\date{$date$}
 
 $for(by-author)$
   \author{$by-author.name.literal$
@@ -19,5 +22,3 @@ $for(by-author)$
     $endfor$
   $endif$
 $endfor$
-
-\date{$date$}

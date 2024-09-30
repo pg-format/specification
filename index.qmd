@@ -1,7 +1,8 @@
 ---
 title: Property Graph Exchange Format (PG)
-subtitle: Version 1.0.0 (pre-release draft)
-#date: 2024-09-01
+subtitle: Version 1.0.0
+date: 2024-09-30
+doi: 10.5281/zenodo.13859531
 authors:
 - name: Hirokazu Chiba
   orcid: 0000-0003-4062-8903
@@ -30,7 +31,7 @@ used in this specification is aimed to be a superset of property graph models
 of common graph databases and formats. The model and its serializations have
 first been proposed by Hirokazu Chiba, Ryota Yamanaka, and Shota Matsumoto
 ([2019](https://arxiv.org/abs/1907.03936),
-[2022](https://arxiv.org/abs/2203.06393)) and revised into this specification
+[2020](https://arxiv.org/abs/2203.06393)) and revised into this specification
 together with Jakob Voß.
 
 ## Terminology
@@ -601,7 +602,7 @@ The [PG-JSONL format](#pg-jsonl) can be validated with a non-normative JSON Sche
 This document is managed in a revision control system at <https://github.com/pg-format/specification>,
 including an [issue tracker](https://github.com/pg-format/specification/issues).
 
-- **Version 1.0.0** (*not published yet*)
+- **Version 1.0.0**
 
   Introduced comments, line folding, edge identifiers. Aligned property values with JSON syntax. Added more formal rules for quoted strings and unquoted identifiers. Added PG-JSONL. Changed node identifiers to be strings.
 

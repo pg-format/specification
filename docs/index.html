@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2024-09-30">
 
 <title>Property Graph Exchange Format (PG)</title>
 <style>
@@ -77,6 +78,11 @@ formats of property graphs in JSON and in newline-delimited JSON.
 ">
 <meta name="citation_author" content="Hirokazu Chiba">
 <meta name="citation_author" content="Jakob Voß">
+<meta name="citation_publication_date" content="2024-09-30">
+<meta name="citation_cover_date" content="2024-09-30">
+<meta name="citation_year" content="2024">
+<meta name="citation_online_date" content="2024-09-30">
+<meta name="citation_doi" content="10.5281/zenodo.13859531">
 <meta name="citation_language" content="en">
 </head>
 
@@ -86,7 +92,7 @@ formats of property graphs in JSON and in newline-delimited JSON.
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">Property Graph Exchange Format (PG)</h1>
-            <p class="subtitle lead">Version 1.0.0 (pre-release draft)</p>
+            <p class="subtitle lead">Version 1.0.0</p>
           </div>
 
     
@@ -117,8 +123,22 @@ formats of property graphs in JSON and in newline-delimited JSON.
         <div class="quarto-title-meta">
 
                       
+                <div>
+            <div class="quarto-title-meta-heading">Published</div>
+            <div class="quarto-title-meta-contents">
+              <p class="date">September 30, 2024</p>
+            </div>
+          </div>
           
                 
+                <div>
+            <div class="quarto-title-meta-heading">Doi</div>
+            <div class="quarto-title-meta-contents">
+              <p class="doi">
+                <a href="https://doi.org/10.5281/zenodo.13859531">10.5281/zenodo.13859531</a>
+              </p>
+            </div>
+          </div>
               </div>
       </div>
       <div class="quarto-title-meta-column-end quarto-other-formats-target">
@@ -204,7 +224,7 @@ formats of property graphs in JSON and in newline-delimited JSON.
 <section id="motivation" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="motivation"><span class="header-section-number">1.1</span> Motivation</h2>
 <p><strong>Property Graphs</strong> (also known as <strong>Labeled Property Graphs</strong>) are used to structure data in graph databases and related applications.</p>
-<p>Implementations of property graphs slightly differ in support of data types, restrictions on labels etc. The <a href="#data-model">definition of property graphs</a> used in this specification is aimed to be a superset of property graph models of common graph databases and formats. The model and its serializations have first been proposed by Hirokazu Chiba, Ryota Yamanaka, and Shota Matsumoto (<a href="https://arxiv.org/abs/1907.03936">2019</a>, <a href="https://arxiv.org/abs/2203.06393">2022</a>) and revised into this specification together with Jakob Voß.</p>
+<p>Implementations of property graphs slightly differ in support of data types, restrictions on labels etc. The <a href="#data-model">definition of property graphs</a> used in this specification is aimed to be a superset of property graph models of common graph databases and formats. The model and its serializations have first been proposed by Hirokazu Chiba, Ryota Yamanaka, and Shota Matsumoto (<a href="https://arxiv.org/abs/1907.03936">2019</a>, <a href="https://arxiv.org/abs/2203.06393">2020</a>) and revised into this specification together with Jakob Voß.</p>
 </section>
 <section id="terminology" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="terminology"><span class="header-section-number">1.2</span> Terminology</h2>
@@ -789,7 +809,7 @@ Example&nbsp;25: Example graph in PG-JSONL
 <h2 class="unnumbered anchored" data-anchor-id="changes">Changes</h2>
 <p>This document is managed in a revision control system at <a href="https://github.com/pg-format/specification" class="uri">https://github.com/pg-format/specification</a>, including an <a href="https://github.com/pg-format/specification/issues">issue tracker</a>.</p>
 <ul>
-<li><p><strong>Version 1.0.0</strong> (<em>not published yet</em>)</p>
+<li><p><strong>Version 1.0.0</strong></p>
 <p>Introduced comments, line folding, edge identifiers. Aligned property values with JSON syntax. Added more formal rules for quoted strings and unquoted identifiers. Added PG-JSONL. Changed node identifiers to be strings.</p></li>
 <li><p><strong>Version 0.3</strong></p>
 <p>Less formal specification first published in 2019. See <a href="https://pg-format.readthedocs.io/en/0.3/contents/pg-format.html">latest draft from 2020</a>.</p></li>
